@@ -11,7 +11,7 @@ jsBev产品特点
 
 配置属性说明：
 <layer>设置
-Tile图层格式如下：
+SuperMap iServer服务格式如下：
 <layer name="iServer" type="tiled" url="http://localhost:8090/iserver/services/map-changchun/rest/maps/长春市区图" />
 依次为名称，类型和服务地址
 Cloud图层格式如下：
@@ -20,6 +20,12 @@ Google Maps图层格式如下：
 <layer type="google" />
 天地图图层格式如下：
 <layer type="tdtlayer" />
+OpenStreet图层格式如下：
+<layer type="osm" />
+WMS图层格式如下
+<layer name="wms" type="wms" url="http://vmap0.tiles.osgeo.org/wms/vmap0" />
+ArcGIS online图层格式如下
+<layer name="esri" type="arcgis" url="http://server.arcgisonline.com/ArcGIS/rest/services/ESRI_StreetMap_World_2D/MapServer"/>
 
 <page_name>为制定发布的静态页面的名称
 
@@ -28,3 +34,4 @@ Google Maps图层格式如下：
 增加可视化向导viewer.html
 增加服务发布的选择：IIS or Tomcat or GAE
 细节功能和bug修改
+增加个人效果展示平台，供大家体验，欢迎大家）
