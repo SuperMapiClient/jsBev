@@ -1,0 +1,40 @@
+#templatechoose
+    {
+        position:relative;          
+        margin-right: auto;
+        left:30%;
+    }    
+    .miao{width:100%;height:125px;display:table;text-align:center;}
+    .miao span{display:table-cell;vertical-align:middle;}
+    .miao span img{border:dashed 1px green;}
+    
+    input{
+         height: 30px;
+    }
+    
+    .stepbutton
+    {
+        position:relative;          
+        margin-right: auto;
+        left:45%;
+    }
+    .header h1
+    {
+        font-family:Î¢ÈíÑÅºÚ;
+        font-weight:bolder;
+    }
+    .content h2
+    {
+        font-family:Î¢ÈíÑÅºÚ;
+        font-weight:normal;
+    }
+    .footer h4
+    {
+        font-family:Î¢ÈíÑÅºÚ;
+        font-weight:bolder;
+    }
+    label
+    {
+        font-family:Î¢ÈíÑÅºÚ;
+        font-weight:normal;
+    }

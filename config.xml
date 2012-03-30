@@ -1,0 +1,29 @@
+﻿<config>	
+	<map LonLat="0 , -0" Zoom="0">  
+        <BaseLayers>
+          
+		      <layer name="iServer" type="tiled" url="http://localhost:8090/iserver/services/map-world/rest/maps/World Map" />
+			  <layer name="cloud" type="cloud"  />
+        </BaseLayers>
+        <Overlaps />
+		    
+        <Controls>
+			    <ScaleLine />
+			    <PanZoom />
+			    <Navigation />
+				<LayerSwitcher />
+		</Controls>
+	</map>
+	
+	<layout>
+    <page_name>index</page_name>
+	<title>Javascript BEV 1.0</title>
+    
+	<template src="./base/base0.html" />
+	
+    <panel id="search" path="./models/sample/" />
+	
+	<server_use>Tomcat</server_use> // Tomcat or IIS
+    
+	</layout>
+</config>

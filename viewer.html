@@ -1,0 +1,183 @@
+<html>
+<head>
+<title>SuperMap Javascrpt Bev</title> 
+	
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+<link rel="stylesheet" href="./css/jquery.mobile-1.0.1.min.css" />
+<link rel="stylesheet" href="./css/bev.css" />
+
+<script src="./js/jquery-1.6.4.min.js"></script>
+<script src="./js/jquery.mobile-1.0.1.min.js"></script>
+<script src="./js/bev_common.js"></script>
+<script src="./js/common.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        $.ajaxSetup({
+            async: false
+        });
+
+        $("#base1pic").hide();
+        $("#base2pic").hide();
+        $("#layerpara").hide();
+
+        var nHeight = pageHeight();
+        $(".header").css("height", nHeight * 0.06 + 'px');
+        $(".content").css("height", nHeight * 0.85 + 'px');
+        $(".footer").css("height", nHeight * 0.04 + 'px');
+
+    });
+</script>
+</head>
+
+<body>
+<div data-role="page" id="step0" data-theme="a">
+
+	<div data-role="header" class="header" >
+		<h1>SuperMap JavaScript BEV</h1>
+	</div><!-- /header -->
+
+	<div data-role="content" class="content" >	
+		<h2>Step 1:选择模板</h2>
+		
+        <div data-role="fieldcontain" id="templatechoose">
+            <fieldset data-role="controlgroup" data-type="horizontal" >
+         	        <input type="radio" name="template" id="base0" value="base0" checked="checked" onclick=showpic(value) />
+         	        <label for="base0">标准样式1</label>
+
+         	        <input type="radio" name="template" id="base1" value="base1" onclick=showpic(value) />
+         	        <label for="base1">标准样式2（不含页脚）</label>
+
+         	        <input type="radio" name="template" id="base2" value="base2"  onclick=showpic(value) />
+         	        <label for="base2">标准样式3（地图全副）</label>
+            </fieldset>
+        </div>
+                
+        <div id="base0pic" class="miao" >
+	        <span><img src="./images/visual/base0.JPG" /></span>
+        </div>
+        <div id="base1pic" class="miao" >
+	        <span><img src="./images/visual/base1.JPG" /></span>
+        </div>
+        <div id="base2pic" class="miao" >
+	        <span><img src="./images/visual/base2.JPG" /></span>
+        </div>
+
+		
+		
+        <a href="#step1" data-role="button" data-inline="true" class="stepbutton" >下一步</a>
+	</div><!-- /content -->
+	
+	<div data-role="footer" class="footer" >
+		<h4>版权所有&copy; 1997-2012,北京超图软件股份有限公司</h4>
+	</div><!-- /footer -->
+</div><!-- /page one -->
+
+
+<!-- Start of second page: #two -->
+<div data-role="page" id="step1" data-theme="a">
+
+	<div data-role="header" class="header">
+		<h1>SuperMap JavaScript BEV</h1>
+	</div><!-- /header -->
+
+	<div data-role="content" class="content">	
+		<h2>Step 2:地图属性配置</h2>
+        <div data-role="fieldcontain">
+            <label for="pagename">地图页面名称:</label>
+            <input type="text" id="pagename" name="pagename" value="index" data-mini="true" onclick=clears("pagename")  />        
+            <label for="title">地图标题名称:</label>
+            <input type="text" id="title" name="title" value="Javascript BEV 1.0" data-mini="true" onclick=clears("title") />
+        </div>
+        <div data-role="fieldcontain" data-type="horizontal">
+            <label for="lon">地图初始经纬度及层级:</label>
+            <input type="text" id="lon" name="lon" value="" placeholder="经度" style="width:100px" data-mini="true" />
+            <input type="text" id="lat" name="lat" value="" placeholder="维度" style="width:100px" data-mini="true" />
+            <input type="number" id="zoom" name="zoom" value="" placeholder="层级" style="width:100px" data-mini="true" />
+            <label for="lat" href="#" data-role="button" data-mini="true" style="width:200px;height:30px" onclick=geolocation()>选择当前经纬度</label>
+        </div>
+        <div data-role="fieldcontain">
+           <label for="layertype" class="select">地图服务类型:</label>
+           <select name="searchtype" id="layertype" onchange=searchtypechange(this.value)>
+              <option value='google'  >Google Maps</option>
+              <option value='tiled' >iServer</option>
+              <option value='cloud' >SuperMap CloudLayer</option>
+              <option value='osm'>OpenStreet</option>
+              <option value='tdtlayer' >天地图</option>              
+              <option value='wms' >WMS</option>
+              <option value='arcgis' >ArcGIS online</option>
+           </select>
+        </div>
+        <div data-role="fieldcontain" data-type="horizontal" id="layerpara" >
+            <label for="layername">服务名称与Url路径:</label>
+            <input type="text" id="layername" value="" placeholder="名称" style="width:100px" data-mini="true" />
+            <input type="text" id="layerurl" value="" placeholder="Url路径" style="width:300px" data-mini="true" />
+        </div>
+        <div data-role="fieldcontain" >
+            <fieldset data-role="controlgroup" data-type="horizontal">
+	           <legend>控件种类:</legend>
+	           <input type="checkbox" name="chk" id="ScaleLine" class="custom" checked="true" value="ScaleLine" />
+	           <label for="ScaleLine">ScaleLine</label>
+                <input type="checkbox" name="chk" id="PanZoom" class="custom" checked="true" value="PanZoom" />
+	           <label for="PanZoom">PanZoom</label>
+                <input type="checkbox" name="chk" id="Navigation" class="custom" checked="true" value="Navigation" />
+	           <label for="Navigation">Navigation</label>
+                <input type="checkbox" name="chk" id="LayerSwitcher" class="custom" checked="true" value="LayerSwitcher" />
+	           <label for="LayerSwitcher">LayerSwitcher</label>
+               <input type="checkbox" name="chk" id="OverviewMap" class="custom" checked="true" value="OverviewMap" />
+	           <label for="OverviewMap">鹰眼地图</label>
+            </fieldset>
+        </div>
+
+        <div data-role="fieldcontain" >
+            <fieldset data-role="controlgroup" data-type="horizontal">
+	           <legend>功能面板种类:</legend>
+	           <input type="checkbox" name="panel" id="Search" class="custom" checked="true" value="Search" />
+	           <label for="Search">查询</label>
+                <input type="checkbox" name="panel" id="Measure" class="custom" checked="true" value="Measure" />
+	           <label for="Measure">量算</label>
+                <input type="checkbox" name="panel" id="Location" class="custom" checked="true" value="Location" />
+	           <label for="Location">定位</label>
+            </fieldset>
+        </div>
+        
+        <a href="#step0" data-role="button" data-inline="true" class="stepbutton" >上一步</a>
+        <a href="#step2" data-role="button" data-inline="true" class="stepbutton" >下一步</a>		
+	</div><!-- /content -->	
+
+	<div data-role="footer" class="footer">
+		<h4>版权所有&copy; 1997-2012,北京超图软件股份有限公司</h4>
+	</div><!-- /footer -->
+</div><!-- /page two -->
+
+
+<!-- Start of third page: #popup -->
+<div data-role="page" id="step2" data-theme="a">
+
+	<div data-role="header" class="header">
+		<h1>SuperMap JavaScript BEV</h1>
+	</div><!-- /header -->
+
+	<div data-role="content" class="content">	
+		<h2>Step 3:系统属性配置</h2>
+		
+        <div data-role="fieldcontain">
+           <label for="servertype" class="select">发布服务平台选择:</label>
+           <select name="servertype" id="servertype" >
+              <option value='Tomcat'  >Tomcat Server</option>
+              <option value='IIS' >IIS信息发布服务</option>
+              <option value='GAE' >Google APP Engine</option>
+           </select>
+        </div>
+        <a href="#step1" data-role="button" data-inline="true" class="stepbutton" >上一步</a>
+        <a href="#" data-role="button" data-inline="true" class="stepbutton" onclick=generate_custom() >生成</a>	
+	</div><!-- /content -->
+	
+	<div data-role="footer" class="footer">
+		<h4>版权所有&copy; 1997-2012,北京超图软件股份有限公司</h4>
+	</div><!-- /footer -->
+</div><!-- /page popup -->
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title></title> 
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+    <link rel="stylesheet" href="./css/style.css" />
+
+	<script src="./js/jquery-1.7.min.js"></script>
+    <script src="./js/jquery.form.js"></script>
+    <script src="./js/interface.js"></script>
+    <script src="./js/common.js" ></script>
+
+    <script src="./js/SuperMap.Include.js"></script>
+    <script>
+        $(document).ready(function () {
+            adjustPage();
+
+            init();
+            initLayer();
+
+            $(window).resize(function () {
+                adjustPage();
+            });
+        });
+
+        function adjustPage() {
+            var nHeight = pageHeight();
+            $("#page").css("height", nHeight + 'px');
+        }
+    </script>
+</head> 
+<body> 
+
+<div data-role="page" id="page" >
+
+	<div data-role="header" id="header" style="height:6%">
+		
+	</div><!-- /header -->
+
+	<div data-role="content" id="content" style="height:94%">	
+		<div id="map" >
+		</div>
+	</div><!-- /content -->
+
+	<div data-role="footer" id="footer" style="height:0%">
+		<h4 >版权所有&copy; 1997-2012,北京超图软件股份有限公司</h4>
+	</div><!-- /footer -->
+</div><!-- /page -->
+</body>
+</html>

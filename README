@@ -1,0 +1,15 @@
+SuperMap JavaScript Bev是针对SuperMap iClient for JavaScript产品开发的，可以通过一个配置文件的URL地址自动定制地图页面的产品，该产品最大程度地节省地图开发时间并简化了开发难度。
+
+配置属性说明：
+<layer>设置
+Tile图层格式如下：
+<layer name="iServer" type="tiled" url="http://localhost:8090/iserver/services/map-changchun/rest/maps/长春市区图" />
+依次为名称，类型和服务地址
+Cloud图层格式如下：
+<layer type="cloud" />
+Google Maps图层格式如下：
+<layer type="google" />
+天地图图层格式如下：
+<layer type="tdtlayer" />
+
+<page_name>为制定发布的静态页面的名称

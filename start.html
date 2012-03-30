@@ -1,0 +1,347 @@
+﻿<html>
+<head>
+	<title>SuperMap Javascrpt Bev</title> 
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+	<script src="./js/jquery-1.6.4.min.js"></script>
+    <style type="text/css">
+        body
+        {
+            text-align:center;
+        }
+
+        #text
+        {
+            position:relative;
+            top:100px;
+            margin-left: auto;
+            margin-right: auto;
+            height:129px;
+            width:270px;
+            background: url("./images/frameimages/js-logo.png") no-repeat #EEF7FF;
+            border:1px solid #7E9DBA;
+            min-height:48px;
+        }
+
+         #form
+        {
+            position:relative;
+            top:120px;
+            margin-left: auto;
+            margin-right: auto;
+            height:35px;
+            width:750px;
+        }
+        #url
+        {
+            height:34px;
+            width:460px;
+            font-family:微软雅黑;
+            font-size:15px;
+        }
+        
+        #btn
+        {
+            height:34px;
+            width:97px;
+            font-family:微软雅黑;
+            font-size:12px;                 
+            display: inline-block;
+        }
+        
+        #des
+        {
+            position:relative;
+            top:160px;
+			width:550px;
+            margin-left: auto;
+            margin-right: auto;   
+        }
+        
+        #des h3
+        {
+            font-family:微软雅黑;
+            font-size:18px;
+            text-align:left;
+            font-weight:normal;
+        }
+		#des li
+        {
+            font-family:微软雅黑;
+            font-size:13px;
+            text-align:left;
+            font-weight:normal;
+        }
+        
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            $.ajaxSetup({
+                async: false
+            }); 
+        });
+        function generate()
+        {
+            var path = document.getElementById("url").value;
+            var strControls = [];
+            var strBaseLayers = [];
+            var strPanelsHTML = [];
+            var strPanelsIniJS = [];
+            var strPanelsJS = [];
+            var strControlsMessage = "{ controls: [ ";
+            var strMap;
+            var strPosition;
+            var strUrl;
+            var strInsertscript = "";
+            aaa = $.ajax({
+                url: path,
+                cache: false,
+                type: "GET",
+                dataType: "xml",
+                success: function (xml) {
+                    generate_xml(xml);
+                }
+            });
+        }
+
+        function generate_xml(xml) {
+            var strControls = [];
+            var strBaseLayers = [];
+            var strPanelsHTML = [];
+            var strPanelsIniJS = [];
+            var strPanelsJS = [];
+            var strControlsMessage = "{ controls: [ ";
+            var strMap;
+            var strPosition;
+            var strUrl;
+            var strInsertscript = "";
+            var strXML = xml;
+            $(xml).find("Controls").children().each(function (i) {
+                if (this.nodeName == "Navigation") {
+                    strControls[i] = "new SuperMap.Control." + "Navigation({ dragPanOptions: { enableKinetic: true } })";
+                }
+                else {
+                    strControls[i] = "new SuperMap.Control." + this.nodeName + "()";
+                }
+            });
+
+            for (var i = 0; i < strControls.length; i++) {
+                if (i == strControls.length - 1) {
+                    strControlsMessage = strControlsMessage + strControls[i];
+                }
+                else {
+                    strControlsMessage = strControlsMessage + strControls[i] + ",\n";
+                }
+            }
+            strControlsMessage = strControlsMessage + " ], units: 'm'}\n";
+            strMap = "map = new SuperMap.Map('map'," + strControlsMessage + ");\n";
+
+            var nCloudNumber = -1;
+            $(xml).find("BaseLayers").children().each(function (i) {
+                var strType, strName;
+                strType = $(this).attr('type');
+                if (strType == "cloud") {
+                    strBaseLayers[i] = " layer" + i + " = new SuperMap.Layer.CloudLayer();\n";
+                    nCloudNumber = i;
+                }
+                else if (strType == "tiled") {
+                    strUrl = $(this).attr('url');
+                    strName = $(this).attr('name');
+
+                    strBaseLayers[i] = " layer" + i + " = new SuperMap.Layer.TiledDynamicRESTLayer(' " + strName + "'," + "url" + ", { transparent: true, cacheEnabled: true }, { maxResolution: 'auto' });\n";
+                } else if (strType == "tdtlayer") {
+                    strBaseLayers[i] = " layer" + i + " = new SuperMap.Layer.TDTLayer();\n";
+                    nCloudNumber = i;
+                    strInsertscript = "<script src=\"./js/TDTLayer.js\" >" + "</script" + ">\n";
+                } else if (strType == "google") {
+                    strBaseLayers[i] = " layer" + i + " = new SuperMap.Layer.Google();\n";
+                    nCloudNumber = i;
+                    strInsertscript = "<script src='http://maps.google.com/maps/api/js?v=3.3&amp;sensor=false' >" + "</script" + ">\n";
+                } else if (strType == "osm") {
+                    strBaseLayers[i] = " layer" + i + " = new SuperMap.Layer.OSM();\n";
+                    nCloudNumber = i;
+
+                } else if (strType == "wms") {
+                    strUrl = $(this).attr('url');
+                    strName = $(this).attr('name');
+                    strBaseLayers[i] = "layer" + i + " = new SuperMap.Layer.WMS('" + strName + "'," + "url" + ", {layers: 'basic'});\n";
+                    nCloudNumber = i;
+                } else if (strType == "arcgis") {
+                    strUrl = $(this).attr('url');
+                    strName = $(this).attr('name');
+                    strBaseLayers[i] = "layer" + i + " = new OpenLayers.Layer.ArcGISCache('" + strName + "'," + "url );\n";
+                    nCloudNumber = i;
+                }
+
+            });
+
+            $(xml).find("map").each(function () {
+                var strLL, strZoom;
+                $.each(this.attributes, function (i, attrib) {
+                    if (attrib.name == "LonLat") {
+                        strLL = "new SuperMap.LonLat(" + attrib.value + ")";
+                    }
+                    else if (attrib.name == "Zoom") {
+                        strZoom = attrib.value;
+                    }
+                });
+
+                if (strLL == undefined) {
+                    var strLon = document.getElementById("lon").value;
+                    var strLat = document.getElementById("lat").value;
+                    strLL = "new SuperMap.LonLat(" + strLon + "," + strLat + ")";
+                }
+                if (strZoom == undefined) {
+                    strZoom = document.getElementById("zoom").value;
+                }
+
+                strPosition = strLL + " , " + strZoom;
+            });
+
+            var strInitFun = "function init() {\n " + strMap;
+            for (var i = 0; i < strBaseLayers.length; i++) {
+                strInitFun = strInitFun + strBaseLayers[i] + "\n";
+                strInitFun = strInitFun + "map.addLayer(layer" + i + ");\n";
+            }
+            strInitFun = strInitFun + "map.setCenter(" + strPosition + "); \n";
+
+            /*
+            if (nCloudNumber != -1) {
+            strInitFun = strInitFun + "map.addLayer(layer" + nCloudNumber + ");\n";
+            strInitFun = strInitFun + "map.setCenter(" + strPosition + "); \n";
+            }
+
+            if (strBaseLayers.length > 0) {
+            strInitFun = strInitFun + "layer0.events.on({ 'layerInitialized': addLayer });\n";
+            }
+            */
+            strInitFun = strInitFun + "}\n";
+
+            var strVar = "var map";
+            for (var i = 0; i < strBaseLayers.length; i++) {
+                strVar = strVar + ", " + "layer" + i;
+            }
+            strVar = strVar + ";\n";
+            if (strUrl != "" && strUrl != null && strUrl != undefined) {
+                if (strUrl.length != 0) {
+                    strVar = strVar + "var url = " + "\"" + strUrl + "\"" + ";\n"
+                }
+            }
+            strInitFun = strVar + strInitFun;
+
+            var strLayer = "";
+            /*
+            if (strBaseLayers.length == 1) {
+            strLayer = "map.addLayer(layer0);\n"
+            }
+            else {
+            strLayer = "";
+            }
+            */
+
+            var strAddLayerFun = " function addLayer() { \n" + strLayer + "\n map.setCenter(" + strPosition + "); \n}\n";
+
+            var strPanelHTML, strPanelJS, strPanelIniJS;
+            $.get("./template/panel.html", null, function (data) {
+                data = unescape(data);
+                strPanelHTML = data;
+
+                $.get("./template/panel_js.html", null, function (data) {
+                    data = unescape(data);
+                    strPanelIniJS = data;
+
+                    $(xml).find("panel").each(function (i) {
+                        var id, style, top, left;
+                        id = $(this).attr('id');
+
+                        var strConfig = $(this).attr('path');
+                        if (strConfig == undefined) {
+                            strPanelsHTML[i] = strPanelHTML.replace("id=\"panel", "id=\"" + id);
+                            strPanelsHTML[i] = strPanelsHTML[i].replace("id=\"panel", "id=\"" + id);
+                            strPanelsIniJS[i] = strPanelIniJS.replace("#panel", "#" + id);
+                            strPanelsIniJS[i] = strPanelsIniJS[i].replace("#panel", "#" + id);
+                            strPanelsJS[i] = "";
+                        }
+                        else {
+                            var strUrl = strConfig + "panel.html";
+                            $.get(strUrl, null, function (data) {
+                                var strHTML = data;
+                                var strJS = strPanelIniJS;
+                                strPanelsHTML[i] = strHTML.replace("id=\"panel", "id=\"" + id);
+                                strPanelsHTML[i] = strPanelsHTML[i].replace("id=\"panel", "id=\"" + id);
+                                strPanelsIniJS[i] = strJS.replace("#panel", "#" + id);
+                                strPanelsIniJS[i] = strPanelsIniJS[i].replace("#panel", "#" + id);
+                            });
+
+                            strUrl = strConfig + "panel.js";
+                            $.get(strUrl, null, function (data) {
+                                strPanelsJS[i] = data;
+                            });
+                        }
+                    });
+
+                    var strTemplateFile = $(xml).find("template").attr("src");
+                    $.get(strTemplateFile, null, function (data) {
+                        data = unescape(data);
+                        var strTitle = $(xml).find("title").text();
+                        var str_page_name = $(xml).find("page_name").text();
+
+                        strResult = "";
+                        for (var i = 0; i < strPanelsHTML.length; i++) {
+                            strResult = strPanelsHTML[i] + "\n" + strResult;
+                        }
+
+                        var strInitLayerFun = " \nfunction initLayer() { \n";
+                        for (var i = 0; i < strPanelsIniJS.length; i++) {
+                            strInitLayerFun = strInitLayerFun + strPanelsIniJS[i] + "\n";
+                        }
+                        strInitLayerFun = strInitLayerFun + "}\n";
+
+                        var strResult = strResult + strInsertscript + "<" + "script" + ">" + "\n" + strInitFun + strAddLayerFun + strInitLayerFun + "\n";
+                        for (var i = 0; i < strPanelsJS.length; i++) {
+                            strResult = strResult + strPanelsJS[i] + "\n";
+                        }
+                        strResult = strResult + "</script" + ">\n";
+                        data = data.replace("<title></title>", "<title>" + strTitle + "</title>");
+
+                        data = data.split("</body>")[0] + "\n" + strResult + "</body>" + "\n" + "</html>";
+
+                        var str_server_use = $(xml).find("server_use").text();
+                        var str_server = "jsp";
+                        if (str_server_use === "IIS") {
+                            str_server = "asp"
+                        } else if (str_server_use === "Tomcat") {
+                            str_server = "jsp";
+                        }
+
+                        $.post("./index." + str_server,
+                { text: unescape(data), page_name: str_page_name + ".html" },
+                function (value) {
+                    window.location = "./" + str_page_name + ".html";
+                });
+                    });
+                });
+
+            });
+        }
+
+    </script>
+</head>
+<body>
+<div id="text" ></div>
+<div id="form" >
+<input type="text" id="url"  value="http://localhost:8080/jsBev/config.xml" />
+<input type="button" id="btn" name="生成" value="生成" onclick=generate() />
+</div>
+<div id="des">
+    <h3>使用描述</h3>
+	<ul>
+		<li>SuperMap JavaScript Bev是针对SuperMap iClient for JavaScript产品开发的，可以通过一个配置文件的URL地址自动定制地图页面的产品，该产品最大程度地节省地图开发时间并简化了开发难度。</li> 
+		<li>SuperMap JavaScript Bev产品需要在支持ASP和HTML5的浏览器版本中使用，并达到SuperMap iClient for JavaScript 产品的最低配置要求。</li>
+		<li>备注：为了使您得到更好的展现效果，请您在使用前清除缓存；自动生成的页面会覆盖之前的index.html，若您需要保存之前的页面请重命名该文件。</li>
+    </ul>
+</div>
+</body>
+</html>
