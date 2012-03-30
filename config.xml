@@ -3,13 +3,14 @@
         <BaseLayers>
           
 		      <layer name="iServer1" type="tiled" url="http://localhost:8090/iserver/services/map-world/rest/maps/World Map" />
-			  <layer name="iServer2" type="tiled" url="http://localhost:8090/iserver/services/map-jingjin/rest/maps/京津地区人口分布图_专题图" />
+			  
 			  <layer name="esri" type="arcgis" url="http://server.arcgisonline.com/ArcGIS/rest/services/ESRI_StreetMap_World_2D/MapServer" />
 			  <layer name="wms" type="wms" url="http://vmap0.tiles.osgeo.org/wms/vmap0" />
 			  <layer name="cloud" type="cloud"  />
 			  <layer name="google" type="google"  />
 			  <layer name="osm" type="osm"  />
 			  <layer name="tdt" type="tdtlayer"  />
+			  <layer name="iServer2" type="tiled" url="http://support.supermap.com.cn:8090/iserver/services/map-china400/rest/maps/China" />
         </BaseLayers>
         <Overlaps />
 		    

@@ -59,21 +59,41 @@
          <a href="javascript:void(0)" target="_self" id="b" title="定位" onClick="js_bev_geoLocation()"></a>
     </div>   
 </div>
+<script src='http://maps.google.com/maps/api/js?v=3.3&amp;sensor=false' ></script>
+<script src="./js/TDTLayer.js" ></script>
 <script>
-var map, layer0, layer1;
-var url = "http://localhost:8090/iserver/services/map-world/rest/maps/World Map";
+var map, layer0, layer1, layer2, layer3, layer4, layer5, layer6, layer7;
+var url = "http://support.supermap.com.cn:8090/iserver/services/map-china400/rest/maps/China";
 function init() {
  map = new SuperMap.Map('map',{ controls: [ new SuperMap.Control.ScaleLine(),
 new SuperMap.Control.PanZoom(),
 new SuperMap.Control.Navigation({ dragPanOptions: { enableKinetic: true } }),
 new SuperMap.Control.LayerSwitcher() ], units: 'm'}
 );
- layer0 = new SuperMap.Layer.TiledDynamicRESTLayer(' iServer',url, { transparent: true, cacheEnabled: true }, { maxResolution: 'auto' });
+ layer0 = new SuperMap.Layer.TiledDynamicRESTLayer(" iServer1","http://localhost:8090/iserver/services/map-world/rest/maps/World Map", { transparent: true, cacheEnabled: true }, { maxResolution: 'auto' });
 
 map.addLayer(layer0);
- layer1 = new SuperMap.Layer.CloudLayer();
+layer1 = new OpenLayers.Layer.ArcGISCache('esri'," http://server.arcgisonline.com/ArcGIS/rest/services/ESRI_StreetMap_World_2D/MapServer" );
 
 map.addLayer(layer1);
+layer2 = new SuperMap.Layer.WMS('wms'," http://vmap0.tiles.osgeo.org/wms/vmap0", {layers: 'basic'});
+
+map.addLayer(layer2);
+ layer3 = new SuperMap.Layer.CloudLayer();
+
+map.addLayer(layer3);
+ layer4 = new SuperMap.Layer.Google();
+
+map.addLayer(layer4);
+ layer5 = new SuperMap.Layer.OSM();
+
+map.addLayer(layer5);
+ layer6 = new SuperMap.Layer.TDTLayer();
+
+map.addLayer(layer6);
+ layer7 = new SuperMap.Layer.TiledDynamicRESTLayer(" iServer2","http://support.supermap.com.cn:8090/iserver/services/map-china400/rest/maps/China", { transparent: true, cacheEnabled: true }, { maxResolution: 'auto' });
+
+map.addLayer(layer7);
 map.setCenter(new SuperMap.LonLat(0 , -0) , 0); 
 }
  function addLayer() { 

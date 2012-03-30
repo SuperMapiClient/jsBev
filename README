@@ -28,10 +28,12 @@ ArcGIS online图层格式如下
 <layer name="esri" type="arcgis" url="http://server.arcgisonline.com/ArcGIS/rest/services/ESRI_StreetMap_World_2D/MapServer"/>
 
 <page_name>为制定发布的静态页面的名称
+server_use为发布服务的平台，目前支持Tomcat、IIS和GAE
 
 2012.3.20
 增加支持配置文件多地图服务
 增加可视化向导viewer.html
 增加服务发布的选择：IIS or Tomcat or GAE
+增加布局框架模板，满足不同页面的需要
 细节功能和bug修改
-增加个人效果展示平台，供大家体验，欢迎大家）
+增加个人效果展示平台，供大家体验，欢迎大家提供意见：http://js.lugw.net
