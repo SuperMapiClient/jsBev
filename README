@@ -12,7 +12,7 @@ jsBev产品特点
 配置属性说明：
 <layer>设置
 SuperMap iServer服务格式如下：
-<layer name="iServer" type="tiled" url="http://localhost:8090/iserver/services/map-changchun/rest/maps/长春市区图" />
+<layer name="iServer" type="tiled" url="http://support.supermap.com.cn:8090/iserver/services/map-china400/rest/maps/China" />
 依次为名称，类型和服务地址
 Cloud图层格式如下：
 <layer type="cloud" />
