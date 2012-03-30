@@ -1,4 +1,13 @@
-SuperMap JavaScript Bev是针对SuperMap iClient for JavaScript产品开发的，可以通过一个配置文件的URL地址自动定制地图页面的产品，该产品最大程度地节省地图开发时间并简化了开发难度。
+jsBev产品定位
+JsBev致力于帮助用户快速开发出满足自己需要的地图框架。通过配置文件或者可视化向导的方式，能够自动生成静态地图页面，并具有基本的应用功能。可以大大降低用户开发的难度和时间成本。
+jsBev产品特点
+	可视化向导，实现无编码开发方式简易框架
+	多模板支持，满足用户对页面布局的不同需要，并可自我扩展
+	多样的地图服务，目前支持iServer、Cloud、Google、OpenStreet、WMS、ArcGIS、天地图七种地图服务
+	简易开发，轻松生成页面自适应，跨浏览器的地图页面
+	轻量级静态页面
+	可扩展性
+
 
 配置属性说明：
 <layer>设置
@@ -13,3 +22,9 @@ Google Maps图层格式如下：
 <layer type="tdtlayer" />
 
 <page_name>为制定发布的静态页面的名称
+
+2012.3.20
+增加支持配置文件多地图服务
+增加可视化向导viewer.html
+增加服务发布的选择：IIS or Tomcat or GAE
+细节功能和bug修改
