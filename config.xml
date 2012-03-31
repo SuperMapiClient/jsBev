@@ -27,8 +27,12 @@
 	<title>Javascript BEV 1.0</title>
     
 	<template src="./base/base0.html" />
-	
-    <panel id="search" path="./models/sample/" />
+
+  <panelmanager id="panelmanager">
+    <panel id="location" path="./models/location/" />
+    <panel id="search" path="./models/search/" />
+    <panel id="measure" path="./models/measure/" />
+  </panelmanager>
 	
 	<server_use>Tomcat</server_use> // Tomcat or IIS
     

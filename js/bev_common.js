@@ -98,7 +98,7 @@
 
         var strPageName = document.getElementById("pagename").value;
 
-        var strLayout = "<layout><page_name>" + strPageName + "</page_name><title>" + strTitle + "</title>" + strBase + strServerXML + "<panel id='search' path='./models/sample/' /></layout>";
+        var strLayout = "<layout><page_name>" + strPageName + "</page_name><title>" + strTitle + "</title>" + strBase + strServerXML + "<panelmanager id=\"panelmanager\"><panel id=\"location\" path=\"./models/location/\" /><panel id=\"search\" path=\"./models/search/\" /><panel id=\"measure\" path=\"./models/measure/\" /></panelmanager></layout>";
 
         var strXML = strXMLHeader + strMap + strLayout + "</config>";
         var xmlDoc = null;
@@ -266,34 +266,26 @@ function generate_xml(xml){
 			data = unescape(data);
 			strPanelIniJS = data;
 
-			$(xml).find("panel").each(function (i) {
-				var id, style, top, left;
-				id = $(this).attr('id');
+			//遍历XML中panelmanager节点的孩子，添加相对应的功能，其中id没有用到，主要是path属性
+			$(xml).find("panelmanager").children().each(function (i) {
 
-				var strConfig = $(this).attr('path');
-				if (strConfig == undefined) {
-					strPanelsHTML[i] = strPanelHTML.replace("id=\"panel", "id=\"" + id);
-					strPanelsHTML[i] = strPanelsHTML[i].replace("id=\"panel", "id=\"" + id);
-					strPanelsIniJS[i] = strPanelIniJS.replace("#panel", "#" + id);
-					strPanelsIniJS[i] = strPanelsIniJS[i].replace("#panel", "#" + id);
-					strPanelsJS[i] = "";
-				}
-				else {
-					var strUrl = strConfig + "panel.html";
-					$.get(strUrl, null, function (data) {
-						var strHTML = data;
-						var strJS = strPanelIniJS;
-						strPanelsHTML[i] = strHTML.replace("id=\"panel", "id=\"" + id);
-						strPanelsHTML[i] = strPanelsHTML[i].replace("id=\"panel", "id=\"" + id);
-						strPanelsIniJS[i] = strJS.replace("#panel", "#" + id);
-						strPanelsIniJS[i] = strPanelsIniJS[i].replace("#panel", "#" + id);
-					});
+			    //获取功能路径
+			    var strConfig = $(this).attr('path');
 
-					strUrl = strConfig + "panel.js";
-					$.get(strUrl, null, function (data) {
-						strPanelsJS[i] = data;
-					});
-				}
+			    //在路径不为空的前提下进行下边操作，如果为空那么就不做处理，相应没有功能按钮出现
+			    if (strConfig !== "") {
+
+			        //获取html中的数据
+			        var strUrl = strConfig + "panel.html";
+			        $.get(strUrl, null, function (data) {
+			            strPanelsHTML[i] = data;
+			        });
+			        //获取js文件中的数据
+			        strUrl = strConfig + "panel.js";
+			        $.get(strUrl, null, function (data) {
+			            strPanelsJS[i] = data;
+			        });
+			    }
 			});
 
             var strTemplateFile = $(xml).find("template").attr("src");
@@ -307,11 +299,16 @@ function generate_xml(xml){
 					strResult = strPanelsHTML[i] + "\n" + strResult;
 				}
 
-				var strInitLayerFun = " \nfunction initLayer() { \n";
-				for (var i = 0; i < strPanelsIniJS.length; i++) {
-					strInitLayerFun = strInitLayerFun + strPanelsIniJS[i] + "\n";
-				}
-				strInitLayerFun = strInitLayerFun + "}\n";
+	            /*将pannel中html字符串和添加的a标签连起来，并在最后添加上我们之前省掉的两个div尾部*/
+	            strResult = strPanelHTML + strResult + "\n</div>\n</div>";
+
+	            var strInitLayerFun = " \nfunction initLayer() { \n";
+	            for (var i = 0; i < strPanelsIniJS.length; i++) {
+	                strInitLayerFun = strInitLayerFun + strPanelsIniJS[i] + "\n";
+	            }
+
+	            /*将pannel中js字符串添加到页面js字符串中*/
+	            strInitLayerFun = strInitLayerFun + strPanelIniJS + "}\n";
 
 				var strResult = strResult + strInsertscript + "<" + "script" + ">" + "\n" + strInitFun + strAddLayerFun + strInitLayerFun + "\n";
 				for (var i = 0; i < strPanelsJS.length; i++) {

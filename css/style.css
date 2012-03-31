@@ -4,7 +4,7 @@
     
     overflow:hidden;
 }
-
+    
 #header 
 {
     height:6%;
@@ -16,7 +16,7 @@
 #content 
 {
     padding:0;
-    height:90%;
+    height:94%;
 }
 
 #map
@@ -27,107 +27,105 @@
 
 #footer 
 {
-    height:4%;
+    height:0%;
     background: no-repeat #EEF7FF;
     border:1px solid #7E9DBA;
 }
 
 .mianban{
-		
-		background-color:#f1f8fe;
-		width:210px;
-		height:280px;
-		border-width:1px;
-		border-color:#a7bacb;
-		border-style:solid;
-		position:absolute;
-		border-radius: 5px;
-		z-index:1004;
-	         }
-	         
-	.title{
-		background-color:#9ebfe2;
-		background-image:url("../images/frameimages/chilun.png");
-		background-repeat:no-repeat;
-		background-position: 45px 7px;
-		margin:4px;
-		height:40px;
-		text-align:center;
-		border-radius: 3px;
-		color: #406180;
-	      }
+    background-color:#f1f8fe;
+    width:210px;
+    height:280px;
+    border-width:1px;
+    border-color:#a7bacb;
+    border-style:solid;
+    position:absolute;
+    border-radius: 5px;
+    z-index:1004;
+}
+         
+.title{
+    background-color:#9ebfe2;
+    background-image:url("../images/frameimages/chilun.png");
+    background-repeat:no-repeat;
+    background-position: 45px 7px;
+    margin:4px;
+    height:40px;
+    text-align:center;
+    border-radius: 3px;
+    color: #406180;
+}
 
-		.title h4 {
-		    margin:0;
-			padding-top: 11px;
-			padding-left: 17px;
-		}
-	.mianban .pailie{
-			margin:4px;
-			background-color:#ffffff;
-			position:relative;
-			border: 1px solid #d3e4f3;
-			border-radius: 3px;
-		       }
-		
-		
-		.pailie a {
-		    display: block;
-			width: 46px;
-			height: 46px;
-			margin: 10px;
-			float: left;
-			border: 0 none;
-		}
-		#a {
-		    background: url("../images/frameimages/01.png") no-repeat;
-		}
-		#b {
-		    background: url("../images/frameimages/02.png") no-repeat;
-		}
-		#c {
-		    background: url("../images/frameimages/03.png") no-repeat;
-		}
-		#d {
-		    background: url("../images/frameimages/04.png") no-repeat;
-		}
-		#e {
-		    background: url("../images/frameimages/05.png") no-repeat;
-		}
-		#f {
-		    background: url("../images/frameimages/06.png") no-repeat;
-		}
-		#g {
-		    background: url("../images/frameimages/07.png") no-repeat;
-		}
-		#h {
-		    background: url("../images/frameimages/08.png") no-repeat;
-		}
-		#i {
-		    background: url("../images/frameimages/09.png") no-repeat;
-		}
+.title h4 {
+    margin:0;
+    padding-top: 11px;
+    padding-left: 17px;
+}
+.mianban .pailie{
+    margin:4px;
+    background-color:#ffffff;
+    position:relative;
+    border: 1px solid #d3e4f3;
+    border-radius: 3px;
+    overflow:hidden;
+}
+    
+.pailie a {
+    display: block;
+    width: 46px;
+    height: 46px;
+    margin: 10px;
+    float: left;
+    border: 0 none;
+}
 
-	  .clear {
-			     clear: left;
-				 height: 27px;
-			 }
-	#back, #gongneng {
-	    position: absolute;
-		border: 0 none;
-		width: 27px;
-		height: 40px;
-		top: 4px;
-		cursor:pointer;
-	}
-	#back {
-	    
-		left:4px;
-		background-image:url("../images/frameimages/houtui.png");
-	}
-#gongneng {
-    right: 4px;
-	
-	background-image:url("../images/frameimages/gongneng.png");
+#a {
+    background: url("../images/frameimages/01.png") no-repeat;
+}
+#b {
+    background: url("../images/frameimages/02.png") no-repeat;
+}
+#c {
+    background: url("../images/frameimages/03.png") no-repeat;
+}
+#d {
+    background: url("../images/frameimages/04.png") no-repeat;
+}
+#e {
+    background: url("../images/frameimages/05.png") no-repeat;
+}
+#f {
+    background: url("../images/frameimages/06.png") no-repeat;
+}
+#g {
+    background: url("../images/frameimages/07.png") no-repeat;
+}
+#h {
+    background: url("../images/frameimages/08.png") no-repeat;
+}
+#i {
+    background: url("../images/frameimages/09.png") no-repeat;
+}
+
+.clear {
+     clear: left;
+     height: 27px;
+}
+#back{
+    position: absolute;
+    border: 0 none;
+    width: 27px;
+    height: 40px;
+    top: 4px;
+    cursor:pointer;
+    background:#FFF;
+	display:none;
+    left:4px;
+    background-image:url("../images/frameimages/houtui.png");
+}
+
+#back:hover {
+	background-image:url("../images/frameimages/houtui_hover.png");
 }
 
 .qByBoundsBoxDiv {
@@ -156,23 +154,129 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5099f6', endColorstr='#216ae4');
    
     margin-right: 0px;
-	opacity:0.8; 
-	filter:alpha(opacity=80);
-	
+    opacity:0.8; 
+    filter:alpha(opacity=80);
+    
 }
 
 .button2:hover {
-	opacity:1.0; 
-	filter:alpha(opacity=100);
+    opacity:1.0; 
+    filter:alpha(opacity=100);
+    cursor:pointer;
+}
+
+.button3{
 	cursor:pointer;
+	width:190px;
+	height:35px;
+	margin:5px 5px 5px 5px;
+	border:1px solid #CCC;
+	border-radius: 8px;
+	font-size: 20px;
+	text-align: center;
+	padding-top: 12px;
+	background:#9EBFE2 5px 8px;
+	-webkit-transition:color 0.5s ease-in-out, background-color 0.5s ease-in-out;
+}
+.button3:hover{
+	background-color:#99ccff;
+	box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+}
+
+.button4{
+	cursor:pointer;
+	width:190px;
+	height:20px;
+	margin:5px 5px 5px 5px;
+	border:1px solid #CCC;
+	border-radius: 8px;
+	font-size: 16px;
+	text-align: center;
+	padding-top: 3px;
+	background:#9EBFE2 5px 8px;
+	-webkit-transition:color 0.5s ease-in-out, background-color 0.5s ease-in-out;
+}
+.button4:hover{
+	background-color:#99ccff;
+	box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+}
+
+
+#measureDistance{
+	background-image:url(../images/frameimages/measuredistance.png);
+	background-repeat:no-repeat;
+	background-position-x: 6px;
+	background-position-y: 6px;
+}
+
+#measureArea{
+	background-image:url(../images/frameimages/measurearea.png);
+	background-repeat:no-repeat;
+	background-position-x: 6px;
+	background-position-y: 6px;
+}
+
+#myLocate{
+	background-image:url(../images/frameimages/mylocation.png);
+	background-repeat:no-repeat;
+	background-position-x: 6px;
+	background-position-y: 6px;
+}
+
+#gotoLocate{
+	background-image:url(../images/frameimages/golocation.png);
+	background-repeat:no-repeat;
+	background-position-x: 6px;
+	background-position-y: 6px;
+}
+
+#searchBySQL{
+	background-image:url(../images/frameimages/sql.png);
+	background-repeat:no-repeat;
+	background-position-x: 6px;
+	background-position-y: 6px;
+}
+
+#searchByBounds{
+	background-image:url(../images/frameimages/searchByBounds.png);
+	background-repeat:no-repeat;
+	background-position-x: 6px;
+	background-position-y: 6px;
+}
+
+#measureResult{
+	width:190px;
+	height:40px;
+	border:1px solid #CCC;
+	margin:5px 5px 5px 5px;
+	border-radius: 8px;
+	font-size:14px;
+	text-align:center;
+	padding-top:5px;
+}
+
+.input {
+	transition: all 0.30s ease-in-out;
+	-webkit-transition: all 0.30s ease-in-out; 
+	-moz-transition: all 0.30s ease-in-out; 
+	border: #35a5e5 1px solid; 
+	border-radius: 4px; 
+	outline: none; 
+	width:95%;
+	height:17px;
+	margin-left:5px;
+} 
+.input:focus { 
+	border:#35a5e5 1px solid; 
+	box-shadow: 0 0 5px rgba(81, 203, 238, 1); 
+	-webkit-box-shadow: 0 0 5px rgba(81, 203, 238, 1); 
+	-moz-box-shadow: 0 0 5px rgba(81, 203, 238, 1); 
 }
 
 .fontstyle
 {
-    font-family:微软雅黑;
-    font-size:12px; 
-    font-weight:normal;
-    text-decoration:none;
+    font-size:14px;
+	padding-left:5px;
 }
 
 #footer h4 {

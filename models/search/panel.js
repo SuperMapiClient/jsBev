@@ -1,35 +1,62 @@
-﻿var queryHtml;
-var js_Search_vectorLayer, control, queryBounds, js_Search_markerLayer, queryType = 1;
-function js_bev_search() {
-    queryHtml = $("#jsBev_search").html();
-    var text = "<div><select id='search' name='searchtype' style='width:100%' onchange=searchtypechange(this.value) ><option value='1'>范围查询</option><option value='2'>SQL查询</option></select></div>";
-    text += "<div ><a style='width:100%' >图层名称</a><input type='text' id='nametext' value='Capitals@World' ></div>";
-    text += "<div id='sql'><a style='width:100%' >SQL语句</a><input type='text' id='sqltext' value='Pop_1994>1000000000 and SmArea>900' ></div>";
-    text += "<div><input type='button' name='查询' value='查询' onclick=js_Bev_Query() /><input type='button' name='清除' value='清除' onclick=js_Search_clearFeatures() /><input type='button' name='返回' value='返回' onclick=searchBack() /></div>";
-    $("#jsBev_search").html(text);
-
-    $("#sql").hide();
-
-    queryType = 1;
+﻿var quert_html_range_sql,queryType_sql=1;
+function js_bev_search_step(){
+	$("#panel_handle > h4").fadeOut(200);
+	$("#panel_handle").css("background-image","url('./images/frameimages/search.png')");
+	$("#back").fadeIn(200);
+	
+	queryHtml = $("#jsBev_sample").html();
+	$("#back").attr("onClick","searchBack()");
+    var text="<p class='button3' id='searchByBounds' onclick='clickChaXun()'>范围查询</p>";
+	text += "<p class='button3' id='searchBySQL' onClick='clickSql()'>SQL查询</div>";
+	$("#jsBev_sample").animate({"opacity":"0"},200,function(){
+		$("#panel_handle > h4").text("查询功能").fadeIn(200);
+		$("#jsBev_sample").html(text).animate({"opacity":"1"},200);
+	});
+}
+//查询功能
+function clickChaXun(){
+	$("#back").attr("onClick","searchBack_to_step()");
+	quert_html_range_sql = $("#jsBev_sample").html();
+	var text="<p class='fontstyle' >图层名称</p><input class='input' type='text' id='nametext' value='Capitals@World.1' />"
+	text+="<p class='button4' onclick=js_Bev_Query() >查询</p><p class='button4' onclick='js_Search_clearFeatures()' >清除</p>"
+	$("#jsBev_sample").animate({"opacity":"0"},200,function(){
+		queryType_sql=1;
+		$("#jsBev_sample").html(text).animate({"opacity":"1"},200);
+	});
+}
+function clickSql(){
+	$("#back").attr("onClick","searchBack_to_step()");
+	quert_html_range_sql = $("#jsBev_sample").html();
+	var text="<div><p class='fontstyle' >图层名称</p>";
+	text+="<input class='input' type='text' id='nametext' value='Countries@World.1'/></div>"
+	text+="<p class='fontstyle' >SQL语句</p>";
+	text+="<input class='input' type='text' id='sqltext' value='Pop_1994>1000000000 and SmArea>900'/>";
+	text+="<p class='button4' onclick='js_Bev_Query()'>查询</p><p class='button4' onclick='js_Search_clearFeatures()'>清除</p>";
+	$("#jsBev_sample").animate({"opacity":"0"},200,function(){
+		$("#jsBev_sample").html(text).animate({"opacity":"1"},200);
+	});
+	queryType_sql++;
 }
 
 function searchBack() {
-    $("#jsBev_search").html(queryHtml);
+	$("#panel_handle > h4").fadeOut(200);
+	$("#panel_handle").css("background-image","url('./images/frameimages/chilun.png')");
+	$("#back").fadeOut(200);
+	$("#jsBev_sample").animate({"opacity":"0"},200,function(){
+		$("#panel h4").text("功能面板").fadeIn(200);
+		$("#jsBev_sample").html(queryHtml).animate({"opacity":"1"},200);
+	});
 }
 
-function searchtypechange(value) {
-    queryType = value;
-    if (queryType == 1) {
-        $("#sql").hide();
-        document.getElementById("nametext").value = "Capitals@World";
-    }
-    else {
-        $("#sql").show();
-        document.getElementById("nametext").value = "Countries@World";
-    }
-
+function searchBack_to_step(){
+	$("#back").attr("onClick","searchBack()");
+	$("#jsBev_sample").animate({"opacity":"0"},200,function(){
+		$("#jsBev_sample").html(quert_html_range_sql).animate({"opacity":"1"},200);
+	});
 }
 
+var queryHtml;
+var js_Search_vectorLayer, control, queryBounds, js_Search_markerLayer;
 var js_Search_style = {
     strokeColor: "#304DBE",
     strokeWidth: 1,
@@ -56,14 +83,13 @@ function js_Bev_Query() {
         map.addLayer(js_Search_markerLayer);
     }
 
-    if (queryType == 1) {
+    if (queryType_sql == 1) {
         js_Bev_searchByBounds();
     }
     else {
         js_Bev_searchBySQL();
     }
 }
-
 function js_Bev_searchByBounds() {
     control = new SuperMap.Control();
     SuperMap.Util.extend(control, {//Util工具类   extend指的是将复制所有的属性的源对象到目标对象
@@ -102,17 +128,17 @@ function js_Bev_searchByBounds() {
 }
 
 function js_Search_processCompleted(queryEventArgs) {
-    var value = document.getElementById("search").value;
+    var value = document.getElementById("panel").value;
     var i, j, result = queryEventArgs.result; //queryEventArgs服务端返回的对象
     if (result && result.recordsets) {
         for (i = 0, recordsets = result.recordsets, len = recordsets.length; i < len; i++) {
             if (recordsets[i].features) {
                 for (j = 0; j < recordsets[i].features.length; j++) {
-                    if (queryType == 1) {
+                    if (queryType_sql == 1) {
                         var point = recordsets[i].features[j].geometry,
                                 size = new SuperMap.Size(44, 33),
                                 offset = new SuperMap.Pixel(-(size.w / 2), -size.h),
-                                icon = new SuperMap.Icon("../resource/controlImages/marker.png", size, offset);
+                                icon = new SuperMap.Icon("./resource/controlImages/marker.png", size, offset);
                         js_Search_markerLayer.addMarker(new SuperMap.Marker(new SuperMap.LonLat(point.x, point.y), icon));
                     }
                     else
