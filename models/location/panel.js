@@ -73,7 +73,7 @@ map.addControl(geolocate);
         $("#lon").val(lon);
     });
 
-     $("#gotoLocate").click(function () {
+    $("#gotoLocate").click(function () {
 		if ($("#lat").val() != "" && $("#lon").val() != "") {
 			var size = new SuperMap.Size(44, 33);
 			var offset = new SuperMap.Pixel(-(size.w / 2), -size.h);
