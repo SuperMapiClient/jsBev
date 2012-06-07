@@ -96,5 +96,8 @@ map.addControl(geolocate);
 	geolocate.events.register("locationupdated",geolocate,function(e) {
 		$("#lat").val("" + e.point.y + "°");
 		$("#lon").val("" + e.point.x + "°");
+		
+		geolocate.watch = false;
+		geolocate.deactivate();
 	});
 }
