@@ -1,8 +1,8 @@
 ﻿/* Copyright (c) 2000-2011 by SuperMap Software Co., Ltd.*/
 
 /**
- * @requires OpenLayers/Util.js
- * @requires OpenLayers/BaseTypes/Bounds.js
+ * @requires SuperMap/Util.js
+ * @requires SuperMap/BaseTypes/Bounds.js
  * @requires SuperMap/CanvasLayer.js
  */
 
@@ -15,7 +15,7 @@
  *  - <SuperMap.CanvasLayer>
  */
 
-SuperMap.Layer.TDTLayer = OpenLayers.Class(SuperMap.CanvasLayer, {
+SuperMap.Layer.TDTLayer = SuperMap.Class(SuperMap.CanvasLayer, {
 
     /**
      * Property: name
@@ -76,8 +76,8 @@ SuperMap.Layer.TDTLayer = OpenLayers.Class(SuperMap.CanvasLayer, {
         
         var me = this;
        
-        options = OpenLayers.Util.extend({
-            maxExtent: new OpenLayers.Bounds(
+        options = SuperMap.Util.extend({
+            maxExtent: new SuperMap.Bounds(
                 -179.99999999999997,
                 -90.0,
                 180.00000000000023,
@@ -147,7 +147,7 @@ SuperMap.Layer.TDTLayer = OpenLayers.Class(SuperMap.CanvasLayer, {
      */
     getTileUrl: function (xyz) {
         var me = this,
-            tileSize = new OpenLayers.Size(256,256),
+            tileSize = new SuperMap.Size(256,256),
             url = me.url;
             
         var level = me.getLevelForResolution(me.map.getResolution()); 
@@ -250,7 +250,7 @@ SuperMap.Layer.TDTLayer = OpenLayers.Class(SuperMap.CanvasLayer, {
                 break;
         }
         
-        return OpenLayers.String.format(me.url, {
+        return SuperMap.String.format(me.url, {
             d: 1,
             x: xyz.x,
             y: xyz.y,

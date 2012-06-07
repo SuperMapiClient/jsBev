@@ -1,22 +1,25 @@
 ﻿var base="base1";
 function showpic(value) {
         if (value == "base1") {
-            $("#base").css("background-image","url(./images/visual/base0.png)");
-            $("#base1").css({"border":"none","background":"none"}).siblings().css({"border":"1px solid #4E5559","background":"url(./resource/images/button1.png) repeat-x"});
+            //$("#base").css("background-image","url(./images/visual/base0.png)");
+	    $("#base").attr("src","./images/visual/base0.png");
+            $("#base1").css({"border":"none","background":"url('./resource/images/buttonselect.png') repeat-x 0px 1px"}).siblings().css({"border":"1px solid #4E5559","background":"url(./resource/images/button1.png) repeat-x"});
             base = "base1";
         } else if (value == "base2"){
-            $("#base").css("background-image","url(./images/visual/base1.png)");
-            $("#base2").css({"border":"none","background":"none"}).siblings().css({"border":"1px solid #4E5559","background":"url(./resource/images/button1.png) repeat-x"});
+            //$("#base").css("background-image","url(./images/visual/base1.png)");
+	    $("#base").attr("src","./images/visual/base1.png");
+            $("#base2").css({"border":"none","background":"url('./resource/images/buttonselect.png') repeat-x 0px 1px"}).siblings().css({"border":"1px solid #4E5559","background":"url(./resource/images/button1.png) repeat-x"});
             base = "base2";
         } else if (value == "base3") {
-            $("#base").css("background-image","url(./images/visual/base2.png)");
-            $("#base3").css({"border":"none","background":"none"}).siblings().css({"border":"1px solid #4E5559","background":"url(./resource/images/button1.png) repeat-x"});
+            //$("#base").css("background-image","url(./images/visual/base2.png)");
+	    $("#base").attr("src","./images/visual/base2.png");
+            $("#base3").css({"border":"none","background":"url('./resource/images/buttonselect.png') repeat-x 0px 1px"}).siblings().css({"border":"1px solid #4E5559","background":"url(./resource/images/button1.png) repeat-x"});
             base = "base3";
         }
     }
 function strikeClick(id){
         if (id == "patternSelected") {
-            $("#patternSelected").css({"background":"url('./resource/images/buttonselect.png') repeat-x","padding-bottom":"15px","border-left-color":"#7db9be","border-right-color":"#7db9be"});
+            $("#patternSelected").css({"background":"url('./resource/images/buttonselect.png') repeat-x 0px -2px","padding-bottom":"9px"});//,"border-left-color":"#7db9be","border-right-color":"#7db9be"
             $("#mapSelected").css({"background":"url('./resource/images/button1.png') repeat-x","padding-bottom":"9px","border-left-color":"#393e42","border-right-color":"#393e42"});
             $("#systemSelected").css({"background":"url('./resource/images/button1.png') repeat-x","padding-bottom":"9px","border-left-color":"#393e42","border-right-color":"#393e42"});
             $("#pic").css({"background":"url('./resource/images/piccenter.png') repeat-x","padding-bottom":"9px"});
@@ -24,7 +27,7 @@ function strikeClick(id){
             $("#maproperties").css("display","none");
             $("#systemProperties").css("display","none");
         } else if (id == "mapSelected"){
-            $("#mapSelected").css({"background":"url('./resource/images/buttonselect.png') repeat-x","padding-bottom":"15px","border-left-color":"#7db9be","border-right-color":"#7db9be"});
+            $("#mapSelected").css({"background":"url('./resource/images/buttonselect.png') repeat-x 0px -2px","padding-bottom":"9px"});//,"border-left-color":"#7db9be","border-right-color":"#7db9be"
             $("#patternSelected").css({"background":"url('./resource/images/button1.png') repeat-x","padding-bottom":"9px","border-left-color":"#393e42","border-right-color":"#393e42"});
             $("#systemSelected").css({"background":"url('./resource/images/button1.png') repeat-x","padding-bottom":"9px","border-left-color":"#393e42","border-right-color":"#393e42"});
             $("#pic").css({"background":"url('./resource/images/piccenter.png') repeat-x","padding-bottom":"9px"});
@@ -32,7 +35,7 @@ function strikeClick(id){
             $("#maproperties").css("display","block");
             $("#systemProperties").css("display","none");
         } else if (id == "systemSelected") {
-               $("#systemSelected").css({"background":"url('./resource/images/buttonselect.png') repeat-x","padding-bottom":"15px","border-left-color":"#7db9be","border-right-color":"#7db9be"});
+               $("#systemSelected").css({"background":"url('./resource/images/buttonselect.png') repeat-x 0px -2px","padding-bottom":"9px"});//,"border-left-color":"#7db9be","border-right-color":"#7db9be"
             $("#mapSelected").css({"background":"url('./resource/images/button1.png') repeat-x","padding-bottom":"9px","border-left-color":"#393e42","border-right-color":"#393e42"});
             $("#patternSelected").css({"background":"url('./resource/images/button1.png') repeat-x","padding-bottom":"9px","border-left-color":"#393e42","border-right-color":"#393e42"});
             $("#pic").css({"background":"url('./resource/images/piccenter.png') repeat-x","padding-bottom":"9px"});
@@ -68,17 +71,79 @@ function strikeClick(id){
         }  
     }
     var url=[];
+    var count=1;
     function add(){
-        var strName = document.getElementById("layername").value;
-        var strUrl = document.getElementById("layerurl").value;
+	var a = document.getElementById("layername");
+	var b = document.getElementById("layerurl");
+	var c = document.getElementById("layertype");
+        var strName = a.value;
+        var strUrl = b.value;
+	var type = c.value;
+	//var count = url.length+1;
+	if(!strName||strName==""){
+		strName = "map_"+count;
+	}
+	if((type=="tiled"||type=="wms"||type=="arcgis")&&(!strUrl||strUrl=="")){
+		alert("url路径不能为空");
+		return false;
+	}
         var danUrl=new Array();
         if(strName!="名称"&&strUrl!="Url路径"){
-            danUrl[0]=document.getElementById("layername").value;
-            danUrl[1]=document.getElementById("layerurl").value;
-            danUrl[2]=document.getElementById("layertype").value;
-            url.push(danUrl);
+            danUrl[0]=strName;
+            danUrl[1]=strUrl;
+            danUrl[2]=type;
+	    danUrl[3]="layer_"+count;
+	    url.push(danUrl);
+	    var type1='';
+	    switch(type){
+		case "tiled":type1 = "iserver";break;
+		case "cloud":type1 = "SuperMap CloudLayer";break;
+		case "tdtlayer":type1 = "天地图";break;
+		case "wms":type1 = "WMS";break;
+		case "google":type1 = "Google Maps";break;
+		case "osm":type1 = "OpenStreet";break;
+		case "arcgis":type1 = "ArcGIS online";break;
+	    }
+	    showlayerinfo(strName,strUrl,type1,count);
+	    a.value = b.value = "";
+	    count++;
         }
     }
+    
+    function showlayerinfo(layername,layerurl,layertype,count){
+	var a,b;
+	
+	a = $("#layerinfo");
+	a.css("display","block");
+	if(layerurl){
+		if(layerurl.length>50){
+			layerurl = layerurl.substring(0,50);
+			layerurl += "..";
+		}
+		//layerurl = "，" + layerurl;
+	}
+	//var htmlsr = "<div style=\"margin:0px 0px 10px 10px;color:#fff;\"><span style=\"margin-left:10px;\">"+layername+"</span><span>"+layerurl+"</span></div>"
+	var htmlstr = "<div id=\"layerlist_"+count+"\" style=\"margin:0px 0px 10px 10px;color:#fff;\"><span style=\"display:inline-block;\"><span style=\"margin-left:10px;\">"+layertype+"，</span><span style=\"margin-left:10px;\">"+layername+"</span>"
+	if(layerurl&&layerurl!=""){
+		htmlstr += "<span>，"+layerurl+"</span>";
+	}
+	htmlstr += "</span><span style=\"display:inline-block;margin-left:10px;\"><input type=\"button\" onclick=\"deleteLayer("+count+")\" value=\"删除\"></input></span></div>";
+	b = $(htmlstr);
+	a.append(b);
+    }
+    
+    function deleteLayer(count){
+	var a;
+	$("#layerlist_"+count).remove();
+	for(var i=0;i<url.length;i++){
+		var a = url[i];
+		if(a&&a[3]&&a[3]=="layer_"+count){
+			url.splice(i,1);
+			break;
+		}
+	}
+    }
+    
     var controls=new Array();
     function selectedControl(id){
         var controlInfo=$("#"+id),
@@ -88,10 +153,12 @@ function strikeClick(id){
         if(imgName==="tool-control_slip.png"||imgName==='tool-control_slip.png"'||imgName==="tool-control.png"||imgName==='tool-control.png"'){
             controlInfo.css("background","url(./resource/images/tool-control-click.png) repeat-x");
             controls.push(id);
+	    $("#"+id+"r").css("display","block");
         }else{
             controlInfo.css("background","url(./resource/images/tool-control.png) repeat-x");
             var index=indexof(controls,id);
             controls.splice(index,1);
+	    $("#"+id+"r").css("display","none");
         }
     }
     
@@ -104,10 +171,12 @@ function strikeClick(id){
         if(imgName==="tool-control_slip.png"||imgName==='tool-control_slip.png"'||imgName==="tool-control.png"||imgName==='tool-control.png"'){
             controlInfo.css("background","url(./resource/images/tool-control-click.png) repeat-x");
             tools.push(id);
+	    $("#"+id+"r").css("display","block");
         }else{
             controlInfo.css("background","url(./resource/images/tool-control.png) repeat-x");
             var index=indexof(tools,id);
             tools.splice(index,1);
+	    $("#"+id+"r").css("display","none");
         }
     }
     function indexof(array,value){
@@ -137,7 +206,10 @@ function strikeClick(id){
     function clears(){
         document.getElementById("layername").value="";
         document.getElementById("layerurl").value="";
-
+	url=[];
+	var a = $("#layerinfo");
+	a.empty();
+	a.css("display","none");
     }
     function generate_custom() {
         $("#pic").css({"background":"url('./resource/images/selectedpic.png') repeat-x","padding-bottom":"15px"});
@@ -171,8 +243,8 @@ function strikeClick(id){
         strLayer = strLayer + "</BaseLayers>";
         var strControl = "<Controls>";
         for(var i = 0,len = controls.length;i<len;i++){
-			controlsValue = document.getElementById(controls[i]).innerHTML;
-            strControl = strControl + "<" + controlsValue +"/>";
+		controlsValue = document.getElementById(controls[i]+"t").innerHTML;
+		strControl = strControl + "<" + controlsValue +"/>";
         }
         strControl = strControl + "</Controls>";
         strMap = strMap + strLayer + strControl + "</map>";
@@ -200,7 +272,7 @@ function strikeClick(id){
         var strPageName = document.getElementById("pagename").value;
 		var panelManager="<panelmanager id=\"panelmanager\">"
 		for(var i = 0,len = tools.length;i<len;i++){
-			controlsValue = search(document.getElementById(tools[i]).innerHTML);
+			controlsValue = search(document.getElementById(tools[i]+"t").innerHTML);
             panelManager = panelManager + "<panel id=\""+controlsValue+"\" path=\"./models/"+controlsValue+"/\" />";
         }
 		panelManager = panelManager+"</panelmanager>";
@@ -218,7 +290,7 @@ function strikeClick(id){
                 parser = new DOMParser();
                 xmlDoc = parser.parseFromString(strXML, "text/xml");
             }
-            catch (e) { }
+            catch(e){}
         }
         generate_xml(xmlDoc);
     }
@@ -255,41 +327,43 @@ function generate_xml(xml){
     strControlsMessage = strControlsMessage + " ], units: 'm'}\n";
     strMap = "map = new SuperMap.Map('map'," + strControlsMessage + ");\n";
                             
-    var nCloudNumber = -1;
+    var nCloudNumber = [];
+	var strIServerLayer = [];
     $(xml).find("BaseLayers").children().each(function (i) {
         var strType, strName;
         strType = $(this).attr('type');
         if (strType == "cloud") {
             strBaseLayers[i] = " layer" + i + " = new SuperMap.Layer.CloudLayer();\n";
-            nCloudNumber = i; 
+            nCloudNumber.push(i); 
         }
         else if (strType == "tiled") {
             strUrl = $(this).attr('url');
             strName = $(this).attr('name');
 
             strBaseLayers[i] = " layer" + i + " = new SuperMap.Layer.TiledDynamicRESTLayer(' " + strName + "','" + strUrl + "', { transparent: true, cacheEnabled: true }, { maxResolution: 'auto' });\n";
+			strIServerLayer.push(i);
         } else if (strType == "tdtlayer") {
             strBaseLayers[i] = " layer" + i + " = new SuperMap.Layer.TDTLayer();\n";
-            nCloudNumber = i; 
+            nCloudNumber.push(i); 
             strInsertscript = "<script src=\"./js/TDTLayer.js\" >" + "</script" + ">\n";
         } else if (strType == "google") {
             strBaseLayers[i] = " layer" + i + " = new SuperMap.Layer.Google();\n";
-            nCloudNumber = i; 
+            nCloudNumber.push(i);  
             strInsertscript = "<script src='http://maps.google.com/maps/api/js?v=3.3&amp;sensor=false' >" + "</script" + ">\n";
         } else if(strType == "osm") {
             strBaseLayers[i] = " layer" + i + " = new SuperMap.Layer.OSM();\n";
-            nCloudNumber = i;
+            nCloudNumber.push(i); 
 
         } else if (strType == "wms") {
             strUrl = $(this).attr('url');
             strName = $(this).attr('name');
             strBaseLayers[i] = "layer" + i + " = new SuperMap.Layer.WMS('" + strName + "'," + "url" + ", {layers: 'basic'});\n";
-            nCloudNumber = i;
+            nCloudNumber.push(i); 
         } else if (strType == "arcgis") {
             strUrl = $(this).attr('url');
             strName = $(this).attr('name');
             strBaseLayers[i] = "layer" + i + " = new OpenLayers.Layer.ArcGISCache('" + strName + "'," + "url );\n";
-            nCloudNumber = i;
+            nCloudNumber.push(i); 
         }        
 
     });
@@ -320,11 +394,20 @@ function generate_xml(xml){
     });
                             
     var strInitFun = "function init() {\n " + strMap;
-    for (var i = 0; i < strBaseLayers.length; i++) {
-        strInitFun = strInitFun + strBaseLayers[i] + "\n";
+	
+	for (var i = 0; i < strIServerLayer.length; i++) {
+        strInitFun = strInitFun + strBaseLayers[strIServerLayer[i]] + "\n";
+		strInitFun = strInitFun + "layer" + strIServerLayer[i] + ".events.on({ 'layerInitialized': addLayer });\n";
+    }
+    for (var i = 0; i < nCloudNumber.length; i++) {
+        strInitFun = strInitFun + strBaseLayers[nCloudNumber[i]] + "\n";
         strInitFun = strInitFun + "map.addLayer(layer" + i + ");\n";
     }
-    strInitFun = strInitFun + "map.setCenter(" + strPosition + "); \n";
+	
+	if(strIServerLayer.length==0)
+	{
+		strInitFun = strInitFun + "map.setCenter(" + strPosition + "); \n";
+	}
 
     /*
     if (nCloudNumber != -1) {
@@ -351,6 +434,10 @@ function generate_xml(xml){
     strInitFun = strVar + strInitFun;
 
     var strLayer = "";
+	if(strIServerLayer.length>0)
+	{
+		strLayer = "map.addLayer(layer" + strIServerLayer[0] + ");\n";
+	}
     /*
     if (strBaseLayers.length == 1) {
         strLayer = "map.addLayer(layer0);\n"

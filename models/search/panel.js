@@ -17,7 +17,7 @@ function js_bev_search_step(){
 function clickChaXun(){
 	$("#back").attr("onClick","searchBack_to_step()");
 	quert_html_range_sql = $("#jsBev_sample").html();
-	var text="<p class='fontstyle' >图层名称</p><input class='input' type='text' id='nametext' value='Capitals@World.1' />"
+	var text="<p class='fontstyle' >图层名称</p><input class='input' type='text' id='nametext' value='Capitals@World' />"
 	text+="<p class='button4' onclick=js_Bev_Query() >查询</p><p class='button4' onclick='js_Search_clearFeatures()' >清除</p>"
 	$("#jsBev_sample").animate({"opacity":"0"},200,function(){
 		queryType_sql=1;
@@ -28,7 +28,7 @@ function clickSql(){
 	$("#back").attr("onClick","searchBack_to_step()");
 	quert_html_range_sql = $("#jsBev_sample").html();
 	var text="<div><p class='fontstyle' >图层名称</p>";
-	text+="<input class='input' type='text' id='nametext' value='Countries@World.1'/></div>"
+	text+="<input class='input' type='text' id='nametext' value='Countries@World'/></div>"
 	text+="<p class='fontstyle' >SQL语句</p>";
 	text+="<input class='input' type='text' id='sqltext' value='Pop_1994>1000000000 and SmArea>900'/>";
 	text+="<p class='button4' onclick='js_Bev_Query()'>查询</p><p class='button4' onclick='js_Search_clearFeatures()'>清除</p>";

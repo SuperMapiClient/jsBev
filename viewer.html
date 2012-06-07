@@ -10,38 +10,44 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $("#base1").css({"border":"none","background":"none"});
-        $("#base").css("background-image","url(./images/visual/base0.png)");
-        $("#patternSelected").css({"background":"url('./resource/images/buttonselect.png') repeat-x","padding-bottom":"15px","border-left-color":"#7db9be","border-right-color":"#7db9be"});
-		$("#template").css("display","block");
+        $("#base1").css({"border":"none","background":"url('./resource/images/buttonselect.png') repeat-x 0px 1px"});
+        //$("#base").css("background-image","url(./images/visual/base0.png)");
+	$("#base").attr("src","./images/visual/base0.png");
+        $("#patternSelected").css({"background":"url('./resource/images/buttonselect.png') repeat-x 0px -2px","padding-bottom":"9px"});//,"border-left-color":"#7db9be","border-right-color":"#7db9be"
+	$("#template").css("display","block");
+	$("#lytpop1").attr("selected","true");
     });
 </script>
 </head>
 <body>
+<!--<div style="width:100%;height:100%;overflow: auto;">-->
 <div class="content">
     <div class="footer">
-        <div class="span1">
+        <!--<div class="span1">
             <div id="spanCompany"><span>公司首页</span></div>
             <div id="spanStore"><span>收藏</span></div>
             <div id="spanHelp"><span>帮助</span></div>
-        </div>
+        </div>-->
+	<!--<a href="http://www.supermap.com.cn" target="_blank">帮助</a>
+	<a href="http://www.supermap.com.cn" target="_blank">收藏</a>-->
+	<a href="http://www.supermap.com.cn" target="_blank">公司首页</a>
     </div>
-    <div class="divTitle"><div></div></div>
+    <div class="divTitle"><div class="d1"><div class="d2"></div></div></div>
     <div class="tab">
         <div class="tab_menu">
             <ul class="ulStyle">
                 <li id="patternSelected" onclick=strikeClick(id)>模板选择</li>
-                <div class="directing"></div>
+                <li class="directing"></li>
                 <li id="mapSelected" onclick=strikeClick(id)>地图属性配置</li>
-                <div class="directing"></div>
+                <li class="directing"></li>
                 <li id="systemSelected" onclick=strikeClick(id)>系统属性配置</li>
-                <div class="directing"></div>
+                <li class="directing"></li>
                 <li id="pic" onclick=generate_custom()>生成地图</li>
             </ul>
         </div>
         <div id="template" style="display:none">
             <div class="details">
-                <div id="base"></div>
+                <img id="base"></img>
                 <ul class="model">
                     <li id="base1" class="selected" onclick=showpic(id)>标准样式一</li>
                     <li id="base2" class="selected" onclick=showpic(id)>标准样式二</li>
@@ -50,61 +56,145 @@
             </div>    
         </div>
         <div id="maproperties" style="display:none">
-            <label for="pagename" class="page" id="pageid">地图页面名称</label>
-            <input type="text" id="pagename" name="pagename" class="pageclass"/> 
-            
-            <label for="title" class="page" id="pagetitleid">地图标题名称</label>
-            <input type="text" id="title" name="title" class="pageclass"/>
-            
-            <label  class="page" id="lonid">地图初始经纬度及层级</label>
-            
-            <label for="lon" class="degree" id="label_lon">经度</label>
-            <input type="text" id="lon" name="lon" class="class_lon"/>
-            
-            <label for="lat" class="degree" id="label_lat">纬度</label>
-            <input type="text" id="lat" name="lat" class="class_lat"/>
-            
-            <label for="zoom" class="degree" id="label_zoom">层级</label>
-            <input type="text" id="zoom" name="zoom" class="calss_zoom"/>
-            
-            <div type="button" id="getLonLat" onclick=geolocation()>当前经纬度</div>
-            
-            <label for="layertype" class="page" id="selectid">地图服务类型</label>
-            <select name="searchtype" id="layertype" onchange=searchtypechange(this.value)>
-                <option value='google'  >Google Maps</option>
-                <option value='tiled' >iServer</option>
-                <option value='cloud' >SuperMap CloudLayer</option>
-                <option value='osm'>OpenStreet</option>
-                <option value='tdtlayer' >天地图</option>              
-                <option value='wms' >WMS</option>
-                <option value='arcgis' >ArcGIS online</option>
-            </select>
-            <div id="layerpara" style="display:none">
-                <label class="page" id="layernameid">服务名称与Url路径</label>
-                <label for="layername" class="degree" id="nameid">名称</label>
-                <input name = "layername" class="layernameclass" type="text" id="layername"  />
-                <label for="layerurl" class="degree" id="layerurlid">Url路径</label>
-                <input name = "layerurl" class="layerurlclass" type="text" id="layerurl"/>
-                <div type="button" class="addclass" id="add" onclick=add()>添加</div>
-                <div type="button" class="clearclass" id="clear" onclick=clears()>清空</div>
+	    <div class="d2">
+		<span class="d1">
+		    <label for="pagename" class="page" id="pageid">地图页面名称</label>
+		</span>
+		<span class="d1">
+		    <input type="text" id="pagename" name="pagename" class="pageclass"/> 
+		</span>
+	    </div>
+	    
+	    <div class="d2">
+		<span class="d1">
+		    <label for="title" class="page" id="pagetitleid">地图标题名称</label>
+		</span>
+		<span class="d1">
+		    <input type="text" id="title" name="title" class="pageclass"/>
+		</span>
+	    </div>
+	    <div class="d2">
+		<span class="d1"><label  class="page" id="lonid">地图初始经纬度及层级</label></span>
             </div>
+	    <div class="d2">
+		<span class="d1">
+		    <label for="lon" class="degree" id="label_lon">经度</label>
+		</span>
+		<span class="d1">
+		    <input type="text" id="lon" name="lon" class="class_lon"/>
+		</span>
+		<span class="d1">
+		    <label for="lat" class="degree" id="label_lat">纬度</label>
+		</span>
+		<span class="d1">
+		    <input type="text" id="lat" name="lat" class="class_lat"/>
+		</span>
+		<span class="d1">
+		    <label for="zoom" class="degree" id="label_zoom">层级</label>
+		</span>
+		<span class="d1">
+		    <input type="text" id="zoom" name="zoom" class="calss_zoom"/>
+		</span>
+		<span class="d1">
+		    <div type="button" id="getLonLat" onclick=geolocation()>当前经纬度</div>
+		</span>
+	    </div>
+	    <!--<div class="d2">
+		<span class="d1">
+		    <label for="layertype" class="page" id="selectid">地图服务类型</label>
+		</span>
+	    </div>
+	    <div class="d2">
+		<span class="d1">
+		    <select name="searchtype" id="layertype" onchange=searchtypechange(this.value)>
+			<option id="lytpop1" value='google'>Google Maps</option>
+			<option value='tiled' >iServer</option>
+			<option value='cloud' >SuperMap CloudLayer</option>
+			<option value='osm'>OpenStreet</option>
+			<option value='tdtlayer' >天地图</option>              
+			<option value='wms' >WMS</option>
+			<option value='arcgis' >ArcGIS online</option>
+		    </select>
+		</span>
+	    </div>-->
+            
+            
+		<div class="d2">
+		    <span class="page" id="layernameid">添加地图服务</span>
+		</div>
+		<div id="layerinfo" class="d2" style="display: none;">
+		    
+		</div>
+                <div class="d2">
+		    <span class="d1">
+			<label for="layertype" class="degree" id="selectid">类型</label>
+		    </span>
+		    <span class="d1" style="vertical-align: top;line-height: 20px;">
+			<select name="searchtype" id="layertype" onchange=searchtypechange(this.value)>
+			    <!--<option id="lytpop1" value='google'>Google Maps</option>-->
+			    <option value='tiled' >iServer</option>
+			    <option id="lytpop1" value='cloud' >SuperMap CloudLayer</option>
+			    <!--<option value='osm'>OpenStreet</option>-->
+			    <option value='tdtlayer' >天地图</option>              
+			    <option value='wms' >WMS</option>
+			   <!-- <option value='arcgis' >ArcGIS online</option>-->
+			</select>
+		    </span>
+		    <span class="d1">
+			<label for="layername" class="degree" id="nameid">名称</label>
+		    </span>
+		    <span class="d1">
+			<input name = "layername" class="layernameclass" type="text" id="layername"  />
+		    </span>
+		    <span id="layerpara" style="display:none">
+			<span class="d1">
+			    <label for="layerurl" class="degree" id="layerurlid">Url路径</label>
+			</span>
+			<span class="d1">
+			    <input name = "layerurl" class="layerurlclass" type="text" id="layerurl"/>
+			</span>
+		    </span>
+		    <span class="d1">
+			<div type="button" class="addclass" id="add" onclick=add()>添加</div>
+		    </span>
+		    <span class="d1">
+			<div type="button" class="clearclass" id="clear" onclick=clears()>清空</div>
+		    </span>
+		</div>
+            <!--</div>-->
             
             <div id="role">
-                <label class="page" id="tool_controlid">选择控件类型</label>
-                <ul class="tool_control_ul">
-                    <li class="tool_control" id="scaleLineId" onclick=selectedControl(id)>ScaleLine</li>
-                    <li class="tool_control" id="panZoomId" onclick=selectedControl(id)>PanZoomBar</li>
-                    <li class="tool_control" id="navagationId" onclick=selectedControl(id)>Navigation</li>
-                    <li class="tool_control" id="layerSwitcherId" onclick=selectedControl(id)>LayerSwitcher</li>
-                    <li class="tool_control" id="overMApId" onclick=selectedControl(id)>OverviewMap</li>
-                </ul>
-                <label class="page" id="controlid">选择功能面板种类</label>
-                <ul class="control_ul">
-                    <li class="tool_controls" id="queryId" onclick=selectedTool(id)>查询</li>
-                    <li class="tool_controls" id="calculateId" onclick=selectedTool(id)>量算</li>
-                    <li class="tool_controls" id="locationId" onclick=selectedTool(id)>定位</li>
-                    <li class="tool_controls" id="themeId" onclick=selectedTool(id)>专题图</li>
-                </ul>
+		<div class="d2">
+		    <span class="d1">
+			<label class="page" id="tool_controlid">选择控件类型</label>
+		    </span>
+		</div>
+		<div class="d2">
+		    <span class="d1">
+			<ul class="tool_control_ul">
+			    <li class="tool_control" id="scaleLineId" onclick=selectedControl(id)><span id="scaleLineIdt">ScaleLine</span><div id="scaleLineIdr" class="tl_ctr_rt"></div></li>
+			    <li class="tool_control" id="panZoomId" onclick=selectedControl(id)><span id="panZoomIdt">PanZoomBar</span><div id="panZoomIdr" class="tl_ctr_rt"></div></li>
+			    <li class="tool_control" id="navagationId" onclick=selectedControl(id)><span id="navagationIdt">Navigation</span><div id="navagationIdr" class="tl_ctr_rt"></div></li>
+			    <li class="tool_control" id="layerSwitcherId" onclick=selectedControl(id)><span id="layerSwitcherIdt">LayerSwitcher</span><div id="layerSwitcherIdr" class="tl_ctr_rt"></div></li>
+			    <li class="tool_control" id="overMApId" onclick=selectedControl(id)><span id="overMApIdt">OverviewMap</span><div id="overMApIdr" class="tl_ctr_rt"></div></li>
+			</ul>
+		    </span>
+		</div>
+		<div class="d2">
+		    <span class="d1">
+			<label class="page" id="controlid">选择功能面板种类</label>
+		    </span>
+		</div>
+		<div class="d2">
+		    <span class="d1">
+			<ul class="control_ul">
+			    <li class="tool_controls" id="queryId" onclick=selectedTool(id)><span id="queryIdt">查询</span><div id="queryIdr" class="tl_ctr_rt"></div></li>
+			    <li class="tool_controls" id="calculateId" onclick=selectedTool(id)><span id="calculateIdt">量算</span><div id="calculateIdr" class="tl_ctr_rt"></div></li>
+			    <li class="tool_controls" id="locationId" onclick=selectedTool(id)><span id="locationIdt">定位</span><div id="locationIdr" class="tl_ctr_rt"></div></li>
+			    <li class="tool_controls" id="themeId" onclick=selectedTool(id)><span id="themeIdt">专题图</span><div id="themeIdr" class="tl_ctr_rt"></div></li>
+			</ul>
+		    </span>
+		</div>
             </div>
         </div>
         <div id="systemProperties" style="display:none">
@@ -118,5 +208,6 @@
     </div>
     <div id="bottom"><p>版权所有&copy; 1997-2012,北京超图软件股份有限公司</p></div>
 </div>
+<!--</div>-->
 </body>
 </html>

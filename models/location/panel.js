@@ -42,7 +42,7 @@ function js_bev_geoLocation_back() {
 
 //对地理定位功能监听事件封装
 function geolocate_event() {
-    var geolocate = new OpenLayers.Control.Geolocate({
+    var geolocate = new SuperMap.Control.Geolocate({
     bind: false,
     geolocationOptions: {
         enableHighAccuracy: false,
