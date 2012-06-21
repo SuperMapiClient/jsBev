@@ -1,23 +1,4 @@
-﻿var base="base1";
-function showpic(value) {
-        if (value == "base1") {
-            //$("#base").css("background-image","url(./images/visual/base0.png)");
-	    $("#base").attr("src","./images/visual/base0.png");
-            $("#base1").css({"border":"none","background":"url('./resource/images/buttonselect.png') repeat-x 0px 1px"}).siblings().css({"border":"1px solid #4E5559","background":"url(./resource/images/button1.png) repeat-x"});
-            base = "base1";
-        } else if (value == "base2"){
-            //$("#base").css("background-image","url(./images/visual/base1.png)");
-	    $("#base").attr("src","./images/visual/base1.png");
-            $("#base2").css({"border":"none","background":"url('./resource/images/buttonselect.png') repeat-x 0px 1px"}).siblings().css({"border":"1px solid #4E5559","background":"url(./resource/images/button1.png) repeat-x"});
-            base = "base2";
-        } else if (value == "base3") {
-            //$("#base").css("background-image","url(./images/visual/base2.png)");
-	    $("#base").attr("src","./images/visual/base2.png");
-            $("#base3").css({"border":"none","background":"url('./resource/images/buttonselect.png') repeat-x 0px 1px"}).siblings().css({"border":"1px solid #4E5559","background":"url(./resource/images/button1.png) repeat-x"});
-            base = "base3";
-        }
-    }
-function strikeClick(id){
+﻿function strikeClick(id){
         if (id == "patternSelected") {
             $("#patternSelected").css({"background":"url('./resource/images/buttonselect.png') repeat-x 0px -2px","padding-bottom":"9px"});//,"border-left-color":"#7db9be","border-right-color":"#7db9be"
             $("#mapSelected").css({"background":"url('./resource/images/button1.png') repeat-x","padding-bottom":"9px","border-left-color":"#393e42","border-right-color":"#393e42"});
@@ -123,7 +104,7 @@ function strikeClick(id){
 		//layerurl = "，" + layerurl;
 	}
 	//var htmlsr = "<div style=\"margin:0px 0px 10px 10px;color:#fff;\"><span style=\"margin-left:10px;\">"+layername+"</span><span>"+layerurl+"</span></div>"
-	var htmlstr = "<div id=\"layerlist_"+count+"\" style=\"margin:0px 0px 10px 10px;color:#fff;\"><span style=\"display:inline-block;\"><span style=\"margin-left:10px;\">"+layertype+"，</span><span style=\"margin-left:10px;\">"+layername+"</span>"
+	var htmlstr = "<div id=\"layerlist_"+count+"\" style=\"margin:0px 0px 10px 10px;color:#000;\"><span style=\"display:inline-block;\"><span style=\"margin-left:10px;\">"+layertype+"，</span><span style=\"margin-left:10px;\">"+layername+"</span>"
 	if(layerurl&&layerurl!=""){
 		htmlstr += "<span>，"+layerurl+"</span>";
 	}
@@ -146,38 +127,34 @@ function strikeClick(id){
     
     var controls=new Array();
     function selectedControl(id){
-        var controlInfo=$("#"+id),
-        controlsCss=controlInfo.css("background-image"),
-        firstContent = controlsCss.lastIndexOf("/"),secondCotent=controlsCss.lastIndexOf(")");
-        var imgName = controlsCss.substring(firstContent+1,secondCotent);
-        if(imgName==="tool-control_slip.png"||imgName==='tool-control_slip.png"'||imgName==="tool-control.png"||imgName==='tool-control.png"'){
-            controlInfo.css("background","url(./resource/images/tool-control-click.png) repeat-x");
-            controls.push(id);
-	    $("#"+id+"r").css("display","block");
-        }else{
-            controlInfo.css("background","url(./resource/images/tool-control.png) repeat-x");
-            var index=indexof(controls,id);
-            controls.splice(index,1);
-	    $("#"+id+"r").css("display","none");
-        }
+	var controlInfo=$("#"+id);
+	if($("#"+id).hasClass('btn-success2'))
+	{
+		$("#"+id).attr('class', 'btn express2');
+		$("#"+id+"r").css("display","block");
+		controls.push(id);
+	} else{
+		$("#"+id).attr('class', 'btn btn-success2 express');
+		$("#"+id+"r").css("display","none");
+		var index=indexof(controls,id);
+		controls.splice(index,1);
+	}
     }
     
     var tools=new Array();
     function selectedTool(id){
-        var controlInfo=$("#"+id),
-        controlsCss=controlInfo.css("background-image"),
-        firstContent = controlsCss.lastIndexOf("/"),secondCotent=controlsCss.lastIndexOf(")");
-        var imgName = controlsCss.substring(firstContent+1,secondCotent);
-        if(imgName==="tool-control_slip.png"||imgName==='tool-control_slip.png"'||imgName==="tool-control.png"||imgName==='tool-control.png"'){
-            controlInfo.css("background","url(./resource/images/tool-control-click.png) repeat-x");
-            tools.push(id);
-	    $("#"+id+"r").css("display","block");
-        }else{
-            controlInfo.css("background","url(./resource/images/tool-control.png) repeat-x");
-            var index=indexof(tools,id);
-            tools.splice(index,1);
-	    $("#"+id+"r").css("display","none");
-        }
+        var controlInfo=$("#"+id);
+	if($("#"+id).hasClass('btn-success2'))
+	{
+		$("#"+id).attr('class', 'btn express2');
+		$("#"+id+"r").css("display","block");
+		tools.push(id);
+	} else{
+		$("#"+id).attr('class', 'btn btn-success2 express');
+		$("#"+id+"r").css("display","none");
+		var index=indexof(tools,id);
+		tools.splice(index,1);
+	}
     }
     function indexof(array,value){
         var index;
