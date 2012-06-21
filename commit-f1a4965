@@ -1,0 +1,1424 @@
+commit f1a4965a4f5cd4092a2324809174150a4cf9f84d
+Author: unknown <Administrator@Maojy.(none)>
+Date:   Thu Jun 21 13:48:17 2012 +0800
+
+    可视化配置界面优化
+    
+    Signed-off-by: unknown <Administrator@Maojy.(none)>
+
+diff --git a/css/jsbev.css b/css/jsbev.css
+index 67fd37b..d18fadb 100644
+--- a/css/jsbev.css
++++ b/css/jsbev.css
+@@ -3,15 +3,16 @@
+     margin:0px;
+     padding:0px;
+     text-align: center;
+-    background-color:#282d34;
++    background-color:#FFF;
+ }
+ .content{
+     position:absolute;
+     width:100%;
+     /*min-width:100%;*/
+-    /*height:100%;*/
++    height:100%;
+     left: 0px;
+     top: 0px;
++    background-color: #F4F4F4;
+ }
+ .footer{
+     /*position:relative;*/
+@@ -39,19 +40,13 @@
+     float: left;
+     margin-right: 10px;
+ }*/
+-.footer a{
+-    float:right;
+-    line-height: 20px;
+-    margin-right: 10px;
+-    font-size: 12px;
+-    color: #fff;
+-}
++
+ .divTitle{
+     /*position:relative;*/
+     /*width:100%;*/
+     /*min-width:100%;*/
+-    height:92px;
+-    background:url(../resource/images/banner.png) no-repeat;
++    height:80px;
++    background-color: #FFF;
+ }
+ /*.divTitle div{*/
+ /*    position: relative;*/
+@@ -64,17 +59,24 @@
+ .divTitle .d1{
+     margin: 0 auto;
+     width:960px;
+-    padding-top: 5px;
++    padding-top: 10px;
+     text-align: left;
+ }
+ .divTitle .d2{
+-    width: 230px;
+-    height: 90px;
++    width: 350px;
++    height: 70px;
+     background:url(../resource/images/logo.png) no-repeat;
+     _background:url(../resource/images/logoie6.png) no-repeat;
++    padding-top: 5px;
+     /*background-image:none;*/
+     /*filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://192.168.2.100:8090/bev/resource/images/logo.png',sizingMethod='scale',enabled='true');*/
+ }
++
++.d3 {
++    width: 100%;
++    height: 2px;
++    background-color: #29a3e2;
++}
+ .tab{
+     /*position:relative;*/
+     width:960px;
+@@ -82,27 +84,336 @@
+     /*left:16.7%;*/
+     /*top:13px;*/
+     margin: 10px auto 0px auto;
+-    background-color:#2B2F32;
+-    border: 2px solid #1f2328;
+-    border-top: 0px solid #1f2328;
++    background-color:#F4F4F4;
++    border: 2px solid #F4F4F4;
++    border-top: 0px solid #F4F4F4;
+     /*padding:0px;*/
+ }
+-#bottom{
+-    /*background: #0A6B9D;*/
+-    /*position: absolute;*/
+-    width:960px;
+-    /*min-width:100%;*/
+-    height:30px;
+-    /*top:96.4%;*/
+-    /*background:url(../resource/images/statebev.png) repeat-x;*/
++
++#footer {
++    position: absolute;
++    width: 100%;
++    display: block;
++    top:700px;
++    text-align: center;
++}
++
++.topBanner{
++    background-image: url(../resource/images/home_banner.jpg);
++    background-repeat: no-repeat;
++    width: 100%;
++}
++
++.hero-unit{
++        padding: 60px 400px 60px 60px;
++        background-image:url(../resource/images/home_banner2.png);
++        background-repeat:no-repeat;
++        background-position-x:right;
++        background-position-y:bottom;
++}
++
++
++.des {    
++    font-size: 24px;
++    line-height: 36px;
++    
++    margin: 0;
++    font-family: "Microsoft YaHei" ! important;
++    font-weight: bold;
++    text-rendering: optimizelegibility;
++    color: #29a3e2;
++}
++
++.hero-unit p {
++    font-family: "Microsoft YaHei" ! important;
++    font-size: 18px;
++    font-weight: 200;
++    line-height: 27px;
++    color: #333;
++    text-indent: 2em;
++    text-rendering: optimizelegibility;
++    font-weight: bold;
++}
++
++.btn {
++  display: inline-block;
++  *display: inline;
++  padding: 4px 10px 4px;
++  margin-bottom: 0;
++  *margin-left: .3em;
++  font-size: 13px;
++  line-height: 18px;
++  *line-height: 20px;
++  color: #333333;
++  text-align: center;
++  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
++  vertical-align: middle;
++  cursor: pointer;
++  background-color: #f5f5f5;
++  *background-color: #e6e6e6;
++  background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6);
++  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
++  background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
++  background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
++  background-image: linear-gradient(top, #ffffff, #e6e6e6);
++  background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
++  background-repeat: repeat-x;
++  border: 1px solid #cccccc;
++  *border: 0;
++  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
++  border-color: #e6e6e6 #e6e6e6 #bfbfbf;
++  border-bottom-color: #b3b3b3;
++  -webkit-border-radius: 4px;
++     -moz-border-radius: 4px;
++          border-radius: 4px;
++  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffffff', endColorstr='#e6e6e6', GradientType=0);
++  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
++  *zoom: 1;
++  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
++     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
++          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
++}
++
++.btn:hover,
++.btn:active,
++.btn.active,
++.btn.disabled,
++.btn[disabled] {
++  background-color: #e6e6e6;
++  *background-color: #d9d9d9;
++}
++
++.btn:active,
++.btn.active {
++  background-color: #cccccc \9;
++}
++
++.btn:first-child {
++  *margin-left: 0;
++}
++
++.btn:hover {
++  color: #333333;
++  text-decoration: none;
++  background-color: #e6e6e6;
++  *background-color: #d9d9d9;
++  /* Buttons in IE7 don't get borders, so darken on hover */
++
++  background-position: 0 -15px;
++  -webkit-transition: background-position 0.1s linear;
++     -moz-transition: background-position 0.1s linear;
++      -ms-transition: background-position 0.1s linear;
++       -o-transition: background-position 0.1s linear;
++          transition: background-position 0.1s linear;
++}
++
++.btn:focus {
++  outline: thin dotted #333;
++  outline: 5px auto -webkit-focus-ring-color;
++  outline-offset: -2px;
++}
++
++.btn.active,
++.btn:active {
++  background-color: #e6e6e6;
++  background-color: #d9d9d9 \9;
++  background-image: none;
++  outline: 0;
++  -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
++     -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
++          box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
++}
++
++.btn.disabled,
++.btn[disabled] {
++  cursor: default;
++  background-color: #e6e6e6;
++  background-image: none;
++  opacity: 0.65;
++  filter: alpha(opacity=65);
++  -webkit-box-shadow: none;
++     -moz-box-shadow: none;
++          box-shadow: none;
++}
++
++.btn-success {
++  background-color: #5bb75b;
++  *background-color: #51a351;
++  background-image: -ms-linear-gradient(top, #62c462, #51a351);
++  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));
++  background-image: -webkit-linear-gradient(top, #62c462, #51a351);
++  background-image: -o-linear-gradient(top, #62c462, #51a351);
++  background-image: -moz-linear-gradient(top, #62c462, #51a351);
++  background-image: linear-gradient(top, #62c462, #51a351);
++  background-repeat: repeat-x;
++  border-color: #51a351 #51a351 #387038;
++  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
++  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#62c462', endColorstr='#51a351', GradientType=0);
++  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
++}
++
++.btn-success:hover,
++.btn-success:active,
++.btn-success.active,
++.btn-success.disabled,
++.btn-success[disabled] {
++  background-color: #51a351;
++  *background-color: #499249;
++}
++
++.btn-success:active,
++.btn-success.active {
++  background-color: #408140 \9;
++}
++
++.express:hover,
++.express:active,
++.express {
++    color:#FFF;
++}
++
++.express2:active,
++.express2 {
++    color:#000;
++    position: relative;
++}
++
++.tl_ctr_rt,.tl_ctr_rt{
++    position: absolute;
++    right: -5px;
+     bottom: 0px;
+-    margin: 0 auto;
++    background:url(../resource/images/right.png);
++    _background:url(../resource/images/rightie6.png);
++    height: 20px;
++    width: 20px;
++    z-index: 5;
++    display: none;
++}
++
++.btn-success2 {
++  background-color: #0080FF;
++  *background-color: #0070EE;
++  background-image: -ms-linear-gradient(top, #0080FF, #0070EE);
++  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0080FF), to(#0070EE));
++  background-image: -webkit-linear-gradient(top, #0080FF, #0070EE);
++  background-image: -o-linear-gradient(top, #0080FF, #0070EE);
++  background-image: -moz-linear-gradient(top, #0080FF, #0070EE);
++  background-image: linear-gradient(top, #0080FF, #0070EE);
++  background-repeat: repeat-x;
++  border-color: #0070EE #0070EE #0070EE;
++  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
++  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#0080FF', endColorstr='#0070EE', GradientType=0);
++  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
++}
++
++.btn-success2:hover,
++.btn-success2:active,
++.btn-success2.active,
++.btn-success2.disabled,
++.btn-success2[disabled] {
++  background-color: #0070EE;
++  *background-color: #0070EE;
++}
++
++.btn-success2:active,
++.btn-success2.active {
++  background-color: #0070EE \9;
++}
++
++.butclick {
++    
+ }
+-#bottom p{
++
++#slideShowContainer{
++	width: 770px;
++	height: 470px;
++	position:relative;
++}
++
++#slideShow{
++	position:absolute;
++	width: 770px;
++	height: 470px;
++	background-color:#F4F4F4;
++	
++	z-index:100;
++	
++	-moz-box-shadow:0 0 10px #111;
++	-webkit-box-shadow:0 0 10px #111;
++	box-shadow:0 0 10px #111;
++}
++
++#slideShow ul{
++	position:absolute;
++	top:15px;
++	right:15px;
++	bottom:15px;
++	left:15px;
++	list-style:none;
++	overflow:hidden;
++}
++
++#slideShow li{
++	position:absolute;
++	top:0;
++	left:0;
++	width:100%;
++	height:100%;
++}
++
++#slideShowContainer > a{
++	border:none;
++	text-decoration:none;
++	text-indent:-99999px;
++	overflow:hidden;
++	width:36px;
++	height:37px;
++	background:url('../resource/images/arrows.png') no-repeat;
++	position:absolute;
++	top:50%;
++}
++
++#previousLink{
++	left:-38px;
++}
++
++#previousLink:hover{
++	background-position:bottom left;
++}
++
++a#nextLink{
++	right:-38px;
++	background-position:top right;
++}
++
++#nextLink:hover{
++	background-position:bottom right;
++}
++
++#step0Pre,#step1Pre,#step2Pre {
++    position: relative;
++    float: left;
++    top: 10px;
++}
++
++#step0Next,#step1Next{
++    position: relative;
++    float: right;
++    top: 10px;
++}
++
++#step2Next {
++    position: relative;
++    top: 10px;
++    left: 20px;
++}
++
++#bottom {
++    position: relative;
+     font-size:14px;
+     text-align: center;
+     margin-top:7px;
+-    color:white;
++    color:#000;
+     font-family:宋体;
+ }
+ 
+@@ -156,24 +467,26 @@
+     content:"";
+     display:table;
+ }
+-#template,#maproperties,#systemProperties{
+-    position: relative;
++
++#template ,#maproperties,#systemProperties{
++    position:absolute;
++    top: 100px;
++    left: 0px;
+     width: 100%;
+     min-width: 100%;
+     /*height: 548px;*/
+     min-height:548px;
+     _height:expression(this.scrollHeight<548?"548px":"auto");
+-    background-color: #2b2e31;
+-    top: -14px;
++    background-color: #F4F4F4;
+     text-align: left;
+ }
++
+ #maproperties .d1{
+     display: inline-block;
+     margin: 0px 10px 0px 10px;
+ }
+ #maproperties .d2{
+     clear:both;
+-    padding: 20px 0px 0px 50px;
+     line-height: 30px;
+ }
+ .details{
+@@ -184,8 +497,8 @@
+     /*left:10%;*/
+     top:10px;
+     margin: 0px auto;
+-    background-color: #4e5559;
+-    border:1px solid #000000;
++    background-color: #F4F4F4;
++    border:1px solid #F4F4F4;
+     border-bottom: none;
+     padding:0px;
+ }
+@@ -231,7 +544,7 @@
+     /*float: left;*/
+     font-size: 18px;
+     font-family: 宋体;
+-    color: white;
++    color: #000;
+     position: relative;
+ }
+ #pageid{
+@@ -243,15 +556,16 @@
+ 	height: 25px;
+ 	width: 600px;
+ 	float: left;
+-	border: 1px solid #959798;
+-	font-size: 16px;
+-	background-color:#969799;
+-}
+-.pageclass:focus { 
+ 	box-shadow: 0 0 5px rgba(0, 255, 234, 1); 
+ 	-webkit-box-shadow: 0 0 5px rgba(0, 255, 234,1); 
+ 	-moz-box-shadow: 0 0 5px rgba(0, 255, 234,1); 
+-	background-color:#D8D8D8;
++	
++}
++.pageclass:focus { 
++    background-color:#D8D8D8;
++    border: 1px solid #FFF;
++    font-size: 16px;
++    background-color:#FFF;
+ }
+ #pagename{
+ 	/*top: 25px;*/
+@@ -270,11 +584,11 @@
+ 	/*left: -554px;*/
+ }
+ .degree{
+-	float: left;
++    float: left;
+     font-size: 16px;
+-    font-family: 宋体;
+-    color: #c2c2c2;
+-	position: relative;
++    font-family: "Microsoft YaHei" ! important;
++    color: #000;
++    position: relative;
+ }
+ #label_lon{
+ 	/*left: -700px;*/
+@@ -291,16 +605,17 @@
+ .class_lon,.class_lat,.calss_zoom{
+ 	position: relative;
+ 	float: left;
+-	border: 1px solid #959798;
+ 	height: 25px;
+ 	width: 100px;
+-	background-color:#969799;
+-}
+-.class_lon:focus,.class_lat:focus,.calss_zoom:focus { 
+ 	box-shadow: 0 0 5px rgba(0, 255, 234, 1); 
+ 	-webkit-box-shadow: 0 0 5px rgba(0, 255, 234,1); 
+ 	-moz-box-shadow: 0 0 5px rgba(0, 255, 234,1); 
++}
++.class_lon:focus,.class_lat:focus,.calss_zoom:focus { 
+ 	background-color:#D8D8D8;
++	border: 1px solid #FFF;
++	font-size: 16px;
++	background-color:#FFF;
+ }
+ #lon{
+ 	/*top: 130px;*/
+@@ -321,9 +636,7 @@
+ 	font-size: 16px;
+ 	font-family: 宋体;
+ 	color: white;
+-    background:url(../resource/images/button1.png) repeat-x;
+ 	float: left;
+-	background-color: #7F888F;
+ 	padding: 5px;
+ 	cursor:pointer;
+ 	line-height: 20px;
+@@ -427,23 +740,15 @@
+ 	color: white;
+ 	padding: 5px 20px 5px 20px;
+ 	margin: 5px;
+-	background:url(../resource/images/tool-control.png) repeat-x;
+ 	position: relative;
++	position: absolute;
++	right: -5px;
++	height: 20px;
++	width: 20px;
++	z-index: 5;
++	background:url(./resource/images/tool-control-click.png) repeat-x
+ }
+-.tool_control .tl_ctr_rt,.tool_controls .tl_ctr_rt{
+-    position: absolute;
+-    right: -5px;
+-    bottom: 0px;
+-    background:url(../resource/images/right.png);
+-    _background:url(../resource/images/rightie6.png);
+-    height: 20px;
+-    width: 20px;
+-    z-index: 5;
+-    display: none;
+-}
+-.tool_control:hover{
+-	background:url(../resource/images/tool-control_slip.png) repeat-x;
+-}
++
+ .tool_controls{
+ 	list-style: none;
+ 	float: left;
+@@ -455,11 +760,9 @@
+ 	color: white;
+ 	padding: 5px 50px 5px 50px;
+ 	margin: 5px;
+-	background:url(../resource/images/tool-control.png) repeat-x;
+ 	position: relative;
+ }
+ .tool_controls:hover{
+-	background:url(../resource/images/tool-control_slip.png) repeat-x;
+ }
+ #controlid{
+ 	/*left: 50px;
+@@ -470,15 +773,4 @@
+ 	/*top: 85px;
+ 	left:40px;
+ 	position: absolute;*/
+-}
+-#serveid{
+-	left:60px;
+-	top:40px;
+-}
+-#servertype{
+-	position: absolute;
+-	width: 560px;
+-	height: 30px;
+-	left: 130px;
+-	top: 80px;
+ }
+\ No newline at end of file
+diff --git a/css/sm-doc.css b/css/sm-doc.css
+new file mode 100644
+index 0000000..666cc3e
+--- /dev/null
++++ b/css/sm-doc.css
+@@ -0,0 +1,164 @@
++#map {
++    position:relative;
++    height: 400px;
++    margin-bottom: 15px;
++}
++#func > button {
++    margin-top: 20px;
++    margin-right: 20px;
++}
++h3 {
++    margin-bottom: 10px;
++}
++
++#myTab, #myTabContent {
++    font-size: 14px;
++}
++
++.nav-tabs {
++    margin-bottom: 0;
++}
++
++h3 > #demo-name {
++    margin-right: 10px;
++}
++h3 > a {
++    font-weight: normal;
++    text-decoration: none;
++}
++/*less中设置*/
++@media (max-width: 979px) {
++.navbar-fixed-top {
++    margin-bottom: 0;
++}
++}
++
++.page-header {
++    padding: 5px 10px;
++    border: 1px solid #d6e3f1;
++}
++
++.nav {
++    margin-bottom: 0;
++}
++.footer {
++    margin-top: 20px;
++    text-align: center;
++}
++@media (min-width: 1200px) {
++    .container,
++    .navbar-fixed-top .container,
++    .navbar-fixed-bottom .container {
++        width: 960px;
++    }
++}
++
++@media (min-width: 976px) {
++    .container .hero-unit{
++        padding: 60px 400px 60px 60px;
++        background-image:url(../images/home_banner2.png);
++        background-repeat:no-repeat;
++        background-position-x:right;
++        background-position-y:bottom;
++    }
++}
++p {
++    text-indent: 2em;
++}
++
++.navbar-inner > .container {
++    background-color: #61b3e3;
++    background-image: -moz-linear-gradient(top, #61b3e3, #2f7fba);
++    background-image: -ms-linear-gradient(top, #61b3e3, #2f7fba);
++    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#61b3e3), to(#2f7fba));
++    background-image: -webkit-linear-gradient(top, #61b3e3, #2f7fba);
++    background-image: -o-linear-gradient(top, #61b3e3, #2f7fba);
++    background-image: linear-gradient(top, #61b3e3, #2f7fba);
++    filter: progid:dximagetransform.microsoft.gradient(startColorstr='#61b3e3', endColorstr='#2f7fba', GradientType=0);
++
++    -webkit-border-radius: 4px;
++    -moz-border-radius: 4px;
++    border-radius: 4px;
++}
++
++.navbar .nav .active > a,
++.navbar .nav .active > a:hover {
++    background-image: -moz-linear-gradient(top, #519ad6, #2167ad);
++    background-image: -ms-linear-gradient(top, #519ad6, #2167ad);
++    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#519ad6), to(#2167ad));
++    background-image: -webkit-linear-gradient(top, #519ad6, #2167ad);
++    background-image: -o-linear-gradient(top, #519ad6, #2167ad);
++    background-image: linear-gradient(top, #519ad6, #2167ad);
++    filter: progid:dximagetransform.microsoft.gradient(startColorstr='#519ad6', endColorstr='#2167ad', GradientType=0);
++    background-color: #2167ad;
++}
++
++#titleContent li a {
++    font-size: 15px;
++}
++
++.container > .brand {
++    color: white;
++}
++#sourceCode {
++    float: right;
++}
++/*开发指南和产品介绍css*/
++h2.title {
++    background-color: #d6e3f1;
++    margin: 15px 0px;
++}
++h4.thirdTitle{
++    margin-left: 25px;
++}
++#content {
++    padding: 0px 10px;
++    text-algin: center;
++    border: 1px solid #d6e3f1;
++}
++/*图片居中*/
++div.pageImage {
++    text-align: center;
++}
++img {
++    margin:auto;
++}
++img.icon{
++    border:2px solid #d6e3f1;
++}
++/*产品指南目录列表样式*/
++#togglelink{
++    vertical-align: 30%;
++    border-radius: 0px;
++}
++#lists {
++    overflow: hidden;
++    margin: 5px auto 10px auto;
++    font-size: 15px;
++}
++ul {
++    list-style-type:none;
++}
++ul li {
++    line-height: 26px;
++}
++#lists span {
++    padding-right:5px;
++}
++/**/
++ul.circle {
++    list-style-type: circle;
++}
++ul.disc {
++    list-style-type: disc;
++}
++/*首页top背景*/
++.container .topBanner{
++    background-image: url(../images/home_banner.jpg);
++    background-repeat: no-repeat;
++}
++.qByBoundsBoxDiv {
++    background-color: #B7CFE8;
++    filter:alpha(opacity:50);
++    border: 2px solid #304DBE;
++}
+\ No newline at end of file
+diff --git a/images/visual/bg_blue.gif b/images/visual/bg_blue.gif
+new file mode 100644
+index 0000000..38598cd
+Binary files /dev/null and b/images/visual/bg_blue.gif differ
+diff --git a/images/visual/logo.png b/images/visual/logo.png
+new file mode 100644
+index 0000000..7809085
+Binary files /dev/null and b/images/visual/logo.png differ
+diff --git a/js/bev_common.js b/js/bev_common.js
+index f821e62..8011244 100644
+--- a/js/bev_common.js
++++ b/js/bev_common.js
+@@ -1,23 +1,4 @@
+-﻿var base="base1";
+-function showpic(value) {
+-        if (value == "base1") {
+-            //$("#base").css("background-image","url(./images/visual/base0.png)");
+-	    $("#base").attr("src","./images/visual/base0.png");
+-            $("#base1").css({"border":"none","background":"url('./resource/images/buttonselect.png') repeat-x 0px 1px"}).siblings().css({"border":"1px solid #4E5559","background":"url(./resource/images/button1.png) repeat-x"});
+-            base = "base1";
+-        } else if (value == "base2"){
+-            //$("#base").css("background-image","url(./images/visual/base1.png)");
+-	    $("#base").attr("src","./images/visual/base1.png");
+-            $("#base2").css({"border":"none","background":"url('./resource/images/buttonselect.png') repeat-x 0px 1px"}).siblings().css({"border":"1px solid #4E5559","background":"url(./resource/images/button1.png) repeat-x"});
+-            base = "base2";
+-        } else if (value == "base3") {
+-            //$("#base").css("background-image","url(./images/visual/base2.png)");
+-	    $("#base").attr("src","./images/visual/base2.png");
+-            $("#base3").css({"border":"none","background":"url('./resource/images/buttonselect.png') repeat-x 0px 1px"}).siblings().css({"border":"1px solid #4E5559","background":"url(./resource/images/button1.png) repeat-x"});
+-            base = "base3";
+-        }
+-    }
+-function strikeClick(id){
++﻿function strikeClick(id){
+         if (id == "patternSelected") {
+             $("#patternSelected").css({"background":"url('./resource/images/buttonselect.png') repeat-x 0px -2px","padding-bottom":"9px"});//,"border-left-color":"#7db9be","border-right-color":"#7db9be"
+             $("#mapSelected").css({"background":"url('./resource/images/button1.png') repeat-x","padding-bottom":"9px","border-left-color":"#393e42","border-right-color":"#393e42"});
+@@ -123,7 +104,7 @@ function strikeClick(id){
+ 		//layerurl = "，" + layerurl;
+ 	}
+ 	//var htmlsr = "<div style=\"margin:0px 0px 10px 10px;color:#fff;\"><span style=\"margin-left:10px;\">"+layername+"</span><span>"+layerurl+"</span></div>"
+-	var htmlstr = "<div id=\"layerlist_"+count+"\" style=\"margin:0px 0px 10px 10px;color:#fff;\"><span style=\"display:inline-block;\"><span style=\"margin-left:10px;\">"+layertype+"，</span><span style=\"margin-left:10px;\">"+layername+"</span>"
++	var htmlstr = "<div id=\"layerlist_"+count+"\" style=\"margin:0px 0px 10px 10px;color:#000;\"><span style=\"display:inline-block;\"><span style=\"margin-left:10px;\">"+layertype+"，</span><span style=\"margin-left:10px;\">"+layername+"</span>"
+ 	if(layerurl&&layerurl!=""){
+ 		htmlstr += "<span>，"+layerurl+"</span>";
+ 	}
+@@ -146,38 +127,34 @@ function strikeClick(id){
+     
+     var controls=new Array();
+     function selectedControl(id){
+-        var controlInfo=$("#"+id),
+-        controlsCss=controlInfo.css("background-image"),
+-        firstContent = controlsCss.lastIndexOf("/"),secondCotent=controlsCss.lastIndexOf(")");
+-        var imgName = controlsCss.substring(firstContent+1,secondCotent);
+-        if(imgName==="tool-control_slip.png"||imgName==='tool-control_slip.png"'||imgName==="tool-control.png"||imgName==='tool-control.png"'){
+-            controlInfo.css("background","url(./resource/images/tool-control-click.png) repeat-x");
+-            controls.push(id);
+-	    $("#"+id+"r").css("display","block");
+-        }else{
+-            controlInfo.css("background","url(./resource/images/tool-control.png) repeat-x");
+-            var index=indexof(controls,id);
+-            controls.splice(index,1);
+-	    $("#"+id+"r").css("display","none");
+-        }
++	var controlInfo=$("#"+id);
++	if($("#"+id).hasClass('btn-success2'))
++	{
++		$("#"+id).attr('class', 'btn express2');
++		$("#"+id+"r").css("display","block");
++		controls.push(id);
++	} else{
++		$("#"+id).attr('class', 'btn btn-success2 express');
++		$("#"+id+"r").css("display","none");
++		var index=indexof(controls,id);
++		controls.splice(index,1);
++	}
+     }
+     
+     var tools=new Array();
+     function selectedTool(id){
+-        var controlInfo=$("#"+id),
+-        controlsCss=controlInfo.css("background-image"),
+-        firstContent = controlsCss.lastIndexOf("/"),secondCotent=controlsCss.lastIndexOf(")");
+-        var imgName = controlsCss.substring(firstContent+1,secondCotent);
+-        if(imgName==="tool-control_slip.png"||imgName==='tool-control_slip.png"'||imgName==="tool-control.png"||imgName==='tool-control.png"'){
+-            controlInfo.css("background","url(./resource/images/tool-control-click.png) repeat-x");
+-            tools.push(id);
+-	    $("#"+id+"r").css("display","block");
+-        }else{
+-            controlInfo.css("background","url(./resource/images/tool-control.png) repeat-x");
+-            var index=indexof(tools,id);
+-            tools.splice(index,1);
+-	    $("#"+id+"r").css("display","none");
+-        }
++        var controlInfo=$("#"+id);
++	if($("#"+id).hasClass('btn-success2'))
++	{
++		$("#"+id).attr('class', 'btn express2');
++		$("#"+id+"r").css("display","block");
++		tools.push(id);
++	} else{
++		$("#"+id).attr('class', 'btn btn-success2 express');
++		$("#"+id+"r").css("display","none");
++		var index=indexof(tools,id);
++		tools.splice(index,1);
++	}
+     }
+     function indexof(array,value){
+         var index;
+diff --git a/js/jquery.rotate.js b/js/jquery.rotate.js
+new file mode 100644
+index 0000000..999c87b
+--- /dev/null
++++ b/js/jquery.rotate.js
+@@ -0,0 +1,91 @@
++/*
++ * rotate: A jQuery cssHooks adding a cross browser 'rotate' property to $.fn.css() and $.fn.animate()
++ *
++ * Copyright (c) 2010 Louis-Rémi Babé
++ * Licensed under the MIT license.
++ * Download by http://www.codefans.net
++ * This saved you an hour of work? 
++ * Send me music http://www.amazon.fr/wishlist/HNTU0468LQON
++ *
++ */
++(function($) {
++  
++var div = document.createElement('div'),
++  divStyle = div.style,
++  support = $.support;
++
++support.transform = 
++  divStyle.MozTransform === ''? 'MozTransform' :
++  (divStyle.MsTransform === ''? 'MsTransform' :
++  (divStyle.WebkitTransform === ''? 'WebkitTransform' : 
++  (divStyle.OTransform === ''? 'OTransform' :
++  false)));
++support.matrixFilter = !support.transform && divStyle.filter === '';
++div = null;
++
++$.cssNumber.rotate = true;
++$.cssHooks.rotate = {
++  set: function( elem, value ) {
++    var _support = support,
++      supportTransform = _support.transform,
++      cos, sin,
++      centerOrigin;
++    
++    if (typeof value === 'string') {
++      value = toRadian(value);
++    }
++    
++    $.data( elem, 'transform', {
++      rotate: value
++    });
++    
++    if (supportTransform) {
++      elem.style[supportTransform] = 'rotate('+ value +'rad)';
++      
++    } else if (_support.matrixFilter) {
++      cos = Math.cos(value);
++      sin = Math.sin(value);
++      elem.style.filter = [
++        "progid:DXImageTransform.Microsoft.Matrix(",
++          "M11="+cos+",",
++          "M12="+(-sin)+",",
++          "M21="+sin+",",
++          "M22="+cos+",",
++          "SizingMethod='auto expand'",
++        ")"
++      ].join('');
++      
++      // From pbakaus's Transformie http://github.com/pbakaus/transformie
++      if(centerOrigin = $.rotate.centerOrigin) {
++        elem.style[centerOrigin == 'margin' ? 'marginLeft' : 'left'] = -(elem.offsetWidth/2) + (elem.clientWidth/2) + "px";
++        elem.style[centerOrigin == 'margin' ? 'marginTop' : 'top'] = -(elem.offsetHeight/2) + (elem.clientHeight/2) + "px";
++      }
++    }
++  },
++  get: function( elem, computed ) {
++    var transform = $.data( elem, 'transform' );
++    return transform && transform.rotate? transform.rotate : 0;
++  }
++};
++$.fx.step.rotate = function( fx ) {
++  $.cssHooks.rotate.set( fx.elem, fx.now+fx.unit );
++};
++
++function radToDeg( rad ) {
++  return rad * 180 / Math.PI;
++}
++function toRadian(value) {
++  if(value.indexOf("deg") != -1) {
++    return parseInt(value,10) * (Math.PI * 2 / 360);
++  } else if (value.indexOf("grad") != -1) {
++    return parseInt(value,10) * (Math.PI/200);
++  }
++  return parseFloat(value);
++}
++
++$.rotate = {
++  centerOrigin: 'margin',
++  radToDeg: radToDeg
++};
++  
++})(jQuery);
+\ No newline at end of file
+diff --git a/js/script.js b/js/script.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/resource/images/1logo.png b/resource/images/1logo.png
+new file mode 100644
+index 0000000..7809085
+Binary files /dev/null and b/resource/images/1logo.png differ
+diff --git a/resource/images/arrows.png b/resource/images/arrows.png
+new file mode 100644
+index 0000000..3b164d8
+Binary files /dev/null and b/resource/images/arrows.png differ
+diff --git a/resource/images/home_banner.jpg b/resource/images/home_banner.jpg
+new file mode 100644
+index 0000000..ca3bb0e
+Binary files /dev/null and b/resource/images/home_banner.jpg differ
+diff --git a/resource/images/home_banner2.png b/resource/images/home_banner2.png
+new file mode 100644
+index 0000000..79e3f38
+Binary files /dev/null and b/resource/images/home_banner2.png differ
+diff --git a/resource/images/logo.png b/resource/images/logo.png
+index 503a3e4..84030de 100644
+Binary files a/resource/images/logo.png and b/resource/images/logo.png differ
+diff --git a/viewer.html b/viewer.html
+index ad0ac09..f4daaa5 100644
+--- a/viewer.html
++++ b/viewer.html
+@@ -7,116 +7,202 @@
+ <script src="./js/jquery-1.7.min.js"></script>
+ <script src="./js/bev_common.js"></script>
+ <script src="./js/common.js"></script>
++<script src="js/script.js"></script>
+ 
+ <script type="text/javascript">
++    var base="base1";
+     $(document).ready(function() {
+         $("#base1").css({"border":"none","background":"url('./resource/images/buttonselect.png') repeat-x 0px 1px"});
+         //$("#base").css("background-image","url(./images/visual/base0.png)");
+ 	$("#base").attr("src","./images/visual/base0.png");
+         $("#patternSelected").css({"background":"url('./resource/images/buttonselect.png') repeat-x 0px -2px","padding-bottom":"9px"});//,"border-left-color":"#7db9be","border-right-color":"#7db9be"
+-	$("#template").css("display","block");
++	//$("#template").css("display","block");
+ 	$("#lytpop1").attr("selected","true");
++	
++	$("#header").click(function(){
++	    $(".topBanner").fadeOut();
++	    $("#template").fadeIn("slow");
++	    $("#template").css("display","block");
++	  });
++	
++	$("#step0Pre").click(function(){
++	    $("#template").fadeOut();
++	    $(".topBanner").fadeIn("slow");
++	    $(".topBanner").css("display","block");
++	  });
++	
++	$("#step0Next").click(function(){
++	    $("#template").fadeOut();
++	    $("#maproperties").fadeIn("slow");
++	    $("#maproperties").css("display","block");
++	  });
++	
++	$("#step1Pre").click(function(){
++	    $("#maproperties").fadeOut();
++	    $("#template").fadeIn("slow");
++	    $("#template").css("display","block");
++	  });
++	$("#step1Next").click(function(){
++	    $("#maproperties").fadeOut();
++	    $("#systemProperties").fadeIn("slow");
++	    $("#systemProperties").css("display","block");
++	  });
++	
++	$("#step2Pre").click(function(){
++	    $("#systemProperties").fadeOut();
++	    $("#maproperties").fadeIn("slow");
++	    $("#maproperties").css("display","block");
++	  });
++	$("#step2Next").click(function(){
++	    $("#systemProperties").fadeOut();
++	    generate_custom();
++	  });
++	
++	/////
++	var slideShow = $('#slideShow'),
++	    ul = slideShow.find('ul'),
++	    li = ul.find('li'),
++	    cnt = li.length;
++
++	// As the images are positioned absolutely, the last image will be shown on top.
++	// This is why we force them in the correct order by assigning z-indexes:
++	
++	updateZindex();
++	
++	
++		
++	// Fallback for Internet Explorer and older browsers
++	
++	slideShow.bind('showNext',function(){
++		$('li:first').fadeOut('slow',function(){
++			$(this).remove().appendTo(ul).show();
++			base = $(this).attr("alt");
++			updateZindex();
++		});
++	});
++	
++	slideShow.bind('showPrevious',function(){
++		var liLast = $('li:last').hide().remove().prependTo(ul);
++		updateZindex();
++		liLast.fadeIn('slow');
++	});
++	
++	
++	// Listening for clicks on the arrows, and
++	// triggering the appropriate event.
++	
++	$('#previousLink').click(function(){
++		if(slideShow.is(':animated')){
++			return false;
++		}
++		
++		slideShow.trigger('showPrevious');
++		return false;
++	});
++	
++	$('#nextLink').click(function(){
++		if(slideShow.is(':animated')){
++			return false;
++		}
++		
++		slideShow.trigger('showNext');
++		return false;
++	});
++	
++	// This function updates the z-index properties.
++	function updateZindex(){
++		
++		// The CSS method can take a function as its second argument.
++		// i is the zero-based index of the element.
++		
++		ul.find('li').css('z-index',function(i){
++			return cnt-i;
++		});
++	}
++	/////
+     });
+ </script>
+ </head>
+ <body>
+ <!--<div style="width:100%;height:100%;overflow: auto;">-->
+ <div class="content">
+-    <div class="footer">
+-        <!--<div class="span1">
+-            <div id="spanCompany"><span>公司首页</span></div>
+-            <div id="spanStore"><span>收藏</span></div>
+-            <div id="spanHelp"><span>帮助</span></div>
+-        </div>-->
+-	<!--<a href="http://www.supermap.com.cn" target="_blank">帮助</a>
+-	<a href="http://www.supermap.com.cn" target="_blank">收藏</a>-->
+-	<a href="http://www.supermap.com.cn" target="_blank">公司首页</a>
+-    </div>
+     <div class="divTitle"><div class="d1"><div class="d2"></div></div></div>
++    <div class="d3"></div>
+     <div class="tab">
+-        <div class="tab_menu">
+-            <ul class="ulStyle">
+-                <li id="patternSelected" onclick=strikeClick(id)>模板选择</li>
+-                <li class="directing"></li>
+-                <li id="mapSelected" onclick=strikeClick(id)>地图属性配置</li>
+-                <li class="directing"></li>
+-                <li id="systemSelected" onclick=strikeClick(id)>系统属性配置</li>
+-                <li class="directing"></li>
+-                <li id="pic" onclick=generate_custom()>生成地图</li>
+-            </ul>
++	<div class="topBanner" style="display:block">
++            <div class="hero-unit ">
++                <h2><font color="#29a3e2" class="des">SuperMap JavaScript Bev</font></h2>
++                <p>JsBev致力于帮助用户快速开发出满足自己需要的地图框架。通过配置文件或者可视化向导的方式，能够自动生成静态地图页面，并具有基本的应用功能。可以大大降低用户开发的难度和时间成本。
++		</p>
++                <br>
++                <a id="header" class="btn btn-success express" >请体验 >></a>        
++            </div>
+         </div>
+         <div id="template" style="display:none">
+             <div class="details">
+-                <img id="base"></img>
+-                <ul class="model">
+-                    <li id="base1" class="selected" onclick=showpic(id)>标准样式一</li>
+-                    <li id="base2" class="selected" onclick=showpic(id)>标准样式二</li>
+-                    <li id="base3" class="selected" onclick=showpic(id)>标准样式三</li>
+-                </ul>
+-            </div>    
++		<h2><font color="#000" class="des">步骤一、模板选择 </font></h2>
++                <div id="slideShowContainer">
++		    
++		    <div id="slideShow">
++			<ul style="list-style-type:none">
++			    <li alt="base2"><img src="./images/visual/base0.png" width="100%"  /></li>
++			    <li alt="base3"><img src="./images/visual/base1.png" width="100%" alt="base2" /></li>
++			    <li alt="base1"><img src="./images/visual/base2.png" width="100%" alt="base3" /></li>
++			</ul>
++		    </div>    
++		    <a id="previousLink" href="#">&raquo;</a>
++		    <a id="nextLink" href="#">&laquo;</a>
++		</div>
++		<a id="step0Pre" class="btn btn-success express" ><< 上一步</a>
++		<a id="step0Next" class="btn btn-success express" >下一步 >></a>
++            </div>
+         </div>
+         <div id="maproperties" style="display:none">
+-	    <div class="d2">
+-		<span class="d1">
+-		    <label for="pagename" class="page" id="pageid">地图页面名称</label>
+-		</span>
+-		<span class="d1">
+-		    <input type="text" id="pagename" name="pagename" class="pageclass"/> 
+-		</span>
+-	    </div>
+-	    
+-	    <div class="d2">
+-		<span class="d1">
+-		    <label for="title" class="page" id="pagetitleid">地图标题名称</label>
+-		</span>
+-		<span class="d1">
+-		    <input type="text" id="title" name="title" class="pageclass"/>
+-		</span>
+-	    </div>
+-	    <div class="d2">
+-		<span class="d1"><label  class="page" id="lonid">地图初始经纬度及层级</label></span>
+-            </div>
+-	    <div class="d2">
+-		<span class="d1">
+-		    <label for="lon" class="degree" id="label_lon">经度</label>
+-		</span>
+-		<span class="d1">
+-		    <input type="text" id="lon" name="lon" class="class_lon"/>
+-		</span>
+-		<span class="d1">
+-		    <label for="lat" class="degree" id="label_lat">纬度</label>
+-		</span>
+-		<span class="d1">
+-		    <input type="text" id="lat" name="lat" class="class_lat"/>
+-		</span>
+-		<span class="d1">
+-		    <label for="zoom" class="degree" id="label_zoom">层级</label>
+-		</span>
+-		<span class="d1">
+-		    <input type="text" id="zoom" name="zoom" class="calss_zoom"/>
+-		</span>
+-		<span class="d1">
+-		    <div type="button" id="getLonLat" onclick=geolocation()>当前经纬度</div>
+-		</span>
+-	    </div>
+-	    <!--<div class="d2">
+-		<span class="d1">
+-		    <label for="layertype" class="page" id="selectid">地图服务类型</label>
+-		</span>
+-	    </div>
+-	    <div class="d2">
+-		<span class="d1">
+-		    <select name="searchtype" id="layertype" onchange=searchtypechange(this.value)>
+-			<option id="lytpop1" value='google'>Google Maps</option>
+-			<option value='tiled' >iServer</option>
+-			<option value='cloud' >SuperMap CloudLayer</option>
+-			<option value='osm'>OpenStreet</option>
+-			<option value='tdtlayer' >天地图</option>              
+-			<option value='wms' >WMS</option>
+-			<option value='arcgis' >ArcGIS online</option>
+-		    </select>
+-		</span>
+-	    </div>-->
++	    <div class="details">
++		<h2><font color="#000" class="des">步骤二、地图配置 </font></h2>
++		<div class="d2">
++		    <span class="d1">
++			<label for="pagename" class="page" id="pageid">地图页面名称</label>
++		    </span>
++		    <span class="d1">
++			<input type="text" id="pagename" name="pagename" class="pageclass"/> 
++		    </span>
++		</div>
++		
++		<div class="d2">
++		    <span class="d1">
++			<label for="title" class="page" id="pagetitleid">地图标题名称</label>
++		    </span>
++		    <span class="d1">
++			<input type="text" id="title" name="title" class="pageclass"/>
++		    </span>
++		</div>
++		<div class="d2">
++		    <span class="d1"><label  class="page" id="lonid">地图初始经纬度及层级</label></span>
++		</div>
++		<div class="d2">
++		    <span class="d1">
++			<label for="lon" class="degree" id="label_lon">经度</label>
++		    </span>
++		    <span class="d1">
++			<input type="text" id="lon" name="lon" class="class_lon"/>
++		    </span>
++		    <span class="d1">
++			<label for="lat" class="degree" id="label_lat">纬度</label>
++		    </span>
++		    <span class="d1">
++			<input type="text" id="lat" name="lat" class="class_lat"/>
++		    </span>
++		    <span class="d1">
++			<label for="zoom" class="degree" id="label_zoom">层级</label>
++		    </span>
++		    <span class="d1">
++			<input type="text" id="zoom" name="zoom" class="calss_zoom"/>
++		    </span>
++		    <span class="d1">
++			<div type="button" id="getLonLat" class="btn btn-success2 express" onclick=geolocation()>当前经纬度</div>
++		    </span>
++		</div>
+             
+             
+ 		<div class="d2">
+@@ -155,58 +241,66 @@
+ 			</span>
+ 		    </span>
+ 		    <span class="d1">
+-			<div type="button" class="addclass" id="add" onclick=add()>添加</div>
+-		    </span>
+-		    <span class="d1">
+-			<div type="button" class="clearclass" id="clear" onclick=clears()>清空</div>
+-		    </span>
+-		</div>
+-            <!--</div>-->
+-            
+-            <div id="role">
+-		<div class="d2">
+-		    <span class="d1">
+-			<label class="page" id="tool_controlid">选择控件类型</label>
+-		    </span>
+-		</div>
+-		<div class="d2">
+-		    <span class="d1">
+-			<ul class="tool_control_ul">
+-			    <li class="tool_control" id="scaleLineId" onclick=selectedControl(id)><span id="scaleLineIdt">ScaleLine</span><div id="scaleLineIdr" class="tl_ctr_rt"></div></li>
+-			    <li class="tool_control" id="panZoomId" onclick=selectedControl(id)><span id="panZoomIdt">PanZoomBar</span><div id="panZoomIdr" class="tl_ctr_rt"></div></li>
+-			    <li class="tool_control" id="navagationId" onclick=selectedControl(id)><span id="navagationIdt">Navigation</span><div id="navagationIdr" class="tl_ctr_rt"></div></li>
+-			    <li class="tool_control" id="layerSwitcherId" onclick=selectedControl(id)><span id="layerSwitcherIdt">LayerSwitcher</span><div id="layerSwitcherIdr" class="tl_ctr_rt"></div></li>
+-			    <li class="tool_control" id="overMApId" onclick=selectedControl(id)><span id="overMApIdt">OverviewMap</span><div id="overMApIdr" class="tl_ctr_rt"></div></li>
+-			</ul>
+-		    </span>
+-		</div>
+-		<div class="d2">
+-		    <span class="d1">
+-			<label class="page" id="controlid">选择功能面板种类</label>
++			<div type="button" class="btn btn-success2 express" id="add" onclick=add()>添加</div>
+ 		    </span>
+-		</div>
+-		<div class="d2">
+ 		    <span class="d1">
+-			<ul class="control_ul">
+-			    <li class="tool_controls" id="queryId" onclick=selectedTool(id)><span id="queryIdt">查询</span><div id="queryIdr" class="tl_ctr_rt"></div></li>
+-			    <li class="tool_controls" id="calculateId" onclick=selectedTool(id)><span id="calculateIdt">量算</span><div id="calculateIdr" class="tl_ctr_rt"></div></li>
+-			    <li class="tool_controls" id="locationId" onclick=selectedTool(id)><span id="locationIdt">定位</span><div id="locationIdr" class="tl_ctr_rt"></div></li>
+-			    <li class="tool_controls" id="themeId" onclick=selectedTool(id)><span id="themeIdt">专题图</span><div id="themeIdr" class="tl_ctr_rt"></div></li>
+-			</ul>
++			<div type="button" class="btn btn-success2 express" id="clear" onclick=clears()>清空</div>
+ 		    </span>
+ 		</div>
++		<div id="role">
++		    <div class="d2">
++			<span class="d1">
++			    <label class="page" id="tool_controlid">选择控件类型</label>
++			</span>
++		    </div>
++		    <div class="d2">
++			<span class="d1">
++			    <ul class="tool_control_ul">
++				<a class="btn btn-success2 express " id="scaleLineId" onclick=selectedControl(id)><span id="scaleLineIdt">ScaleLine</span><div id="scaleLineIdr" class="tl_ctr_rt"></div></a>
++				<a class="btn btn-success2 express " id="panZoomId" onclick=selectedControl(id)><span id="panZoomIdt">PanZoomBar</span><div id="panZoomIdr" class="tl_ctr_rt"></div></a>
++				<a class="btn btn-success2 express " id="navagationId" onclick=selectedControl(id)><span id="navagationIdt">Navigation</span><div id="navagationIdr" class="tl_ctr_rt"></div></a>
++				<a class="btn btn-success2 express " id="layerSwitcherId" onclick=selectedControl(id)><span id="layerSwitcherIdt">LayerSwitcher</span><div id="layerSwitcherIdr" class="tl_ctr_rt"></div></a>
++				<a class="btn btn-success2 express " id="overMApId" onclick=selectedControl(id)><span id="overMApIdt">OverviewMap</span><div id="overMApIdr" class="tl_ctr_rt"></div></a>
++			    </ul>
++			</span>
++		    </div>
++		    <div class="d2">
++			<span class="d1">
++			    <label class="page" id="controlid">选择功能面板种类</label>
++			</span>
++		    </div>
++		    <div class="d2">
++			<span class="d1">
++			    <ul class="tool_control_ul">
++				<a class="btn btn-success2 express" id="queryId" onclick=selectedTool(id)><span id="queryIdt">查询</span><div id="queryIdr" class="tl_ctr_rt"></div></a>
++				<a class="btn btn-success2 express" id="calculateId" onclick=selectedTool(id)><span id="calculateIdt">量算</span><div id="calculateIdr" class="tl_ctr_rt"></div></a>
++				<a class="btn btn-success2 express" id="locationId" onclick=selectedTool(id)><span id="locationIdt">定位</span><div id="locationIdr" class="tl_ctr_rt"></div></a>
++				<a class="btn btn-success2 express" id="themeId" onclick=selectedTool(id)><span id="themeIdt">专题图</span><div id="themeIdr" class="tl_ctr_rt"></div></a>
++			    </ul>
++			</span>
++		    </div>
+             </div>
+-        </div>
++		<a id="step1Pre" class="btn btn-success express" ><< 上一步</a>
++		<a id="step1Next" class="btn btn-success express" >下一步 >></a>
++	    </div>
++	</div>
+         <div id="systemProperties" style="display:none">
+-            <label class="page" id="serveid">选择发布服务平台</label>
+-            <select name="servertype" id="servertype" >
+-                <option value='Tomcat'  >Tomcat Server</option>
+-                <option value='IIS' >IIS信息发布服务</option>
+-                <option value='GAE' >Google APP Engine</option>
+-            </select>
+-        </div>
++	    <div class="details">
++		<h2><font color="#000" class="des">步骤三、系统配置 </font></h2>
++		<label class="page" id="serveid">选择发布服务平台</label>
++		    <select name="servertype" id="servertype" >
++		    <option value='Tomcat'  >Tomcat Server</option>
++		    <option value='IIS' >IIS信息发布服务</option>
++		    <option value='GAE' >Google APP Engine</option>
++		</select>
++		<br />
++		<br />
++		<br />
++		<a id="step2Pre" class="btn btn-success express" ><< 上一步</a>
++		<a id="step2Next" class="btn btn-success express" >生成地图 >></a>
++	    </div>
++	</div>
+     </div>
+-    <div id="bottom"><p>版权所有&copy; 1997-2012,北京超图软件股份有限公司</p></div>
+ </div>
+ <!--</div>-->
+ </body>
