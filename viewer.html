@@ -4,6 +4,7 @@
 <META http-equiv=Content-Type content="text/html; charset=UTF-8">
 <title>SuperMap Javascrpt Bev</title>
 <link rel="stylesheet" href="./css/jsbev.css" />
+<link media="screen" href="./images/frameimages/favicon.ico" type="image/x-icon" rel="icon"/>
 <script src="./js/jquery-1.7.min.js"></script>
 <script src="./js/bev_common.js"></script>
 <script src="./js/common.js"></script>
@@ -35,6 +36,7 @@
 	    $("#template").fadeOut();
 	    $("#maproperties").fadeIn("slow");
 	    $("#maproperties").css("display","block");
+		geolocation();
 	  });
 	
 	$("#step1Pre").click(function(){
@@ -83,6 +85,7 @@
 	
 	slideShow.bind('showPrevious',function(){
 		var liLast = $('li:last').hide().remove().prependTo(ul);
+		base = $('li:last').attr("alt");
 		updateZindex();
 		liLast.fadeIn('slow');
 	});
@@ -145,9 +148,9 @@
 		    
 		    <div id="slideShow">
 			<ul style="list-style-type:none">
-			    <li alt="base2"><img src="./images/visual/base0.png" width="100%"  /></li>
-			    <li alt="base3"><img src="./images/visual/base1.png" width="100%" alt="base2" /></li>
-			    <li alt="base1"><img src="./images/visual/base2.png" width="100%" alt="base3" /></li>
+			    <li alt="base2"><img src="./images/visual/base0.png" width="100%" alt="base1" /><SPAN class="describe" >模版一:上中下布局</SPAN></li>
+			    <li alt="base3"><img src="./images/visual/base1.png" width="100%" alt="base2" /><SPAN class="describe" >模版二：左右布局</SPAN></li>
+			    <li alt="base1"><img src="./images/visual/base2.png" width="100%" alt="base3" /><SPAN class="describe" >模版三：全屏布局</SPAN></li>
 			</ul>
 		    </div>    
 		    <a id="previousLink" href="#">&raquo;</a>
@@ -162,10 +165,10 @@
 		<h2><font color="#000" class="des">步骤二、地图配置 </font></h2>
 		<div class="d2">
 		    <span class="d1">
-			<label for="pagename" class="page" id="pageid">地图页面名称</label>
+			<label for="pagename" class="page" id="pageid" >地图页面名称</label>
 		    </span>
 		    <span class="d1">
-			<input type="text" id="pagename" name="pagename" class="pageclass"/> 
+			<input type="text" id="pagename" name="pagename" class="pageclass" value="index"/> 
 		    </span>
 		</div>
 		
@@ -174,7 +177,7 @@
 			<label for="title" class="page" id="pagetitleid">地图标题名称</label>
 		    </span>
 		    <span class="d1">
-			<input type="text" id="title" name="title" class="pageclass"/>
+			<input type="text" id="title" name="title" class="pageclass" value="supermap"/>
 		    </span>
 		</div>
 		<div class="d2">
@@ -185,23 +188,23 @@
 			<label for="lon" class="degree" id="label_lon">经度</label>
 		    </span>
 		    <span class="d1">
-			<input type="text" id="lon" name="lon" class="class_lon"/>
+			<input type="text" id="lon" name="lon" class="class_lon" value="0"/>
 		    </span>
 		    <span class="d1">
 			<label for="lat" class="degree" id="label_lat">纬度</label>
 		    </span>
 		    <span class="d1">
-			<input type="text" id="lat" name="lat" class="class_lat"/>
+			<input type="text" id="lat" name="lat" class="class_lat" value="0"/>
 		    </span>
 		    <span class="d1">
 			<label for="zoom" class="degree" id="label_zoom">层级</label>
 		    </span>
 		    <span class="d1">
-			<input type="text" id="zoom" name="zoom" class="calss_zoom"/>
+			<input type="text" id="zoom" name="zoom" class="calss_zoom" value="0"/>
 		    </span>
-		    <span class="d1">
+		    <!--span class="d1">
 			<div type="button" id="getLonLat" class="btn btn-success2 express" onclick=geolocation()>当前经纬度</div>
-		    </span>
+		    </span-->
 		</div>
             
             
@@ -230,7 +233,7 @@
 			<label for="layername" class="degree" id="nameid">名称</label>
 		    </span>
 		    <span class="d1">
-			<input name = "layername" class="layernameclass" type="text" id="layername"  />
+			<input name = "layername" class="layernameclass" type="text" id="layername"  value="layer"/>
 		    </span>
 		    <span id="layerpara" style="display:none">
 			<span class="d1">
@@ -256,11 +259,11 @@
 		    <div class="d2">
 			<span class="d1">
 			    <ul class="tool_control_ul">
-				<a class="btn btn-success2 express " id="scaleLineId" onclick=selectedControl(id)><span id="scaleLineIdt">ScaleLine</span><div id="scaleLineIdr" class="tl_ctr_rt"></div></a>
-				<a class="btn btn-success2 express " id="panZoomId" onclick=selectedControl(id)><span id="panZoomIdt">PanZoomBar</span><div id="panZoomIdr" class="tl_ctr_rt"></div></a>
-				<a class="btn btn-success2 express " id="navagationId" onclick=selectedControl(id)><span id="navagationIdt">Navigation</span><div id="navagationIdr" class="tl_ctr_rt"></div></a>
-				<a class="btn btn-success2 express " id="layerSwitcherId" onclick=selectedControl(id)><span id="layerSwitcherIdt">LayerSwitcher</span><div id="layerSwitcherIdr" class="tl_ctr_rt"></div></a>
-				<a class="btn btn-success2 express " id="overMApId" onclick=selectedControl(id)><span id="overMApIdt">OverviewMap</span><div id="overMApIdr" class="tl_ctr_rt"></div></a>
+				<a class="btn btn-success2 express " id="scaleLineId"  onclick=selectedControl(id)><span id="scaleLineIdt" >比例尺</span><div id="scaleLineIdr" class="tl_ctr_rt"></div></a>
+				<a class="btn btn-success2 express " id="panZoomId"  onclick=selectedControl(id)><span id="panZoomIdt" >缩放控件</span><div id="panZoomIdr" class="tl_ctr_rt"></div></a>
+				<a class="btn btn-success2 express " id="navagationId"  onclick=selectedControl(id)><span id="navagationIdt" >导航控件</span><div id="navagationIdr" class="tl_ctr_rt"></div></a>
+				<a class="btn btn-success2 express " id="layerSwitcherId"  onclick=selectedControl(id)><span id="layerSwitcherIdt" >图例管理控件</span><div id="layerSwitcherIdr" class="tl_ctr_rt"></div></a>
+				<a class="btn btn-success2 express " id="overMApId"  onclick=selectedControl(id)><span id="overMApIdt" >鹰眼</span><div id="overMApIdr" class="tl_ctr_rt"></div></a>
 			    </ul>
 			</span>
 		    </div>
@@ -275,7 +278,7 @@
 				<a class="btn btn-success2 express" id="queryId" onclick=selectedTool(id)><span id="queryIdt">查询</span><div id="queryIdr" class="tl_ctr_rt"></div></a>
 				<a class="btn btn-success2 express" id="calculateId" onclick=selectedTool(id)><span id="calculateIdt">量算</span><div id="calculateIdr" class="tl_ctr_rt"></div></a>
 				<a class="btn btn-success2 express" id="locationId" onclick=selectedTool(id)><span id="locationIdt">定位</span><div id="locationIdr" class="tl_ctr_rt"></div></a>
-				<a class="btn btn-success2 express" id="themeId" onclick=selectedTool(id)><span id="themeIdt">专题图</span><div id="themeIdr" class="tl_ctr_rt"></div></a>
+				<!--a class="btn btn-success2 express" id="themeId" onclick=selectedTool(id)><span id="themeIdt">专题图</span><div id="themeIdr" class="tl_ctr_rt"></div></a-->
 			    </ul>
 			</span>
 		    </div>
@@ -291,7 +294,7 @@
 		    <select name="servertype" id="servertype" >
 		    <option value='Tomcat'  >Tomcat Server</option>
 		    <option value='IIS' >IIS信息发布服务</option>
-		    <option value='GAE' >Google APP Engine</option>
+		    <!--option value='GAE' >Google APP Engine</option-->
 		</select>
 		<br />
 		<br />

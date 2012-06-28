@@ -1,0 +1,179 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/SuperMapiClient60/!svn/ver/29120/01_SourceCode/trunk/Transformers10/libs/SuperMap
+END
+Events.js
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/SuperMapiClient60/!svn/ver/29030/01_SourceCode/trunk/Transformers10/libs/SuperMap/Events.js
+END
+Renderer.js
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/Renderer.js
+END
+Rule.js
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/SuperMapiClient60/!svn/ver/28499/01_SourceCode/trunk/Transformers10/libs/SuperMap/Rule.js
+END
+Layer.js
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/SuperMapiClient60/!svn/ver/28597/01_SourceCode/trunk/Transformers10/libs/SuperMap/Layer.js
+END
+Projection.js
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/SuperMapiClient60/!svn/ver/28598/01_SourceCode/trunk/Transformers10/libs/SuperMap/Projection.js
+END
+REST.js
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/SuperMapiClient60/!svn/ver/28791/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST.js
+END
+Util.js
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/SuperMapiClient60/!svn/ver/29075/01_SourceCode/trunk/Transformers10/libs/SuperMap/Util.js
+END
+Map.js
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/SuperMapiClient60/!svn/ver/28806/01_SourceCode/trunk/Transformers10/libs/SuperMap/Map.js
+END
+Handler.js
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/SuperMapiClient60/!svn/ver/28536/01_SourceCode/trunk/Transformers10/libs/SuperMap/Handler.js
+END
+Control.js
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/SuperMapiClient60/!svn/ver/28806/01_SourceCode/trunk/Transformers10/libs/SuperMap/Control.js
+END
+Marker.js
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/SuperMapiClient60/!svn/ver/29019/01_SourceCode/trunk/Transformers10/libs/SuperMap/Marker.js
+END
+Lang.js
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/SuperMapiClient60/!svn/ver/28440/01_SourceCode/trunk/Transformers10/libs/SuperMap/Lang.js
+END
+Tween.js
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/Tween.js
+END
+Animal2.js
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/SuperMapiClient60/!svn/ver/28037/01_SourceCode/trunk/Transformers10/libs/SuperMap/Animal2.js
+END
+Ajax.js
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/SuperMapiClient60/!svn/ver/28327/01_SourceCode/trunk/Transformers10/libs/SuperMap/Ajax.js
+END
+Kinetic.js
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/SuperMapiClient60/!svn/ver/27914/01_SourceCode/trunk/Transformers10/libs/SuperMap/Kinetic.js
+END
+Icon.js
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/SuperMapiClient60/!svn/ver/28439/01_SourceCode/trunk/Transformers10/libs/SuperMap/Icon.js
+END
+Format.js
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/Format.js
+END
+Request.js
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/SuperMapiClient60/!svn/ver/28591/01_SourceCode/trunk/Transformers10/libs/SuperMap/Request.js
+END
+Feature.js
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/SuperMapiClient60/!svn/ver/28595/01_SourceCode/trunk/Transformers10/libs/SuperMap/Feature.js
+END
+Geometry.js
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/SuperMapiClient60/!svn/ver/28470/01_SourceCode/trunk/Transformers10/libs/SuperMap/Geometry.js
+END
+NameSpace.js
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/SuperMapiClient60/!svn/ver/28190/01_SourceCode/trunk/Transformers10/libs/SuperMap/NameSpace.js
+END
+Tile.js
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/Tile.js
+END
+StyleMap.js
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/SuperMapiClient60/!svn/ver/28327/01_SourceCode/trunk/Transformers10/libs/SuperMap/StyleMap.js
+END
+Symbolizer.js
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/SuperMapiClient60/!svn/ver/28499/01_SourceCode/trunk/Transformers10/libs/SuperMap/Symbolizer.js
+END
+BaseTypes.js
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/SuperMapiClient60/!svn/ver/28609/01_SourceCode/trunk/Transformers10/libs/SuperMap/BaseTypes.js
+END
+Style.js
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/SuperMapiClient60/!svn/ver/28499/01_SourceCode/trunk/Transformers10/libs/SuperMap/Style.js
+END
+Animal.js
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/SuperMapiClient60/!svn/ver/28440/01_SourceCode/trunk/Transformers10/libs/SuperMap/Animal.js
+END
+Popup.js
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/SuperMapiClient60/!svn/ver/29084/01_SourceCode/trunk/Transformers10/libs/SuperMap/Popup.js
+END

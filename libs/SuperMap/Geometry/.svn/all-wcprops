@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/SuperMapiClient60/!svn/ver/28596/01_SourceCode/trunk/Transformers10/libs/SuperMap/Geometry
+END
+Curve.js
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/SuperMapiClient60/!svn/ver/28454/01_SourceCode/trunk/Transformers10/libs/SuperMap/Geometry/Curve.js
+END
+MultiPoint.js
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/SuperMapiClient60/!svn/ver/28596/01_SourceCode/trunk/Transformers10/libs/SuperMap/Geometry/MultiPoint.js
+END
+Rectangle.js
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/SuperMapiClient60/!svn/ver/28454/01_SourceCode/trunk/Transformers10/libs/SuperMap/Geometry/Rectangle.js
+END
+Polygon.js
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/SuperMapiClient60/!svn/ver/28489/01_SourceCode/trunk/Transformers10/libs/SuperMap/Geometry/Polygon.js
+END
+MultiLineString.js
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/SuperMapiClient60/!svn/ver/28454/01_SourceCode/trunk/Transformers10/libs/SuperMap/Geometry/MultiLineString.js
+END
+Point.js
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/SuperMapiClient60/!svn/ver/28489/01_SourceCode/trunk/Transformers10/libs/SuperMap/Geometry/Point.js
+END
+LinearRing.js
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/SuperMapiClient60/!svn/ver/28489/01_SourceCode/trunk/Transformers10/libs/SuperMap/Geometry/LinearRing.js
+END
+Collection.js
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/SuperMapiClient60/!svn/ver/28532/01_SourceCode/trunk/Transformers10/libs/SuperMap/Geometry/Collection.js
+END
+LineString.js
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/SuperMapiClient60/!svn/ver/28454/01_SourceCode/trunk/Transformers10/libs/SuperMap/Geometry/LineString.js
+END
+MultiPolygon.js
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/SuperMapiClient60/!svn/ver/28454/01_SourceCode/trunk/Transformers10/libs/SuperMap/Geometry/MultiPolygon.js
+END

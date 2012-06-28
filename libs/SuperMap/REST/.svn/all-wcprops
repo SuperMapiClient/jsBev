@@ -1,0 +1,209 @@
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/SuperMapiClient60/!svn/ver/29080/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST
+END
+QueryResult.js
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/QueryResult.js
+END
+QueryBySQLParameters.js
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/QueryBySQLParameters.js
+END
+LinkItem.js
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/SuperMapiClient60/!svn/ver/28624/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/LinkItem.js
+END
+ServiceEventArgs.js
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/ServiceEventArgs.js
+END
+MeasureEventArgs.js
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/MeasureEventArgs.js
+END
+ServerGeometry.js
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/SuperMapiClient60/!svn/ver/28414/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/ServerGeometry.js
+END
+MeasureService.js
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/MeasureService.js
+END
+ServiceFailedEventArgs.js
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/ServiceFailedEventArgs.js
+END
+MeasureParameters.js
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/MeasureParameters.js
+END
+FilterParameter.js
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/FilterParameter.js
+END
+ServerTextStyle.js
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/ServerTextStyle.js
+END
+QueryByGeometryService.js
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/QueryByGeometryService.js
+END
+GetMapStatusEventArgs.js
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/GetMapStatusEventArgs.js
+END
+MeasureResult.js
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/MeasureResult.js
+END
+QueryBySQLService.js
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/QueryBySQLService.js
+END
+GetMapStatusService.js
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/SuperMapiClient60/!svn/ver/28288/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/GetMapStatusService.js
+END
+ResourceInfo.js
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/SuperMapiClient60/!svn/ver/28547/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/ResourceInfo.js
+END
+ServerColor.js
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/ServerColor.js
+END
+JoinItem.js
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/SuperMapiClient60/!svn/ver/28624/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/JoinItem.js
+END
+ServiceException.js
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/ServiceException.js
+END
+GetMapStatusResult.js
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/GetMapStatusResult.js
+END
+ServerFeature.js
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/SuperMapiClient60/!svn/ver/29005/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/ServerFeature.js
+END
+QueryEventArgs.js
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/QueryEventArgs.js
+END
+QueryService.js
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/QueryService.js
+END
+DatasourceConnectionInfo.js
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/DatasourceConnectionInfo.js
+END
+ServerStyle.js
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/ServerStyle.js
+END
+QueryParameters.js
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/QueryParameters.js
+END
+Recordset.js
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/SuperMapiClient60/!svn/ver/28690/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/Recordset.js
+END
+ServiceBase.js
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/ServiceBase.js
+END
+QueryByBoundsService.js
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/QueryByBoundsService.js
+END
+QueryByDistanceService.js
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/QueryByDistanceService.js
+END
+QueryByBoundsParameters.js
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/QueryByBoundsParameters.js
+END
+QueryByDistanceParameters.js
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/SuperMapiClient60/!svn/ver/28273/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/QueryByDistanceParameters.js
+END
+QueryByGeometryParameters.js
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/QueryByGeometryParameters.js
+END

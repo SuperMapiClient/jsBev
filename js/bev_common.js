@@ -44,11 +44,7 @@
             navigator.geolocation.getCurrentPosition(function (position) {
                 document.getElementById("lon").value = position.coords.longitude;
                 document.getElementById("lat").value = position.coords.latitude;
-                alert("该值为经纬度单位，可能会与你发布的地图服务单位不一致！");
             });
-
-        } else {
-            alert("很遗憾，你的浏览器不支持地理定位功能。");
         }  
     }
     var url=[];
@@ -179,6 +175,21 @@
 		}
 		return toolName;
 	}
+	function searchTwo(value){
+	    var controlName;
+		if(value === "比例尺"){
+		    controlName="ScaleLine";
+		}else if(value === "缩放控件"){
+		    controlName="PanZoomBar";
+		}else if(value === "导航控件"){
+		    controlName="Navigation";
+		}else if(value === "图例管理控件"){
+		    controlName="LayerSwitcher";
+		}else if(value === "鹰眼"){
+		    controlName="OverviewMap";
+		}
+		return controlName;	
+	}
     
     function clears(){
         document.getElementById("layername").value="";
@@ -220,7 +231,7 @@
         strLayer = strLayer + "</BaseLayers>";
         var strControl = "<Controls>";
         for(var i = 0,len = controls.length;i<len;i++){
-		controlsValue = document.getElementById(controls[i]+"t").innerHTML;
+		controlsValue = searchTwo(document.getElementById(controls[i]+"t").innerHTML);
 		strControl = strControl + "<" + controlsValue +"/>";
         }
         strControl = strControl + "</Controls>";

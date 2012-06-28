@@ -5,14 +5,14 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 
-    <link rel="stylesheet" href="./css/style.css" />
-
+    <link rel="stylesheet" href="./css/style_slide.css" />
+    <link media="screen" href="./images/frameimages/favicon.ico" type="image/x-icon" rel="icon"/>
 	<script src="./js/jquery-1.7.min.js"></script>
     <script src="./js/jquery.form.js"></script>
     <script src="./js/interface.js"></script>
     <script src="./js/common.js" ></script>
 
-    <script src="./js/SuperMap.Include.js"></script>
+    <script src="./libs/SuperMap.Include.js"></script>
     <script>
         $(document).ready(function () {
             adjustPage();
@@ -23,8 +23,29 @@
             $(window).resize(function () {
                 adjustPage();
             });
+			
+			$("#SlideTab").click(function(){
+				if($("#slider").css("display")!=="none")
+				{
+					$("#slider").css("display","none");
+					$("#map").css("width","100%");
+					$(".slide_btn").css("right","0%");
+					$("#shad_v").css("right","0%");
+					$(".slide_but_con").removeClass("slide_but_con").addClass("mapinfo_but_con_close");
+					$(this).attr("title","显示面板");
+					map.updateSize();
+				}else{
+					$("#slider").css("display","block");
+					$("#map").css("width","80%");
+					$(".slide_btn").css("right","20%");
+					$("#shad_v").css("right","20%");
+					$("#slide_but_con").removeClass("mapinfo_but_con_close").addClass("slide_but_con");
+					$(this).attr("title","收起面板");
+					map.updateSize();
+				}
+			});
         });
-
+		
         function adjustPage() {
             var nHeight = pageHeight();
             $("#page").css("height", nHeight + 'px');
@@ -42,6 +63,33 @@
 	<div data-role="content" id="content" style="height:94%">	
 		<div id="map" >
 		</div>
+		<div id="slider" >
+          <div id="SlideCon">
+            <div class="SlideConTitle">
+              <div class="titleL">jsBev简介</div>
+            </div>
+            <div id="SlideContent" class="SlideContent">
+                <div class="SlideContentText">
+                	<h6>jsBev产品定位</h6>
+                    <p>JsBev致力于帮助用户快速开发出满足自己需要的地图框架。通过配置文件或者可视化向导的方式，能够自动生成静态地图页面，并具有基本的应用功能。可以大大降低用户开发的难度和时间成本。
+                    </p>
+                    <h6>jsBev产品特点</h6>
+                     <p>1. 可视化向导，实现无编码开发方式简易框架<br>
+                        2. 多模板支持，满足用户对页面布局的不同需要，并可自我扩展<br>
+                        3. 多样的地图服务，目前支持iServer、Cloud、Google、OpenStreet、WMS、ArcGIS、天地图七种地图服务<br>
+                        4. 简易开发，轻松生成页面自适应，跨浏览器的地图页面<br>
+                        5. 轻量级静态页面<br>
+                        6. 可扩展性<br>
+                    </p>
+                    
+                </div>
+            </div>
+          </div>
+        </div>
+        <div id="shad_v"> </div>
+        <div id="SlideTab" class="slide_btn" title="收起面板">
+          <div id="slide_but_con" class="slide_but_con"> </div>
+        </div>
 	</div><!-- /content -->
 
 	<div data-role="footer" id="footer" style="height:0%">

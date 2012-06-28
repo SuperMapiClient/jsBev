@@ -1,0 +1,185 @@
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/SuperMapiClient60/!svn/ver/28635/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst
+END
+GeometryBufferAnalystParameters.js
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/GeometryBufferAnalystParameters.js
+END
+SurfaceAnalystService.js
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/SurfaceAnalystService.js
+END
+SurfaceAnalystParametersSetting.js
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/SurfaceAnalystParametersSetting.js
+END
+DatasetOverlayAnalystParameters.js
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/DatasetOverlayAnalystParameters.js
+END
+BufferSetting.js
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/BufferSetting.js
+END
+SpatialAnalystEventArgs.js
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/SpatialAnalystEventArgs.js
+END
+SurfaceAnalystParameters.js
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/SuperMapiClient60/!svn/ver/27908/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/SurfaceAnalystParameters.js
+END
+DatasetBufferAnalystResult.js
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/DatasetBufferAnalystResult.js
+END
+GeometryOverlayAnalystParameters.js
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/GeometryOverlayAnalystParameters.js
+END
+DatasetSurfaceAnalystParameters.js
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/DatasetSurfaceAnalystParameters.js
+END
+GeometryBufferAnalystResult.js
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/GeometryBufferAnalystResult.js
+END
+GenerateSpatialDataEventArgs.js
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/SuperMapiClient60/!svn/ver/28418/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/GenerateSpatialDataEventArgs.js
+END
+DatasetOverlayAnalystResult.js
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/DatasetOverlayAnalystResult.js
+END
+GenerateSpatialDataService.js
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/SuperMapiClient60/!svn/ver/28635/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/GenerateSpatialDataService.js
+END
+SurfaceAnalystResult.js
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/SurfaceAnalystResult.js
+END
+BufferDistance.js
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/SuperMapiClient60/!svn/ver/28273/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/BufferDistance.js
+END
+BufferAnalystEventArgs.js
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/BufferAnalystEventArgs.js
+END
+GeometrySurfaceAnalystParameters.js
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/GeometrySurfaceAnalystParameters.js
+END
+GenerateSpatialDataParameters.js
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/SuperMapiClient60/!svn/ver/28626/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/GenerateSpatialDataParameters.js
+END
+BufferAnalystService.js
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/BufferAnalystService.js
+END
+GeometryOverlayAnalystResult.js
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/GeometryOverlayAnalystResult.js
+END
+SpatialAnalystResult.js
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/SpatialAnalystResult.js
+END
+BufferAnalystParameters.js
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/BufferAnalystParameters.js
+END
+OverlayAnalystEventArgs.js
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/OverlayAnalystEventArgs.js
+END
+OverlayAnalystService.js
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/OverlayAnalystService.js
+END
+DatasetBufferAnalystParameters.js
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/DatasetBufferAnalystParameters.js
+END
+GenerateSpatialDataResult.js
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/SuperMapiClient60/!svn/ver/28418/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/GenerateSpatialDataResult.js
+END
+OverlayAnalystParameters.js
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/OverlayAnalystParameters.js
+END
+DataReturnOption.js
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/SuperMapiClient60/!svn/ver/28626/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/DataReturnOption.js
+END
+SurfaceAnalystEventArgs.js
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/SuperMapiClient60/!svn/ver/27811/01_SourceCode/trunk/Transformers10/libs/SuperMap/REST/SpatialAnalyst/SurfaceAnalystEventArgs.js
+END

@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/SuperMapiClient60/!svn/ver/29082/01_SourceCode/trunk/Transformers10/libs/SuperMap/Layer
+END
+Markers.js
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/SuperMapiClient60/!svn/ver/28519/01_SourceCode/trunk/Transformers10/libs/SuperMap/Layer/Markers.js
+END
+Grid.js
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/SuperMapiClient60/!svn/ver/28519/01_SourceCode/trunk/Transformers10/libs/SuperMap/Layer/Grid.js
+END
+WMS.js
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/SuperMapiClient60/!svn/ver/28519/01_SourceCode/trunk/Transformers10/libs/SuperMap/Layer/WMS.js
+END
+SphericalMercator.js
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/SuperMapiClient60/!svn/ver/28176/01_SourceCode/trunk/Transformers10/libs/SuperMap/Layer/SphericalMercator.js
+END
+CanvasLayer.js
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/SuperMapiClient60/!svn/ver/28979/01_SourceCode/trunk/Transformers10/libs/SuperMap/Layer/CanvasLayer.js
+END
+HTTPRequest.js
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/SuperMapiClient60/!svn/ver/28519/01_SourceCode/trunk/Transformers10/libs/SuperMap/Layer/HTTPRequest.js
+END
+WMTS.js
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/SuperMapiClient60/!svn/ver/28519/01_SourceCode/trunk/Transformers10/libs/SuperMap/Layer/WMTS.js
+END
+CanvasImage.js
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/SuperMapiClient60/!svn/ver/29025/01_SourceCode/trunk/Transformers10/libs/SuperMap/Layer/CanvasImage.js
+END
+SimpleCachedLayer.js
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/SuperMapiClient60/!svn/ver/28650/01_SourceCode/trunk/Transformers10/libs/SuperMap/Layer/SimpleCachedLayer.js
+END
+TiledDynamicRESTLayer.js
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/SuperMapiClient60/!svn/ver/29074/01_SourceCode/trunk/Transformers10/libs/SuperMap/Layer/TiledDynamicRESTLayer.js
+END
+Vector.js
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/SuperMapiClient60/!svn/ver/29082/01_SourceCode/trunk/Transformers10/libs/SuperMap/Layer/Vector.js
+END
+CloudLayer.js
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/SuperMapiClient60/!svn/ver/28807/01_SourceCode/trunk/Transformers10/libs/SuperMap/Layer/CloudLayer.js
+END

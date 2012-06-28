@@ -1,0 +1,149 @@
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/SuperMapiClient60/!svn/ver/29088/01_SourceCode/trunk/Transformers10/libs/SuperMap/Control
+END
+ZoomPanel.js
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/SuperMapiClient60/!svn/ver/28170/01_SourceCode/trunk/Transformers10/libs/SuperMap/Control/ZoomPanel.js
+END
+OverviewMap.js
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/SuperMapiClient60/!svn/ver/29055/01_SourceCode/trunk/Transformers10/libs/SuperMap/Control/OverviewMap.js
+END
+PinchZoom.js
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/SuperMapiClient60/!svn/ver/28522/01_SourceCode/trunk/Transformers10/libs/SuperMap/Control/PinchZoom.js
+END
+PanZoomBar.js
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/SuperMapiClient60/!svn/ver/29064/01_SourceCode/trunk/Transformers10/libs/SuperMap/Control/PanZoomBar.js
+END
+DrawFeature.js
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/SuperMapiClient60/!svn/ver/28522/01_SourceCode/trunk/Transformers10/libs/SuperMap/Control/DrawFeature.js
+END
+ZoomIn.js
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/SuperMapiClient60/!svn/ver/27956/01_SourceCode/trunk/Transformers10/libs/SuperMap/Control/ZoomIn.js
+END
+ZoomOut.js
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/SuperMapiClient60/!svn/ver/27956/01_SourceCode/trunk/Transformers10/libs/SuperMap/Control/ZoomOut.js
+END
+DragPan.js
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/SuperMapiClient60/!svn/ver/27956/01_SourceCode/trunk/Transformers10/libs/SuperMap/Control/DragPan.js
+END
+MousePosition.js
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/SuperMapiClient60/!svn/ver/27956/01_SourceCode/trunk/Transformers10/libs/SuperMap/Control/MousePosition.js
+END
+Pan.js
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/SuperMapiClient60/!svn/ver/28170/01_SourceCode/trunk/Transformers10/libs/SuperMap/Control/Pan.js
+END
+ZoomToMaxExtent.js
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/SuperMapiClient60/!svn/ver/27956/01_SourceCode/trunk/Transformers10/libs/SuperMap/Control/ZoomToMaxExtent.js
+END
+LayerSwitcher.js
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/SuperMapiClient60/!svn/ver/29054/01_SourceCode/trunk/Transformers10/libs/SuperMap/Control/LayerSwitcher.js
+END
+KeyboardDefaults.js
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/SuperMapiClient60/!svn/ver/27956/01_SourceCode/trunk/Transformers10/libs/SuperMap/Control/KeyboardDefaults.js
+END
+DragFeature.js
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/SuperMapiClient60/!svn/ver/27956/01_SourceCode/trunk/Transformers10/libs/SuperMap/Control/DragFeature.js
+END
+SelectFeature.js
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/SuperMapiClient60/!svn/ver/29088/01_SourceCode/trunk/Transformers10/libs/SuperMap/Control/SelectFeature.js
+END
+ZoomBox.js
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/SuperMapiClient60/!svn/ver/27956/01_SourceCode/trunk/Transformers10/libs/SuperMap/Control/ZoomBox.js
+END
+PanPanel.js
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/SuperMapiClient60/!svn/ver/28522/01_SourceCode/trunk/Transformers10/libs/SuperMap/Control/PanPanel.js
+END
+Panel.js
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/SuperMapiClient60/!svn/ver/28522/01_SourceCode/trunk/Transformers10/libs/SuperMap/Control/Panel.js
+END
+Navigation.js
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/SuperMapiClient60/!svn/ver/28563/01_SourceCode/trunk/Transformers10/libs/SuperMap/Control/Navigation.js
+END
+ScaleLine.js
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/SuperMapiClient60/!svn/ver/28855/01_SourceCode/trunk/Transformers10/libs/SuperMap/Control/ScaleLine.js
+END
+Measure.js
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/SuperMapiClient60/!svn/ver/28522/01_SourceCode/trunk/Transformers10/libs/SuperMap/Control/Measure.js
+END
+Geolocate.js
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/SuperMapiClient60/!svn/ver/28466/01_SourceCode/trunk/Transformers10/libs/SuperMap/Control/Geolocate.js
+END
+TouchNavigation.js
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/SuperMapiClient60/!svn/ver/27956/01_SourceCode/trunk/Transformers10/libs/SuperMap/Control/TouchNavigation.js
+END
+ModifyFeature.js
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/SuperMapiClient60/!svn/ver/28189/01_SourceCode/trunk/Transformers10/libs/SuperMap/Control/ModifyFeature.js
+END
