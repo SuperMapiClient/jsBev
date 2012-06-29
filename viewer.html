@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/strict.dtd">
 <html>
 <head>
@@ -21,42 +22,42 @@
 	$("#lytpop1").attr("selected","true");
 	
 	$("#header").click(function(){
-	    $(".topBanner").fadeOut();
-	    $("#template").fadeIn("slow");
+	    $(".topBanner").hide();
+	    $("#template").fadeIn("fast");
 	    $("#template").css("display","block");
 	  });
 	
 	$("#step0Pre").click(function(){
-	    $("#template").fadeOut();
-	    $(".topBanner").fadeIn("slow");
+	    $("#template").hide();
+	    $(".topBanner").fadeIn("fast");
 	    $(".topBanner").css("display","block");
 	  });
 	
 	$("#step0Next").click(function(){
-	    $("#template").fadeOut();
-	    $("#maproperties").fadeIn("slow");
+	    $("#template").hide();
+	    $("#maproperties").fadeIn("fast");
 	    $("#maproperties").css("display","block");
 		geolocation();
 	  });
 	
 	$("#step1Pre").click(function(){
-	    $("#maproperties").fadeOut();
-	    $("#template").fadeIn("slow");
+	    $("#maproperties").hide();
+	    $("#template").fadeIn("fast");
 	    $("#template").css("display","block");
 	  });
 	$("#step1Next").click(function(){
-	    $("#maproperties").fadeOut();
-	    $("#systemProperties").fadeIn("slow");
+	    $("#maproperties").hide();
+	    $("#systemProperties").fadeIn("fast");
 	    $("#systemProperties").css("display","block");
 	  });
 	
 	$("#step2Pre").click(function(){
-	    $("#systemProperties").fadeOut();
-	    $("#maproperties").fadeIn("slow");
+	    $("#systemProperties").hide();
+	    $("#maproperties").fadeIn("fast");
 	    $("#maproperties").css("display","block");
 	  });
 	$("#step2Next").click(function(){
-	    $("#systemProperties").fadeOut();
+	    $("#systemProperties").hide();
 	    generate_custom();
 	  });
 	
@@ -76,7 +77,7 @@
 	// Fallback for Internet Explorer and older browsers
 	
 	slideShow.bind('showNext',function(){
-		$('li:first').fadeOut('slow',function(){
+		$('li:first').fadeOut('fast',function(){
 			$(this).remove().appendTo(ul).show();
 			base = $(this).attr("alt");
 			updateZindex();
@@ -87,7 +88,7 @@
 		var liLast = $('li:last').hide().remove().prependTo(ul);
 		base = $('li:last').attr("alt");
 		updateZindex();
-		liLast.fadeIn('slow');
+		liLast.fadeIn('fast');
 	});
 	
 	
