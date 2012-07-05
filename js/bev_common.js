@@ -335,11 +335,11 @@ function generate_xml(xml){
             nCloudNumber.push(i); 
             strInsertscript = "<script src=\"./js/TDTLayer.js\" >" + "</script" + ">\n";
         } else if (strType == "google") {
-            strBaseLayers[i] = " layer" + i + " = new SuperMap.Layer.Google();\n";
+            strBaseLayers[i] = " layer" + i + " = new OpenLayers.Layer.Google();\n";
             nCloudNumber.push(i);  
-            strInsertscript = "<script src='http://maps.google.com/maps/api/js?v=3.3&amp;sensor=false' >" + "</script" + ">\n";
+            strInsertscript = "<script src='http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAjpkAC9ePGem0lIq5XcMiuhR_wWLPFku8Ix9i2SXYRVK3e45q1BQUd_beF8dtzKET_EteAjPdGDwqpQ'>" + "</script" + ">\n";
         } else if(strType == "osm") {
-            strBaseLayers[i] = " layer" + i + " = new SuperMap.Layer.OSM();\n";
+            strBaseLayers[i] = " layer" + i + " = new OpenLayers.Layer.OSM();\n";
             nCloudNumber.push(i); 
 
         } else if (strType == "wms") {

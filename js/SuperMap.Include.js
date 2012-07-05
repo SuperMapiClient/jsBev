@@ -12,7 +12,8 @@
 			}
 		}
 	}
-    inputScript(baseurl+'SuperMap-6.1.1-8916.js');
+    inputScript(baseurl+'OpenLayers.js');
+	inputScript(baseurl+'SuperMap.js');
     inputCSS('style.css');
     inputCSS('ie6-style.css');
     inputCSS('google.css');
