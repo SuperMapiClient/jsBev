@@ -342,3 +342,55 @@
 	position: relative;
 	top: -50%;
 }
+.btn-success2 {
+    background-color: #0080FF;
+    display: inline-block;
+    padding: 4px 10px 4px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    left: 150px;
+    top: 2px;
+    z-index:2004;
+}
+.contentId{
+    background-color: #C3C3C3;
+    margin: 2px 0px 2px 0px;
+    border: 0;
+    font-size: 8pt;
+    font-weight: normal;
+    -o-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    padding-left: 16px;
+    background-repeat: no-repeat;
+    background-position: left center;
+    cursor: pointer;
+    height: 30px;
+    background-color: #9EBFE2;
+}
+.contentId:hover{
+    background-color:#99ccff;
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+}
+.contentPic{
+    background-image: url(../images/frameimages/close.gif);
+    display: block;
+    float: right;
+    width: 20px;
+    height: 25px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+#markersResult{
+    margin: 0px;
+}
+.bookMakers{
+    height: 74%;
+    overflow: auto;
+    width: 99%;
+}
+#jsBev_sample{
+    height:80%;
+}

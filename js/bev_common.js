@@ -172,7 +172,9 @@
 			toolName="location";
 		}else if(value === "专题图"){
 			toolName="themeLabel";
-		}
+		}else if(value === "标注"){
+            toolName = "markers";
+        }
 		return toolName;
 	}
 	function searchTwo(value){
