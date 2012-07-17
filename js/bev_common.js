@@ -248,7 +248,9 @@
             base="base1";
         }else if(base=="base3"){
             base="base2";
-        }
+        }else if(base=="base4"){
+		    base="base3";
+		}
         strBase = "<template src=\"./base/" + base + ".html\" />";
 
         var strservertype = document.getElementById("servertype").value;

@@ -1,0 +1,260 @@
+﻿<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title></title> 
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+    <link rel="stylesheet" href="./css/style_base3.css" />
+    <link media="screen" href="./images/frameimages/favicon.ico" type="image/x-icon" rel="icon"/>
+	<script src="./js/jquery-1.7.min.js"></script>
+    <script src="./js/jquery.form.js"></script>
+    <script src="./js/interface.js"></script>
+    <script src="./js/common.js" ></script>
+    <script src="./js/SuperMap.Include.js"></script>
+	<script src="./js/base3_tools.js"></script>
+ <script>
+        $(document).ready(function () {
+            adjustPage();
+
+            init();
+            initLayer();
+
+            $(window).resize(function () {
+                adjustPage();
+            });
+			//左侧面板收缩
+			$("#SlideTab").click(function(){
+				if($("#leftbar").css("display")!=="none")
+				{
+					$("#leftbar").css("display","none");
+					$("#mainMap").css("width","100%");
+					$(".slide_btn").css("left","0%");
+					$("#shad_v").css("left","0%");
+					$(".slide_but_con").removeClass("slide_but_con").addClass("mapinfo_but_con_close");
+					$(this).attr("title","显示面板");
+					map.updateSize();
+				}else{
+					$("#leftbar").css("display","block");
+					$("#mainMap").css("width","79.9%");
+					$(".slide_btn").css("left","20%");
+					$("#shad_v").css("left","20%");
+					$("#slide_but_con").removeClass("mapinfo_but_con_close").addClass("slide_but_con");
+					$(this).attr("title","收起面板");
+					map.updateSize();
+				}
+			});
+			//左侧面板查询数据自动填充到搜索栏
+			$("#div_recommendPanel ul li").click(function(){
+		           $("#searchTab li:eq(0)").click();	//显示搜索面板
+		           var keywords = $(this).find("a span").html();
+		           $("#ssearch_box_input").val(keywords);
+		           $("#img_searchPOI").click();	//查询触发
+	        });
+			//热词自动填充到搜索栏
+			$("#div_recommendHotPanel dl dd ul li").click(function(){
+		           $("#searchTab li:eq(0)").click();	//显示搜索面板
+		           var keywords = $(this).html();	//搜索热词关键字
+		           keywords = $.trim(keywords);
+		           $("#ssearch_box_input").val(keywords);
+		           $("#img_searchPOI").click();	//查询触发
+		           $('div.hot_popup').css('display', 'none');	//隐藏热词面板
+	        });
+        });
+		
+        function adjustPage() {
+            var nHeight = pageHeight();
+            $("#page").css("height", nHeight + 'px');
+        }
+    </script>
+</head> 
+<body> 
+<div data-role="page" id="page" >
+
+	<div data-role="header" id="header" style="height:6%">
+		<!--搜索区域start-->       
+       	  <div class="SearchPanels">
+           	 <table id="searchTabKeywords" width="410" border="0" cellpadding="0" cellspacing="0" >
+			    <tbody>
+				  <tr>
+  					   <td><input id="ssearch_box_input" class="SearchInput" style="width:310px;" type="text" /></td>
+ 					   <td><img id="img_searchPOI" style="cursor:pointer;margin-left:4px;" src="images/frameimages/search_button.gif"/></td>
+			      </tr>
+				</tbody>
+			</table>                              
+        </div>
+        <!--搜索区域 end-->
+	</div><!-- /header -->
+
+	<div data-role="content" id="content"  class="main">
+	    <!--侧边栏 start-->
+    	<div id="leftbar" class="sidebar" style=" height:500px;overflow-y:auto;">
+        <!--热词搜索 start-->
+        	<div>
+	        	<div id="div_recommendTitlePanel" class="title_one" style="display:block;">
+	        		在<span id="span_searchRegion">成都市</span>查找
+	        		<a href="javascript: void(0);" onClick="jQuery('div.hot_popup').css('display', 'block');" style="float:right;">更多</a>	       		
+				</div>	  
+       		</div>
+        	<!--初始 显示的推荐内容-->
+        	<div id="div_recommendPanel" class="div_recommendPanel">
+	        	<ul class="searchTist">
+	        		<li class="repast"><a><img src="images/frameimages/transparent.gif" ><span>餐饮</span></a></li>
+	       			<li class="hotel"><a><img src="images/frameimages/transparent.gif"><span>酒店</span></a></li>
+	           		<li class="market"><a ><img src="images/frameimages/transparent.gif"><span>超市</span></a></li>
+	           		<li class="hospital"><a><img src="images/frameimages/transparent.gif"><span>医院</span></a></li>
+	           		<li class="movie"><a><img src="images/frameimages/transparent.gif"><span>电影院</span></a></li>
+	           		<li class="tickets"><a><img src="images/frameimages/transparent.gif"><span>火车代售点</span></a></li>
+	            	<li class="bank"><a><img src="images/frameimages/transparent.gif"><span>银行</span></a></li>
+	            	<li class="viewpoint"><a><img src="images/frameimages/transparent.gif"><span>景点</span></a></li>
+	           		<li class="school"><a><img src="images/frameimages/transparent.gif"><span>学校</span></a></li>
+	            	<li class="gas"><a><img src="images/frameimages/transparent.gif"><span>加油站</span></a></li>
+				 </ul>	          	 				
+             </div>
+	    <!--热词搜索 end--->   	
+        </div>
+        <!--侧边栏 end-->
+         <div id="mainMap" class="map" style="width:1440">
+        <!----地图工具 start-->
+        	<div class="tools"  >
+                <div class="tools_r_con">
+                	<ul>
+					    <li onClick="setMeasure();"><a href="#"><img src="./images/frameimages/measure_s.png">测距</a></li>
+						<li onClick="cuteMap();"><a href="#"><img src="./images/frameimages/mapCapture.png">截图</a></li>
+						<li onClick="markPOI();"><a href="#"><img src="./images/frameimages/active.png">标记</a></li>
+						<li onClick="mapClearAll();"><a href="#"><img src="./images/frameimages/clearMap.png">清空</a></li>
+                    	<li onClick="shareMap();"><a href="#"><img src="./images/frameimages/sharemap.png" alt="分享">分享</a></li>					                        
+                        <li onClick="printMap();"><a href="#"><img src="./images/frameimages/printMap.png">打印</a></li>                    	                    	
+                        <li id="entireScreen" onClick="screem()" alt="entire"><a id="a_fullscreen" href="#"><img src="./images/frameimages/fullScreen.png">全屏</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!---地图工具 end--> 
+            <!--地图 start-->			
+		    <div id="map" style="height:705px;">
+		    </div>
+		</div>
+        <div id="SlideTab" class="slide_btn" title="收起面板" style="left:19.7%;">
+          <div id="slide_but_con" class="slide_but_con"> </div>
+        </div>
+	</div><!-- /content -->
+
+	<div data-role="footer" id="footer" style="height:0%">
+		<h4 >版权所有&copy; 1997-2012,北京超图软件股份有限公司</h4>
+	</div><!-- /footer -->
+</div><!-- /page -->
+<!---热词查询面板 start-->
+	<div class="hot_popup" style="font-size:12px">
+    	<div class="hot_title"><span>热词查询</span><em><img src="images/frameimages/close_x.gif" alt="关闭" onClick="jQuery('div.hot_popup').css('display', 'none');"></em></div>
+        <div class="hot_main">
+             <div id="div_recommendHotPanel" class="hot_list">
+				<dl>
+                	<dt>餐饮服务</dt>
+                	<dd>
+                    	<ul>
+                        	<li>火锅</li>
+                            <li>烧烤</li>
+                            <li>快餐</li>
+                            <li>西餐</li>
+                            <li>中餐</li>
+                            <li>冷饮</li>
+                            <li>咖啡馆</li>
+                            <li>酒吧</li>
+                        </ul>
+                    </dd>
+                </dl>
+                <dl>
+                	<dt>生活便利</dt>
+                	<dd>
+                    	<ul>
+                        	<li>银行</li>
+                            <li>ATM</li>
+                            <li>邮局</li>
+                            <li>药店</li>
+                            <li>诊所</li>
+                            <li>医院</li>
+                            <li>超市</li>
+                            <li>商场</li>
+                            <li>市场</li>
+                            <li>眼镜店</li>
+                            <li>电器店</li>
+                            <li>知名大学</li>
+                            <li>中学</li>
+                            <li>小学</li>
+                            <li>幼儿园</li>
+                            <li>书店</li>
+                            <li>公交车站</li>
+                            <li>楼盘</li>
+                            <li>小区</li>
+                        </ul>
+                    </dd>
+                </dl>
+               <dl>
+                	<dt>酒店住宿</dt>
+                	<dd>
+                    	 <ul>
+                         	<li>4-5星级酒店</li>
+                            <li>其他星级</li>
+                            <li>连锁酒店</li>
+                            <li>度假村</li>
+                         </ul>
+                    </dd>
+                </dl>
+                <dl>
+                	<dt>娱乐健身</dt>
+                	<dd>
+                    	<ul>
+                        	<li>知名景点</li>
+                            <li>郊野公园</li>
+                            <li>公园</li>
+                            <li>博物馆</li>
+                            <li>电影院</li>
+                            <li>KTV</li>
+                            <li>歌舞厅</li>
+                            <li>健身场所</li>
+                            <li>游泳馆</li>
+                            <li>羽毛球馆</li>
+                            <li>体育场馆</li>
+                            <li>洗浴</li>
+                            <li>垂钓</li>
+                        </ul>
+                    </dd>
+                </dl>
+                <dl>
+                	<dt>汽车服务</dt>
+                    <dd>
+                    	<ul>
+                            <li>加油站</li>
+                            <li>停车场</li>
+                            <li>修理厂</li>
+                            <li>摄像头</li>
+                            <li>检测场</li>
+                            <li>交通队</li>
+                        </ul>
+                    </dd>
+                </dl>
+             </div>
+        </div>
+       
+    </div>
+<!---热词查询面板 end-->
+<!---分享面板 start--->
+    <div id="sharepanel">
+	    <div style="margin:0; padding: 0; font-size: 12px; font-weight: bold; color: #5B80C8; line-height: 24px;  height: 24px;  width: 100%;">
+                    <h3 style="float: left;">&nbsp;&nbsp;您可将当前页面分享给好友^_^</h3>
+                    <a href="javascript:closeShareMapDiv()" style="width: 12px; height: 11px; display: block;
+                        float: right; background: url(images/frameimages/close_31.gif) no-repeat; margin: 5px 5px 0 0"></a>
+        </div>
+        <div id="bdshare" class="bdshare_b" style="line-height: 12px; margin:10px">
+		    <img src="http://bdimg.share.baidu.com/static/images/type-button-1.jpg" />
+		    <a class="shareCount"></a>
+	    </div>
+        <script type="text/javascript" id="bdshare_js" data="type=button&amp;mini=1" ></script>
+        <script type="text/javascript" id="bdshell_js"></script>
+        <script type="text/javascript">
+	    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours();
+        </script>
+	</div>
+<!---分享面板 end--->	
+</body>
+</html>
