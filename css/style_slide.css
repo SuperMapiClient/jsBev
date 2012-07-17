@@ -108,7 +108,7 @@
 	border-style: solid;
 	position: absolute;
 	border-radius: 5px;
-	z-index: 1004;
+	z-index: 9999;
 }
 .title {
 	background-color: #9ebfe2;
