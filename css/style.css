@@ -312,6 +312,8 @@
     left: 150px;
     top: 2px;
     z-index:2004;
+	width: 26px;
+    height: 18px;
 }
 .contentId{
     background-color: #C3C3C3;

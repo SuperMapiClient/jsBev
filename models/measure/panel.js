@@ -1,40 +1,54 @@
 ﻿var measureHtml;
 function js_bev_measure() {
-	$("#panel_handle > h4").fadeOut(200);
-	$("#panel_handle").css("background-image","url('./images/frameimages/measure.png')");
-	$("#back").fadeIn(200);
-	
-	$("#back").attr("onClick","measureBack()");
-	$("#jsBev_sample").hide();
-	
+    $("#panel_handle > h4").fadeOut(50);
+    $("#panel_handle").css("background-image","url('./images/frameimages/measure.png')");
+    $("#back").fadeIn(50);
+    
+    $("#back").click(function(){measureBack()});
+    //$("#back").attr("onClick","measureBack()");
+    $("#jsBev_sample").hide();
+    
     measureHtml = $("#jsBev_sample").html();
-	var text = "<p id='measureResult'></p>";
+    var text = "<p id='measureResult'></p>";
     text += "<p id='measureDistance' class='button3' onClick='distanceMeasure()'>长度量算</p>";
     text += "<p id='measureArea' class='button3' onClick='AreaMeasure()'>面积量算</p>";
 
-	$("#jsBev_sample").animate({"opacity":"0"},200,function(){
-		$("#panel_handle > h4").text("量算功能").fadeIn(200);
-		$("#jsBev_sample").html(text).animate({"opacity":"1"},200);
-	});
+    $("#jsBev_sample").animate({"opacity":"0"},50,function(){
+        $("#panel_handle > h4").text("量算功能").fadeIn(50);
+        $("#jsBev_sample").html(text).animate({"opacity":"1"},50);
+    });
+    
+    lineLayer = new SuperMap.Layer.Vector("lineLayer");
+    lineLayer.style = style;
+    drawLine = new SuperMap.Control.DrawFeature(lineLayer, SuperMap.Handler.Path, { multi: true });
+    drawLine.events.on({ "featureadded": drawCompleted1 });
+    
+    polygonLayer = new SuperMap.Layer.Vector("polygonLayer");
+    polygonLayer.style = style;
+    drawPolygon = new SuperMap.Control.DrawFeature(polygonLayer, SuperMap.Handler.Polygon);
+    drawPolygon.events.on({ "featureadded": drawCompleted1 });
+    map.addLayers([polygonLayer,lineLayer]);
+    map.addControls([drawPolygon,drawLine]);
 }
 
 function measureBack() {
-	$("#panel_handle > h4").fadeOut(200);
-	$("#panel_handle").css("background-image","url('./images/frameimages/chilun.png')");
-	$("#back").fadeOut(200);
-	
-	$("#jsBev_sample").hide();
+    clearFeatures();
+    $("#panel_handle > h4").fadeOut(50);
+    $("#panel_handle").css("background-image","url('./images/frameimages/chilun.png')");
+    $("#back").fadeOut(50);
+    
+    $("#jsBev_sample").hide();
     if (polygonLayer) {
         polygonLayer.removeAllFeatures();
     }
     if (lineLayer) {
         lineLayer.removeAllFeatures();
     }
-	
-	$("#jsBev_sample").animate({"opacity":"0"},200,function(){
-		$("#panel_handle > h4").text("功能面板").fadeIn(200);
-		$("#jsBev_sample").html(measureHtml).animate({"opacity":"1"},200);
-	});
+    
+    $("#jsBev_sample").animate({"opacity":"0"},50,function(){
+        $("#panel_handle > h4").text("功能面板").fadeIn(50);
+        $("#jsBev_sample").html(measureHtml).animate({"opacity":"1"},50);
+    });
 }
 /*长度面积测量*/
 
@@ -50,76 +64,38 @@ var style = {
     fillOpacity: 0.8
 }
 
-//距离量测
+//距离量测 
+var i=0;
 function distanceMeasure() {
-    if (polygonLayer) {
-        drawPolygon.deactivate();
-    }
-    if (lineLayer) {
-        lineLayer.removeAllFeatures();
-        drawLine.activate();
-    }
-    if (!lineLayer) {
-        //新建线矢量图层
-        lineLayer = new SuperMap.Layer.Vector("lineLayer");
-        //对线图层应用样式style（前面有定义）
-        lineLayer.style = style;
-        //创建画线控制，图层是lineLayer;这里DrawFeature(图层,类型,属性)；multi:true在将要素放入图层之前是否现将其放入几何图层中
-        drawLine = new SuperMap.Control.DrawFeature(lineLayer, SuperMap.Handler.Path, { multi: true });
-        drawLine.events.on({ "featureadded": drawLineCompleted });
-        map.addLayer(lineLayer);
-        map.addControl(drawLine);
-        drawLine.activate();
-    }
+    clearFeatures();    
+     drawLine.activate();
 }
 
 //面积量测
 function AreaMeasure() {
-    if (lineLayer) {
-        drawLine.deactivate();
-    }
-    if (polygonLayer) {
-        polygonLayer.removeAllFeatures();
-        drawPolygon.activate();
-    }
-    if (!polygonLayer) {
-        //新建面矢量图层
-        polygonLayer = new SuperMap.Layer.Vector("polygonLayer");
-        //对面图层应用样式style（前面有定义）
-        polygonLayer.style = style;
-        //创建画面控制，图层是polygonLayer
-        drawPolygon = new SuperMap.Control.DrawFeature(polygonLayer, SuperMap.Handler.Polygon);
-        drawPolygon.events.on({ "featureadded": drawAreaCompleted });
-        map.addLayer(polygonLayer);
-        map.addControl(drawPolygon);
-        drawPolygon.activate();
-    }
+    clearFeatures();
+    drawPolygon.activate();
 }
 
-//长度绘制完成
-function drawLineCompleted(drawGeometryArgs) {
-    //停止画控制
+//绘完触发事件
+function drawCompleted1(drawGeometryArgs) {
+    //停止画线画面控制
     drawLine.deactivate();
-    //获得图层几何对象
-    var geometryLine = drawGeometryArgs.feature.geometry,
-        measureParamLine = new SuperMap.REST.MeasureParameters(geometryLine), /* MeasureParameters：量算参数类。 客户端要量算的地物间的距离或某个区域的面积*/
-        myMeasuerServiceLine = new SuperMap.REST.MeasureService(url); //量算服务类，该类负责将量算参数传递到服务端，并获取服务端返回的量算结果
-    myMeasuerServiceLine.events.on({ "processCompleted": measureLineCompleted });
-    myMeasuerServiceLine.measureMode = SuperMap.REST.MeasureMode.DISTANCE;
-    myMeasuerServiceLine.processAsync(measureParamLine); //processAsync负责将客户端的量算参数传递到服务端。
-}
-
-//面积绘制完成
-function drawAreaCompleted(drawGeometryArgs) {
-    //停止画面控制
     drawPolygon.deactivate();
     //获得图层几何对象
-    var geometryPoly = drawGeometryArgs.feature.geometry,
-        measureParamPoly = new SuperMap.REST.MeasureParameters(geometryPoly), /* MeasureParameters：量算参数类。 客户端要量算的地物间的距离或某个区域的面积*/
-        myMeasuerServicePoly = new SuperMap.REST.MeasureService(url); //量算服务类，该类负责将量算参数传递到服务端，并获取服务端返回的量算结果
-    myMeasuerServicePoly.events.on({ "processCompleted": measureAreaCompleted });
-    myMeasuerServicePoly.measureMode = SuperMap.REST.MeasureMode.AREA;
-    myMeasuerServicePoly.processAsync(measureParamPoly); //processAsync负责将客户端的量算参数传递到服务端。
+    var geometry = drawGeometryArgs.feature.geometry,
+        measureParam = new SuperMap.REST.MeasureParameters(geometry), /* MeasureParameters：量算参数类。 客户端要量算的地物间的距离或某个区域的面积*/
+        myMeasuerService = new SuperMap.REST.MeasureService(url); //量算服务类，该类负责将量算参数传递到服务端，并获取服务端返回的量算结果
+
+    //对MeasureService类型进行判断和赋值，当判断出是LineString时设置MeasureMode.DISTANCE，否则是MeasureMode.AREA
+    if (geometry.CLASS_NAME.indexOf("LineString") > -1) {
+        myMeasuerService.events.on({ "processCompleted": measureLineCompleted });
+        myMeasuerService.measureMode = SuperMap.REST.MeasureMode.DISTANCE;
+    } else {
+        myMeasuerService.events.on({ "processCompleted": measureAreaCompleted });
+        myMeasuerService.measureMode = SuperMap.REST.MeasureMode.AREA;
+    }
+    myMeasuerService.processAsync(measureParam); //processAsync负责将客户端的量算参数传递到服务端。
 }
 
 //距离测量结束调用事件
@@ -132,4 +108,11 @@ function measureLineCompleted(measureEventArgs) {
 function measureAreaCompleted(measureEventArgs) {
     var area = measureEventArgs.result.area;
     $("#measureResult").html("面积：" + parseInt(area) + "平方米");
+}
+
+function clearFeatures(){
+    lineLayer.removeAllFeatures();
+    polygonLayer.removeAllFeatures();
+    drawLine.deactivate();
+    drawPolygon.deactivate();
 }

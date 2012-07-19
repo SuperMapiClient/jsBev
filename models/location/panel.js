@@ -2,11 +2,12 @@
 var geolocateHtml;
 var markerLayer;
 function js_bev_geoLocation() {
-	$("#panel_handle > h4").fadeOut(200);
-	$("#panel_handle").css("background-image","url('./images/frameimages/location.png')");
-	$("#back").fadeIn(200);
-	$("#back").attr("onClick","js_bev_geoLocation_back()");
-	$("#jsBev_sample").hide();
+    $("#panel_handle > h4").fadeOut(50);
+    $("#panel_handle").css("background-image","url('./images/frameimages/location.png')");
+    $("#back").fadeIn(50);
+    $("#back").click(function(){js_bev_geoLocation_back()});
+    //$("#back").attr("onClick","js_bev_geoLocation_back()");
+    $("#jsBev_sample").hide();
     geolocateHtml = $("#jsBev_sample").html();
     var text = "<div class='bev_geolocate_cont' >";
     text += "<span class='fontstyle'>经度：<input class='input' id='lon' type='text'/></span><br/>";
@@ -16,28 +17,28 @@ function js_bev_geoLocation() {
     text += "<p class='button3' id='gotoLocate' >转到</p>";
     text += "</div>";
 
-	$("#jsBev_sample").animate({"opacity":"0"},200,function(){
-		$("#panel_handle > h4").text("地理定位").fadeIn(200);
-		$("#jsBev_sample").html(text).animate({"opacity":"1"},200);
-		geolocate_event();
-	});
-		
+    $("#jsBev_sample").animate({"opacity":"0"},50,function(){
+        $("#panel_handle > h4").text("地理定位").fadeIn(50);
+        $("#jsBev_sample").html(text).animate({"opacity":"1"},50);
+        geolocate_event();
+    });
+        
 }
 
 function js_bev_geoLocation_back() {
-	$("#panel_handle > h4").fadeOut(200);
-	$("#panel_handle").css("background-image","url('./images/frameimages/chilun.png')");
-	$("#back").fadeOut(200);
-	$("#jsBev_sample").hide();
-	
+    $("#panel_handle > h4").fadeOut(50);
+    $("#panel_handle").css("background-image","url('./images/frameimages/chilun.png')");
+    $("#back").fadeOut(50);
+    $("#jsBev_sample").hide();
+    
     if (markerLayer) {
         markerLayer.clearMarkers();
     }
-	
-	$("#jsBev_sample").animate({"opacity":"0"},200,function(){
-		$("#panel_handle > h4").text("功能面板").fadeIn(200);
-		$("#jsBev_sample").html(geolocateHtml).animate({"opacity":"1"},200);
-	});
+    
+    $("#jsBev_sample").animate({"opacity":"0"},50,function(){
+        $("#panel_handle > h4").text("功能面板").fadeIn(50);
+        $("#jsBev_sample").html(geolocateHtml).animate({"opacity":"1"},50);
+    });
 }
 
 //对地理定位功能监听事件封装
@@ -74,30 +75,30 @@ map.addControl(geolocate);
     });
 
     $("#gotoLocate").click(function () {
-		if ($("#lat").val() != "" && $("#lon").val() != "") {
-			var size = new SuperMap.Size(44, 33);
-			var offset = new SuperMap.Pixel(-(size.w / 2), -size.h);
-			var icon = new SuperMap.Icon("./resource/controlImages/marker.png", size, offset);
-			if (markerLayer == null) {
-				markerLayer = new SuperMap.Layer.Markers("Markers");
-				map.addLayer(markerLayer);
-				markerLayer.addMarker(new SuperMap.Marker(new SuperMap.LonLat($("#lon").val(), $("#lat").val()), icon));
-			}
-			markerLayer.addMarker(new SuperMap.Marker(new SuperMap.LonLat($("#lon").val(), $("#lat").val()), icon));
-			map.setCenter(new SuperMap.LonLat($("#lon").val(), $("#lat").val()));
+        if ($("#lat").val() != "" && $("#lon").val() != "") {
+            var size = new SuperMap.Size(44, 33);
+            var offset = new SuperMap.Pixel(-(size.w / 2), -size.h);
+            var icon = new SuperMap.Icon("./resource/controlImages/marker.png", size, offset);
+            if (markerLayer == null) {
+                markerLayer = new SuperMap.Layer.Markers("Markers");
+                map.addLayer(markerLayer);
+                markerLayer.addMarker(new SuperMap.Marker(new SuperMap.LonLat($("#lon").val(), $("#lat").val()), icon));
+            }
+            markerLayer.addMarker(new SuperMap.Marker(new SuperMap.LonLat($("#lon").val(), $("#lat").val()), icon));
+            map.setCenter(new SuperMap.LonLat($("#lon").val(), $("#lat").val()));
         }
     });
 
     $("#myLocate").click(function () {
         geolocate.watch = true;
-		geolocate.activate();
+        geolocate.activate();
     });
-	
-	geolocate.events.register("locationupdated",geolocate,function(e) {
-		$("#lat").val("" + e.point.y + "°");
-		$("#lon").val("" + e.point.x + "°");
-		
-		geolocate.watch = false;
-		geolocate.deactivate();
-	});
+    
+    geolocate.events.register("locationupdated",geolocate,function(e) {
+        $("#lat").val("" + e.point.y + "°");
+        $("#lon").val("" + e.point.x + "°");
+        
+        geolocate.watch = false;
+        geolocate.deactivate();
+    });
 }

@@ -1,58 +1,60 @@
 ﻿var quert_html_range_sql,queryType_sql=1;
 function js_bev_search_step(){
-	$("#panel_handle > h4").fadeOut(200);
-	$("#panel_handle").css("background-image","url('./images/frameimages/search.png')");
-	$("#back").fadeIn(200);
-	
-	queryHtml = $("#jsBev_sample").html();
-	$("#back").attr("onClick","searchBack()");
+    $("#panel_handle > h4").fadeOut(50);
+    $("#panel_handle").css("background-image","url('./images/frameimages/search.png')");
+    $("#back").fadeIn(50);
+    
+    queryHtml = $("#jsBev_sample").html();
+    $("#back").click(function(){searchBack()});
+    //$("#back").attr("onClick","searchBack()");
     var text="<p class='button3' id='searchByBounds' onclick='clickChaXun()'>范围查询</p>";
-	text += "<p class='button3' id='searchBySQL' onClick='clickSql()'>SQL查询</div>";
-	$("#jsBev_sample").animate({"opacity":"0"},200,function(){
-		$("#panel_handle > h4").text("查询功能").fadeIn(200);
-		$("#jsBev_sample").html(text).animate({"opacity":"1"},200);
-	});
+    text += "<p class='button3' id='searchBySQL' onClick='clickSql()'>SQL查询</div>";
+    $("#jsBev_sample").animate({"opacity":"0"},50,function(){
+        $("#panel_handle > h4").text("查询功能").fadeIn(50);
+        $("#jsBev_sample").html(text).animate({"opacity":"1"},50);
+    });
 }
 //查询功能
 function clickChaXun(){
-	$("#back").attr("onClick","searchBack_to_step()");
-	quert_html_range_sql = $("#jsBev_sample").html();
-	var text="<p class='fontstyle' >图层名称</p><input class='input' type='text' id='nametext' value='Capitals@World' />"
-	text+="<p class='button4' onclick=js_Bev_Query() >查询</p><p class='button4' onclick='js_Search_clearFeatures()' >清除</p>"
-	$("#jsBev_sample").animate({"opacity":"0"},200,function(){
-		queryType_sql=1;
-		$("#jsBev_sample").html(text).animate({"opacity":"1"},200);
-	});
+    $("#back").attr("onClick","searchBack_to_step()");
+    quert_html_range_sql = $("#jsBev_sample").html();
+    var text="<p class='fontstyle' >图层名称</p><input class='input' type='text' id='nametext' value='Capitals@World' />"
+    text+="<p class='button4' onclick=js_Bev_Query() >查询</p><p class='button4' onclick='js_Search_clearFeatures()' >清除</p>"
+    $("#jsBev_sample").animate({"opacity":"0"},50,function(){
+        queryType_sql=1;
+        $("#jsBev_sample").html(text).animate({"opacity":"1"},50);
+    });
 }
 function clickSql(){
-	$("#back").attr("onClick","searchBack_to_step()");
-	quert_html_range_sql = $("#jsBev_sample").html();
-	var text="<div><p class='fontstyle' >图层名称</p>";
-	text+="<input class='input' type='text' id='nametext' value='Countries@World'/></div>"
-	text+="<p class='fontstyle' >SQL语句</p>";
-	text+="<input class='input' type='text' id='sqltext' value='Pop_1994>1000000000 and SmArea>900'/>";
-	text+="<p class='button4' onclick='js_Bev_Query()'>查询</p><p class='button4' onclick='js_Search_clearFeatures()'>清除</p>";
-	$("#jsBev_sample").animate({"opacity":"0"},200,function(){
-		$("#jsBev_sample").html(text).animate({"opacity":"1"},200);
-	});
-	queryType_sql++;
+    $("#back").attr("onClick","searchBack_to_step()");
+    quert_html_range_sql = $("#jsBev_sample").html();
+    var text="<div><p class='fontstyle' >图层名称</p>";
+    text+="<input class='input' type='text' id='nametext' value='Countries@World'/></div>"
+    text+="<p class='fontstyle' >SQL语句</p>";
+    text+="<input class='input' type='text' id='sqltext' value='Pop_1994>1000000000 and SmArea>900'/>";
+    text+="<p class='button4' onclick='js_Bev_Query()'>查询</p><p class='button4' onclick='js_Search_clearFeatures()'>清除</p>";
+    $("#jsBev_sample").animate({"opacity":"0"},50,function(){
+        $("#jsBev_sample").html(text).animate({"opacity":"1"},50);
+    });
+    queryType_sql++;
 }
 
 function searchBack() {
-	$("#panel_handle > h4").fadeOut(200);
-	$("#panel_handle").css("background-image","url('./images/frameimages/chilun.png')");
-	$("#back").fadeOut(200);
-	$("#jsBev_sample").animate({"opacity":"0"},200,function(){
-		$("#panel h4").text("功能面板").fadeIn(200);
-		$("#jsBev_sample").html(queryHtml).animate({"opacity":"1"},200);
-	});
+    $("#panel_handle > h4").fadeOut(50);
+    $("#panel_handle").css("background-image","url('./images/frameimages/chilun.png')");
+    $("#back").fadeOut(50);
+    $("#jsBev_sample").animate({"opacity":"0"},50,function(){
+        $("#panel h4").text("功能面板").fadeIn(50);
+        $("#jsBev_sample").html(queryHtml).animate({"opacity":"1"},50);
+    });
 }
 
 function searchBack_to_step(){
-	$("#back").attr("onClick","searchBack()");
-	$("#jsBev_sample").animate({"opacity":"0"},200,function(){
-		$("#jsBev_sample").html(quert_html_range_sql).animate({"opacity":"1"},200);
-	});
+    $("#back").attr("onClick","searchBack()");
+    $("#back").fadeIn(50);
+    $("#jsBev_sample").animate({"opacity":"0"},50,function(){
+        $("#jsBev_sample").html(quert_html_range_sql).animate({"opacity":"1"},50);
+    });
 }
 
 var queryHtml;

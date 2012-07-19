@@ -16,114 +16,114 @@
     $(document).ready(function() {
         $("#base1").css({"border":"none","background":"url('./resource/images/buttonselect.png') repeat-x 0px 1px"});
         //$("#base").css("background-image","url(./images/visual/base0.png)");
-	$("#base").attr("src","./images/visual/base0.png");
+    $("#base").attr("src","./images/visual/base0.png");
         $("#patternSelected").css({"background":"url('./resource/images/buttonselect.png') repeat-x 0px -2px","padding-bottom":"9px"});//,"border-left-color":"#7db9be","border-right-color":"#7db9be"
-	//$("#template").css("display","block");
-	$("#lytpop1").attr("selected","true");
-	
-	$("#header").click(function(){
-	    $(".topBanner").hide();
-	    $("#template").fadeIn("fast");
-	    $("#template").css("display","block");
-	  });
-	
-	$("#step0Pre").click(function(){
-	    $("#template").hide();
-	    $(".topBanner").fadeIn("fast");
-	    $(".topBanner").css("display","block");
-	  });
-	
-	$("#step0Next").click(function(){
-	    $("#template").hide();
-	    $("#maproperties").fadeIn("fast");
-	    $("#maproperties").css("display","block");
-		geolocation();
-	  });
-	
-	$("#step1Pre").click(function(){
-	    $("#maproperties").hide();
-	    $("#template").fadeIn("fast");
-	    $("#template").css("display","block");
-	  });
-	$("#step1Next").click(function(){
-	    $("#maproperties").hide();
-	    $("#systemProperties").fadeIn("fast");
-	    $("#systemProperties").css("display","block");
-	  });
-	
-	$("#step2Pre").click(function(){
-	    $("#systemProperties").hide();
-	    $("#maproperties").fadeIn("fast");
-	    $("#maproperties").css("display","block");
-	  });
-	$("#step2Next").click(function(){
-	    $("#systemProperties").hide();
-	    generate_custom();
-	  });
-	
-	/////
-	var slideShow = $('#slideShow'),
-	    ul = slideShow.find('ul'),
-	    li = ul.find('li'),
-	    cnt = li.length;
+    //$("#template").css("display","block");
+    $("#lytpop1").attr("selected","true");
+    
+    $("#header").click(function(){
+        $(".topBanner").hide();
+        $("#template").fadeIn("fast");
+        $("#template").css("display","block");
+      });
+    
+    $("#step0Pre").click(function(){
+        $("#template").hide();
+        $(".topBanner").fadeIn("fast");
+        $(".topBanner").css("display","block");
+      });
+    
+    $("#step0Next").click(function(){
+        $("#template").hide();
+        $("#maproperties").fadeIn("fast");
+        $("#maproperties").css("display","block");
+        geolocation();
+      });
+    
+    $("#step1Pre").click(function(){
+        $("#maproperties").hide();
+        $("#template").fadeIn("fast");
+        $("#template").css("display","block");
+      });
+    $("#step1Next").click(function(){
+        $("#maproperties").hide();
+        $("#systemProperties").fadeIn("fast");
+        $("#systemProperties").css("display","block");
+      });
+    
+    $("#step2Pre").click(function(){
+        $("#systemProperties").hide();
+        $("#maproperties").fadeIn("fast");
+        $("#maproperties").css("display","block");
+      });
+    $("#step2Next").click(function(){
+        generate_custom();
+        //$("#systemProperties").hide();
+      });
+    
+    /////
+    var slideShow = $('#slideShow'),
+        ul = slideShow.find('ul'),
+        li = ul.find('li'),
+        cnt = li.length;
 
-	// As the images are positioned absolutely, the last image will be shown on top.
-	// This is why we force them in the correct order by assigning z-indexes:
-	
-	updateZindex();
-	
-	
-		
-	// Fallback for Internet Explorer and older browsers
-	
-	slideShow.bind('showNext',function(){
-		$('li:first').fadeOut('fast',function(){
-			$(this).remove().appendTo(ul).show();
-			base = $(this).attr("alt");
-			updateZindex();
-		});
-	});
-	
-	slideShow.bind('showPrevious',function(){
-		var liLast = $('li:last').hide().remove().prependTo(ul);
-		base = $('li:last').attr("alt");
-		updateZindex();
-		liLast.fadeIn('fast');
-	});
-	
-	
-	// Listening for clicks on the arrows, and
-	// triggering the appropriate event.
-	
-	$('#previousLink').click(function(){
-		if(slideShow.is(':animated')){
-			return false;
-		}
-		
-		slideShow.trigger('showPrevious');
-		return false;
-	});
-	
-	$('#nextLink').click(function(){
-		if(slideShow.is(':animated')){
-			return false;
-		}
-		
-		slideShow.trigger('showNext');
-		return false;
-	});
-	
-	// This function updates the z-index properties.
-	function updateZindex(){
-		
-		// The CSS method can take a function as its second argument.
-		// i is the zero-based index of the element.
-		
-		ul.find('li').css('z-index',function(i){
-			return cnt-i;
-		});
-	}
-	/////
+    // As the images are positioned absolutely, the last image will be shown on top.
+    // This is why we force them in the correct order by assigning z-indexes:
+    
+    updateZindex();
+    
+    
+        
+    // Fallback for Internet Explorer and older browsers
+    
+    slideShow.bind('showNext',function(){
+        $('li:first').fadeOut('fast',function(){
+            $(this).remove().appendTo(ul).show();
+            base = $(this).attr("alt");
+            updateZindex();
+        });
+    });
+    
+    slideShow.bind('showPrevious',function(){
+        var liLast = $('li:last').hide().remove().prependTo(ul);
+        base = $('li:last').attr("alt");
+        updateZindex();
+        liLast.fadeIn('fast');
+    });
+    
+    
+    // Listening for clicks on the arrows, and
+    // triggering the appropriate event.
+    
+    $('#previousLink').click(function(){
+        if(slideShow.is(':animated')){
+            return false;
+        }
+        
+        slideShow.trigger('showPrevious');
+        return false;
+    });
+    
+    $('#nextLink').click(function(){
+        if(slideShow.is(':animated')){
+            return false;
+        }
+        
+        slideShow.trigger('showNext');
+        return false;
+    });
+    
+    // This function updates the z-index properties.
+    function updateZindex(){
+        
+        // The CSS method can take a function as its second argument.
+        // i is the zero-based index of the element.
+        
+        ul.find('li').css('z-index',function(i){
+            return cnt-i;
+        });
+    }
+    /////
     });
 </script>
 </head>
@@ -133,180 +133,180 @@
     <div class="divTitle"><div class="d1"><div class="d2"></div></div></div>
     <div class="d3"></div>
     <div class="tab">
-	<div class="topBanner" style="display:block">
+    <div class="topBanner" style="display:block">
             <div class="hero-unit ">
                 <h2><font color="#29a3e2" class="des">SuperMap JavaScript Bev</font></h2>
                 <p>JsBev致力于帮助用户快速开发出满足自己需要的地图框架。通过配置文件或者可视化向导的方式，能够自动生成静态地图页面，并具有基本的应用功能。可以大大降低用户开发的难度和时间成本。
-		</p>
+        </p>
                 <br>
                 <a id="header" class="btn btn-success express" >请体验 >></a>        
             </div>
         </div>
         <div id="template" style="display:none">
             <div class="details">
-		<h2><font color="#000" class="des">步骤一、模板选择 </font></h2>
+        <h2><font color="#000" class="des">步骤一、模板选择 </font></h2>
                 <div id="slideShowContainer">
-		    
-		    <div id="slideShow">
-			<ul style="list-style-type:none">
-			    <li alt="base2"><img src="./images/visual/base0.png" width="100%"  /><SPAN class="describe" >模版一:上中下布局</SPAN></li>
-			    <li alt="base3"><img src="./images/visual/base1.png" width="100%"  /><SPAN class="describe" >模版二：左右布局</SPAN></li>
-			    <li alt="base4"><img src="./images/visual/base2.png" width="100%" /><SPAN class="describe" >模版三：全屏布局</SPAN></li>
-				<li alt="base1"><img src="./images/visual/base3.png" width="100%"  /><SPAN class="describe" >模版四：扩展布局</SPAN></li>
-			</ul>
-		    </div>    
-		    <a id="previousLink" href="#">&raquo;</a>
-		    <a id="nextLink" href="#">&laquo;</a>
-		</div>
-		<a id="step0Pre" class="btn btn-success express" ><< 上一步</a>
-		<a id="step0Next" class="btn btn-success express" >下一步 >></a>
+            
+            <div id="slideShow">
+            <ul style="list-style-type:none">
+                <li alt="base2"><img src="./images/visual/base0.png" width="100%"  /><SPAN class="describe" >模版一:上中下布局</SPAN></li>
+                <li alt="base3"><img src="./images/visual/base1.png" width="100%"  /><SPAN class="describe" >模版二：左右布局</SPAN></li>
+                <li alt="base4"><img src="./images/visual/base2.png" width="100%" /><SPAN class="describe" >模版三：全屏布局</SPAN></li>
+                <li alt="base1"><img src="./images/visual/base3.png" width="100%"  /><SPAN class="describe" >模版四：扩展布局</SPAN></li>
+            </ul>
+            </div>    
+            <a id="previousLink" href="#">&raquo;</a>
+            <a id="nextLink" href="#">&laquo;</a>
+        </div>
+        <a id="step0Pre" class="btn btn-success express" ><< 上一步</a>
+        <a id="step0Next" class="btn btn-success express" >下一步 >></a>
             </div>
         </div>
         <div id="maproperties" style="display:none">
-	    <div class="details">
-		<h2><font color="#000" class="des">步骤二、地图配置 </font></h2>
-		<div class="d2">
-		    <span class="d1">
-			<label for="pagename" class="page" id="pageid" >地图页面名称</label>
-		    </span>
-		    <span class="d1">
-			<input type="text" id="pagename" name="pagename" class="pageclass" value="index"/> 
-		    </span>
-		</div>
-		
-		<div class="d2">
-		    <span class="d1">
-			<label for="title" class="page" id="pagetitleid">地图标题名称</label>
-		    </span>
-		    <span class="d1">
-			<input type="text" id="title" name="title" class="pageclass" value="supermap"/>
-		    </span>
-		</div>
-		<div class="d2">
-		    <span class="d1"><label  class="page" id="lonid">地图初始中心点及层级</label></span>
-		</div>
-		<div class="d2">
-		    <span class="d1">
-			<label for="lon" class="degree" id="label_lon">经度</label>
-		    </span>
-		    <span class="d1">
-			<input type="text" id="lon" name="lon" class="class_lon" value="0"/>
-		    </span>
-		    <span class="d1">
-			<label for="lat" class="degree" id="label_lat">纬度</label>
-		    </span>
-		    <span class="d1">
-			<input type="text" id="lat" name="lat" class="class_lat" value="0"/>
-		    </span>
-		    <span class="d1">
-			<label for="zoom" class="degree" id="label_zoom">层级</label>
-		    </span>
-		    <span class="d1">
-			<input type="text" id="zoom" name="zoom" class="calss_zoom" value="0"/>
-		    </span>
-		    <!--span class="d1">
-			<div type="button" id="getLonLat" class="btn btn-success2 express" onclick=geolocation()>当前经纬度</div>
-		    </span-->
-		</div>
+        <div class="details">
+        <h2><font color="#000" class="des">步骤二、地图配置 </font></h2>
+        <div class="d2">
+            <span class="d1">
+            <label for="pagename" class="page" id="pageid" >地图页面名称</label>
+            </span>
+            <span class="d1">
+            <input type="text" id="pagename" name="pagename" class="pageclass" value="index"/> 
+            </span>
+        </div>
+        
+        <div class="d2">
+            <span class="d1">
+            <label for="title" class="page" id="pagetitleid">地图标题名称</label>
+            </span>
+            <span class="d1">
+            <input type="text" id="title" name="title" class="pageclass" value="supermap"/>
+            </span>
+        </div>
+        <div class="d2">
+            <span class="d1"><label  class="page" id="lonid">地图初始中心点及层级</label></span>
+        </div>
+        <div class="d2">
+            <span class="d1">
+            <label for="lon" class="degree" id="label_lon">经度</label>
+            </span>
+            <span class="d1">
+            <input type="text" id="lon" name="lon" class="class_lon" value="0"/>
+            </span>
+            <span class="d1">
+            <label for="lat" class="degree" id="label_lat">纬度</label>
+            </span>
+            <span class="d1">
+            <input type="text" id="lat" name="lat" class="class_lat" value="0"/>
+            </span>
+            <span class="d1">
+            <label for="zoom" class="degree" id="label_zoom">层级</label>
+            </span>
+            <span class="d1">
+            <input type="text" id="zoom" name="zoom" class="calss_zoom" value="0"/>
+            </span>
+            <!--span class="d1">
+            <div type="button" id="getLonLat" class="btn btn-success2 express" onclick=geolocation()>当前经纬度</div>
+            </span-->
+        </div>
             
             
-		<div class="d2">
-		    <span class="page" id="layernameid">添加地图服务</span>
-		</div>
-		<div id="layerinfo" class="d2" style="display: none;">
-		    
-		</div>
+        <div class="d2">
+            <span class="page" id="layernameid">添加地图服务</span>
+        </div>
+        <div id="layerinfo" class="d2" style="display: none;">
+            
+        </div>
                 <div class="d2">
-		    <span class="d1">
-			<label for="layertype" class="degree" id="selectid">类型</label>
-		    </span>
-		    <span class="d1" style="vertical-align: top;line-height: 20px;">
-			<select name="searchtype" id="layertype" onchange=searchtypechange(this.value)>
-			    <option id="lytpop1" value='google'>Google Maps</option>
-			    <option value='tiled' >iServer</option>
-			    <option id="lytpop1" value='cloud' >SuperMap CloudLayer</option>
-			    <option value='osm'>OpenStreet</option>
-			    <option value='tdtlayer' >天地图</option>              
-			    <option value='wms' >WMS</option>
-			    <option value='arcgis' >ArcGIS online</option>
-			</select>
-		    </span>
-		    <span class="d1">
-			<label for="layername" class="degree" id="nameid">名称</label>
-		    </span>
-		    <span class="d1">
-			<input name = "layername" class="layernameclass" type="text" id="layername"  value="layer"/>
-		    </span>
-		    <span id="layerpara" style="display:none">
-			<span class="d1">
-			    <label for="layerurl" class="degree" id="layerurlid">Url路径</label>
-			</span>
-			<span class="d1">
-			    <input name = "layerurl" class="layerurlclass" type="text" id="layerurl"/>
-			</span>
-		    </span>
-		    <span class="d1">
-			<div type="button" class="btn btn-success2 express" id="add" onclick=add()>添加</div>
-		    </span>
-		    <span class="d1">
-			<div type="button" class="btn btn-success2 express" id="clear" onclick=clears()>清空</div>
-		    </span>
-		</div>
-		<div id="role">
-		    <div class="d2">
-			<span class="d1">
-			    <label class="page" id="tool_controlid">选择控件类型</label>
-			</span>
-		    </div>
-		    <div class="d2">
-			<span class="d1">
-			    <ul class="tool_control_ul">
-				<a class="btn btn-success2 express " id="scaleLineId"  onclick=selectedControl(id)><span id="scaleLineIdt" >比例尺</span><div id="scaleLineIdr" class="tl_ctr_rt"></div></a>
-				<a class="btn btn-success2 express " id="panZoomId"  onclick=selectedControl(id)><span id="panZoomIdt" >缩放控件</span><div id="panZoomIdr" class="tl_ctr_rt"></div></a>
-				<a class="btn btn-success2 express " id="navagationId"  onclick=selectedControl(id)><span id="navagationIdt" >导航控件</span><div id="navagationIdr" class="tl_ctr_rt"></div></a>
-				<a class="btn btn-success2 express " id="layerSwitcherId"  onclick=selectedControl(id)><span id="layerSwitcherIdt" >图例管理控件</span><div id="layerSwitcherIdr" class="tl_ctr_rt"></div></a>
-				<a class="btn btn-success2 express " id="overMApId"  onclick=selectedControl(id)><span id="overMApIdt" >鹰眼</span><div id="overMApIdr" class="tl_ctr_rt"></div></a>
-			    </ul>
-			</span>
-		    </div>
-		    <div class="d2">
-			<span class="d1">
-			    <label class="page" id="controlid">选择功能面板种类</label>
-			</span>
-		    </div>
-		    <div class="d2">
-			<span class="d1">
-			    <ul class="tool_control_ul">
-				<a class="btn btn-success2 express" id="queryId" onclick=selectedTool(id)><span id="queryIdt">查询</span><div id="queryIdr" class="tl_ctr_rt"></div></a>
-				<a class="btn btn-success2 express" id="calculateId" onclick=selectedTool(id)><span id="calculateIdt">量算</span><div id="calculateIdr" class="tl_ctr_rt"></div></a>
-				<a class="btn btn-success2 express" id="locationId" onclick=selectedTool(id)><span id="locationIdt">定位</span><div id="locationIdr" class="tl_ctr_rt"></div></a>
-				<!--a class="btn btn-success2 express" id="themeId" onclick=selectedTool(id)><span id="themeIdt">专题图</span><div id="themeIdr" class="tl_ctr_rt"></div></a-->
-				<a class="btn btn-success2 express" id="markersId" onclick=selectedTool(id)><span id="markersIdt">标注</span><div id="markersIdr" class="tl_ctr_rt"></div></a>
-			    </ul>
-			</span>
-		    </div>
+            <span class="d1">
+            <label for="layertype" class="degree" id="selectid">类型</label>
+            </span>
+            <span class="d1" style="vertical-align: top;line-height: 20px;">
+            <select name="searchtype" id="layertype" onchange=searchtypechange(this.value)>
+                <option id="lytpop1" value='google'>Google Maps</option>
+                <option value='tiled' >iServer</option>
+                <option id="lytpop1" value='cloud' >SuperMap CloudLayer</option>
+                <option value='osm'>OpenStreet</option>
+                <option value='tdtlayer' >天地图</option>              
+                <option value='wms' >WMS</option>
+                <option value='arcgis' >ArcGIS online</option>
+            </select>
+            </span>
+            <span class="d1">
+            <label for="layername" class="degree" id="nameid">名称</label>
+            </span>
+            <span class="d1">
+            <input name = "layername" class="layernameclass" type="text" id="layername"  value="layer"/>
+            </span>
+            <span id="layerpara" style="display:none">
+            <span class="d1">
+                <label for="layerurl" class="degree" id="layerurlid">Url路径</label>
+            </span>
+            <span class="d1">
+                <input name = "layerurl" class="layerurlclass" type="text" id="layerurl"/>
+            </span>
+            </span>
+            <span class="d1">
+            <div type="button" class="btn btn-success2 express" id="add" onclick=add()>添加</div>
+            </span>
+            <span class="d1">
+            <div type="button" class="btn btn-success2 express" id="clear" onclick=clears()>清空</div>
+            </span>
+        </div>
+        <div id="role">
+            <div class="d2">
+            <span class="d1">
+                <label class="page" id="tool_controlid">选择控件类型</label>
+            </span>
             </div>
-		<a id="step1Pre" class="btn btn-success express" ><< 上一步</a>
-		<a id="step1Next" class="btn btn-success express" >下一步 >></a>
-	    </div>
-	</div>
+            <div class="d2">
+            <span class="d1">
+                <ul class="tool_control_ul">
+                <a class="btn btn-success2 express " id="scaleLineId"  onclick=selectedControl(id)><span id="scaleLineIdt" >比例尺</span><div id="scaleLineIdr" class="tl_ctr_rt"></div></a>
+                <a class="btn btn-success2 express " id="panZoomId"  onclick=selectedControl(id)><span id="panZoomIdt" >缩放控件</span><div id="panZoomIdr" class="tl_ctr_rt"></div></a>
+                <a class="btn btn-success2 express " id="navagationId"  onclick=selectedControl(id)><span id="navagationIdt" >导航控件</span><div id="navagationIdr" class="tl_ctr_rt"></div></a>
+                <a class="btn btn-success2 express " id="layerSwitcherId"  onclick=selectedControl(id)><span id="layerSwitcherIdt" >图例管理控件</span><div id="layerSwitcherIdr" class="tl_ctr_rt"></div></a>
+                <a class="btn btn-success2 express " id="overMApId"  onclick=selectedControl(id)><span id="overMApIdt" >鹰眼</span><div id="overMApIdr" class="tl_ctr_rt"></div></a>
+                </ul>
+            </span>
+            </div>
+            <div class="d2">
+            <span class="d1">
+                <label class="page" id="controlid">选择功能面板种类</label>
+            </span>
+            </div>
+            <div class="d2">
+            <span class="d1">
+                <ul class="tool_control_ul">
+                <a class="btn btn-success2 express" id="queryId" onclick=selectedTool(id)><span id="queryIdt">查询</span><div id="queryIdr" class="tl_ctr_rt"></div></a>
+                <a class="btn btn-success2 express" id="calculateId" onclick=selectedTool(id)><span id="calculateIdt">量算</span><div id="calculateIdr" class="tl_ctr_rt"></div></a>
+                <a class="btn btn-success2 express" id="locationId" onclick=selectedTool(id)><span id="locationIdt">定位</span><div id="locationIdr" class="tl_ctr_rt"></div></a>
+                <!--a class="btn btn-success2 express" id="themeId" onclick=selectedTool(id)><span id="themeIdt">专题图</span><div id="themeIdr" class="tl_ctr_rt"></div></a-->
+                <a class="btn btn-success2 express" id="markersId" onclick=selectedTool(id)><span id="markersIdt">标注</span><div id="markersIdr" class="tl_ctr_rt"></div></a>
+                </ul>
+            </span>
+            </div>
+            </div>
+        <a id="step1Pre" class="btn btn-success express" ><< 上一步</a>
+        <a id="step1Next" class="btn btn-success express" >下一步 >></a>
+        </div>
+    </div>
         <div id="systemProperties" style="display:none">
-	    <div class="details">
-		<h2><font color="#000" class="des">步骤三、系统配置 </font></h2>
-		<label class="page" id="serveid">选择发布服务平台</label>
-		    <select name="servertype" id="servertype" >
-		    <option value='Tomcat'  >Tomcat Server</option>
-		    <option value='IIS' >IIS信息发布服务</option>
-		    <!--option value='GAE' >Google APP Engine</option-->
-		</select>
-		<br />
-		<br />
-		<br />
-		<a id="step2Pre" class="btn btn-success express" ><< 上一步</a>
-		<a id="step2Next" class="btn btn-success express" >生成地图 >></a>
-	    </div>
-	</div>
-	<a href="http://js.lugw.net" target="_blank" id="feedBack">意见反馈</a>
+        <div class="details">
+        <h2><font color="#000" class="des">步骤三、系统配置 </font></h2>
+        <label class="page" id="serveid">选择发布服务平台</label>
+            <select name="servertype" id="servertype" >
+            <option value='Tomcat'  >Tomcat Server</option>
+            <option value='IIS' >IIS信息发布服务</option>
+            <!--option value='GAE' >Google APP Engine</option-->
+        </select>
+        <br />
+        <br />
+        <br />
+        <a id="step2Pre" class="btn btn-success express" ><< 上一步</a>
+        <a id="step2Next" class="btn btn-success express" >生成地图 >></a>
+        </div>
+    </div>
+    <a href="http://js.lugw.net" target="_blank" id="feedBack">意见反馈</a>
     </div>
 </div>
 <!--</div>-->

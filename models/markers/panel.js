@@ -1,11 +1,14 @@
-﻿//添加标注功能
+﻿
+//添加标注功能
 var markersHtml,vectorLayer,drawPoint;
 function js_bev_markers() {
-    $("#panel_handle > h4").fadeOut(200);
+    $("#panel_handle > h4").fadeOut(50);
     $("#panel_handle").css("background-image","url('./images/frameimages/mark.png')");
-    $("#back").fadeIn(200);
+    $("#back").fadeIn(50);
     
-    $("#back").attr("onClick","markersBack()");
+    $("#back").click(function(){markersBack();});
+    //$("#back").onClick=function (){markersBack();};
+    //$("#back").attr("onClick","markersBack()");
     $("#jsBev_sample").hide();
     
     markersHtml = $("#jsBev_sample").html();
@@ -15,9 +18,9 @@ function js_bev_markers() {
     text += "<div class='bookMakers'>"+showStorage(storage);
     text += "</div>";
 
-    $("#jsBev_sample").animate({"opacity":"0"},200,function(){
-        $("#panel_handle > h4").text("标注").fadeIn(200);
-        $("#jsBev_sample").html(text).animate({"opacity":"1"},200);
+    $("#jsBev_sample").animate({"opacity":"0"},50,function(){
+        $("#panel_handle > h4").text("标注").fadeIn(50);
+        $("#jsBev_sample").html(text).animate({"opacity":"1"},50);
     });
     
     //初始化control
@@ -32,9 +35,11 @@ function showStorage(storage){
     if(storage.length!=0){
         for(var i = 0,length = storage.length;i < length;i++){
             var strContent,contentStr;
-            strContent = storage.getItem(storage.key(i)).split(",");
-            contentStr = "<div class='contentId' ><div class='contentPic' id='" + storage.key(i) + "' onclick='removeDiv(id)'></div><div style = 'font-weight: bold;height: 15px;' id='"+replaceFun1(storage.key(i))+"' onclick = 'locatePoint(true,id)'>" + strContent[0] + "</div><div id = '"+replaceFun(storage.key(i))+"' onclick = 'locatePoint(false,id)'>" + strContent[2] + ","+ strContent[3] + "</div></div>";
-            contentText += contentStr;
+            if(storage.key(i).indexOf("contentID") > -1){
+                strContent = storage.getItem(storage.key(i)).split(",");            
+                contentStr = "<div class='contentId' ><div class='contentPic' id='" + storage.key(i) + "' onclick='removeDiv(id)'></div><div style = 'font-weight: bold;height: 15px;' id='"+replaceFun1(storage.key(i))+"' onclick = 'locatePoint(true,id)'>" + strContent[0] + "</div><div id = '"+replaceFun(storage.key(i))+"' onclick = 'locatePoint(false,id)'>" + strContent[2] + ","+ strContent[3] + "</div></div>";
+                contentText += contentStr;
+            }
         }
     }
     return contentText;
@@ -51,27 +56,29 @@ function replaceFun1(str){
 }
 
 function markersBack() {
-    $("#panel_handle > h4").fadeOut(200);
+    drawPoint.deactivate();
+    $("#panel_handle > h4").fadeOut(50);
     $("#panel_handle").css("background-image","url('./images/frameimages/chilun.png')");
-    $("#back").fadeOut(200);
+    $("#back").fadeOut(50);
     
     $("#jsBev_sample").hide();
-    if (polygonLayer) {
-        polygonLayer.removeAllFeatures();
+    if (js_bev_markerLayers) {
+        js_bev_markerLayers.clearMarkers();
     }
-    if (lineLayer) {
-        lineLayer.removeAllFeatures();
+    if(map.popups.length != 0){
+        map.removePopup(map.popups[0]);
     }
-    
-    $("#jsBev_sample").animate({"opacity":"0"},200,function(){
-        $("#panel_handle > h4").text("功能面板").fadeIn(200);
-        $("#jsBev_sample").html(markersHtml).animate({"opacity":"1"},200);
+    $("#jsBev_sample").animate({"opacity":"0"},50,function(){
+        $("#panel_handle > h4").text("功能面板").fadeIn(50);
+        $("#jsBev_sample").html(markersHtml).animate({"opacity":"1"},50);
     });
+    
 }
 
 //添加标注
 var js_bev_markerLayers;
 function addMarkers(){
+    drawPoint.deactivate();
     if(!js_bev_markerLayers){
         js_bev_markerLayers = new SuperMap.Layer.Markers("Markers");
          map.addLayer(js_bev_markerLayers);
@@ -80,7 +87,11 @@ function addMarkers(){
     if(map.popups.length != 0){
         map.removePopup(map.popups[0]);
     }
-    drawPoint.activate();
+    if(window.localStorage){
+        drawPoint.activate();
+    }else{
+        alert("您的浏览器版本暂时不支持该功能");
+    }
 }
 var point,featureMarkers;
 function drawCompleted(drawGeometryArgs) {
@@ -112,7 +123,7 @@ function drawCompleted(drawGeometryArgs) {
 
 function clickDefine(){
     var storage = window.localStorage;
-    if(storage.length == 0){
+    if(storage.length == 0 || !booleanYF(storage)){
         storage["contentID0"]=$("#titleId")[0].value+","+$("#titleCotent")[0].value+","+(point.x).toFixed("2")+","+(point.y).toFixed("2") + "," + map.getZoom();
          var contentStr="<div class='contentId'><div class='contentPic' id = 'contentID0' onclick = 'removeDiv(id)'></div><div style = 'font-weight: bold;height: 15px;' id='secShowID0' onclick = 'locatePoint(true,id)'>"+$("#titleId")[0].value+"</div><div id='showID0' onclick = 'locatePoint(false,id)'>"+(point.x).toFixed("2")+","+(point.y).toFixed("2")+"</div></div>";
     }else{
@@ -126,6 +137,17 @@ function clickDefine(){
     featureMarkers.popup.destroy();
     featureMarkers.popup = null;
     js_bev_markerLayers.clearMarkers();
+}
+
+function booleanYF(strstorage){
+    var jsMarkers = false;
+    for(var i = 0 , storageLength = strstorage.length; i < storageLength; i++){
+        if(strstorage.key(i).indexOf("contentID") > -1){
+            jsMarkers = true;
+            break;
+        }
+    }
+    return jsMarkers;
 }
 
 function removeDiv(id){
@@ -148,9 +170,11 @@ function removeDiv(id){
 function newId(str,strStorage){
     var returnStr = strStorage.key(0).split("contentID")[1];
     for(var i=0,len = strStorage.length;i < len; i++){
-        var compareStr = strStorage.key(i).split("contentID")[1];
-        if(parseInt(compareStr) > parseInt(returnStr)){
-            returnStr = compareStr;
+        if(strStorage.key(i).indexOf("contentID") > -1){
+            var compareStr = strStorage.key(i).split("contentID")[1];
+            if(parseInt(compareStr) > parseInt(returnStr)){
+                returnStr = compareStr;
+            }
         }
     }
     if(str == true){

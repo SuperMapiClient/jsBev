@@ -32,15 +32,22 @@
     function searchtypechange(value) {
         if (value == "tiled" || value == "wms" || value == "arcgis") {
             $("#layerpara").show();
+            $("#layername").val("Layer").removeAttr("readonly");
         } else {
             $("#layerpara").hide();
+            if(value == "cloud"){
+                $("#layername").val("CloudLayer").attr("readonly","readonly");
+            }else if(value == "tdtlayer"){
+                $("#layername").val("TDTLayer").attr("readonly","readonly");
+            }else{
+                $("#layername").val("Layer").removeAttr("readonly");
+            }
         }
 
     }
 
     function geolocation() {
         if (navigator.geolocation) {
-
             navigator.geolocation.getCurrentPosition(function (position) {
                 document.getElementById("lon").value = position.coords.longitude;
                 document.getElementById("lat").value = position.coords.latitude;
@@ -50,107 +57,103 @@
     var url=[];
     var count=1;
     function add(){
-	var a = document.getElementById("layername");
-	var b = document.getElementById("layerurl");
-	var c = document.getElementById("layertype");
+        var a = document.getElementById("layername");
+        var b = document.getElementById("layerurl");
+        var c = document.getElementById("layertype");
         var strName = a.value;
         var strUrl = b.value;
-	var type = c.value;
-	//var count = url.length+1;
-	if(!strName||strName==""){
-		strName = "map_"+count;
-	}
-	if((type=="tiled"||type=="wms"||type=="arcgis")&&(!strUrl||strUrl=="")){
-		alert("url路径不能为空");
-		return false;
-	}
+        var type = c.value;
+        if(!strName||strName==""){
+            strName = "map_"+count;
+        }
+        if((type=="tiled"||type=="wms"||type=="arcgis")&&(!strUrl||strUrl=="")){
+            alert("url路径不能为空");
+            return false;
+        }
         var danUrl=new Array();
         if(strName!="名称"&&strUrl!="Url路径"){
             danUrl[0]=strName;
             danUrl[1]=strUrl;
             danUrl[2]=type;
-	    danUrl[3]="layer_"+count;
-	    url.push(danUrl);
-	    var type1='';
-	    switch(type){
-		case "tiled":type1 = "iserver";break;
-		case "cloud":type1 = "SuperMap CloudLayer";break;
-		case "tdtlayer":type1 = "天地图";break;
-		case "wms":type1 = "WMS";break;
-		case "google":type1 = "Google Maps";break;
-		case "osm":type1 = "OpenStreet";break;
-		case "arcgis":type1 = "ArcGIS online";break;
-	    }
-	    showlayerinfo(strName,strUrl,type1,count);
-	    a.value = b.value = "";
-	    count++;
+            danUrl[3]="layer_"+count;
+            url.push(danUrl);
+            var type1='';
+            switch(type){
+            case "tiled":type1 = "iserver";break;
+            case "cloud":type1 = "SuperMap CloudLayer";break;
+            case "tdtlayer":type1 = "天地图";break;
+            case "wms":type1 = "WMS";break;
+            case "google":type1 = "Google Maps";break;
+            case "osm":type1 = "OpenStreet";break;
+            case "arcgis":type1 = "ArcGIS online";break;
+            }
+            showlayerinfo(strName,strUrl,type1,count);
+            a.value = b.value = "";
+            count++;
         }
     }
     
     function showlayerinfo(layername,layerurl,layertype,count){
-	var a,b;
-	
-	a = $("#layerinfo");
-	a.css("display","block");
-	if(layerurl){
-		if(layerurl.length>50){
-			layerurl = layerurl.substring(0,50);
-			layerurl += "..";
-		}
-		//layerurl = "，" + layerurl;
-	}
-	//var htmlsr = "<div style=\"margin:0px 0px 10px 10px;color:#fff;\"><span style=\"margin-left:10px;\">"+layername+"</span><span>"+layerurl+"</span></div>"
-	var htmlstr = "<div id=\"layerlist_"+count+"\" style=\"margin:0px 0px 10px 10px;color:#000;\"><span style=\"display:inline-block;\"><span style=\"margin-left:10px;\">"+layertype+"，</span><span style=\"margin-left:10px;\">"+layername+"</span>"
-	if(layerurl&&layerurl!=""){
-		htmlstr += "<span>，"+layerurl+"</span>";
-	}
-	htmlstr += "</span><span style=\"display:inline-block;margin-left:10px;\"><input type=\"button\" onclick=\"deleteLayer("+count+")\" value=\"删除\"></input></span></div>";
-	b = $(htmlstr);
-	a.append(b);
+        var a,b;
+        a = $("#layerinfo");
+        a.css("display","block");
+        if(layerurl){
+            if(layerurl.length>50){
+                layerurl = layerurl.substring(0,50);
+                layerurl += "..";
+            }
+            //layerurl = "，" + layerurl;
+        }
+        //var htmlsr = "<div style=\"margin:0px 0px 10px 10px;color:#fff;\"><span style=\"margin-left:10px;\">"+layername+"</span><span>"+layerurl+"</span></div>"
+        var htmlstr = "<div id=\"layerlist_"+count+"\" style=\"margin:0px 0px 10px 10px;color:#000;\"><span style=\"display:inline-block;\"><span style=\"margin-left:10px;\">"+layertype+"，</span><span style=\"margin-left:10px;\">"+layername+"</span>"
+        if(layerurl&&layerurl!=""){
+            htmlstr += "<span>，"+layerurl+"</span>";
+        }
+        htmlstr += "</span><span style=\"display:inline-block;margin-left:10px;\"><input type=\"button\" onclick=\"deleteLayer("+count+")\" value=\"删除\"></input></span></div>";
+        b = $(htmlstr);
+        a.append(b);
     }
     
     function deleteLayer(count){
-	var a;
-	$("#layerlist_"+count).remove();
-	for(var i=0;i<url.length;i++){
-		var a = url[i];
-		if(a&&a[3]&&a[3]=="layer_"+count){
-			url.splice(i,1);
-			break;
-		}
-	}
+        var a;
+        $("#layerlist_"+count).remove();
+        for(var i=0;i<url.length;i++){
+            var a = url[i];
+            if(a&&a[3]&&a[3]=="layer_"+count){
+                url.splice(i,1);
+                break;
+            }
+        }
     }
     
     var controls=new Array();
     function selectedControl(id){
-	var controlInfo=$("#"+id);
-	if($("#"+id).hasClass('btn-success2'))
-	{
-		$("#"+id).attr('class', 'btn express2');
-		$("#"+id+"r").css("display","block");
-		controls.push(id);
-	} else{
-		$("#"+id).attr('class', 'btn btn-success2 express');
-		$("#"+id+"r").css("display","none");
-		var index=indexof(controls,id);
-		controls.splice(index,1);
-	}
+        var controlInfo=$("#"+id);
+        if($("#"+id).hasClass('btn-success2')){
+            $("#"+id).attr('class', 'btn express2');
+            $("#"+id+"r").css("display","block");
+            controls.push(id);
+        } else{
+            $("#"+id).attr('class', 'btn btn-success2 express');
+            $("#"+id+"r").css("display","none");
+            var index=indexof(controls,id);
+            controls.splice(index,1);
+        }
     }
     
     var tools=new Array();
     function selectedTool(id){
         var controlInfo=$("#"+id);
-	if($("#"+id).hasClass('btn-success2'))
-	{
-		$("#"+id).attr('class', 'btn express2');
-		$("#"+id+"r").css("display","block");
-		tools.push(id);
-	} else{
-		$("#"+id).attr('class', 'btn btn-success2 express');
-		$("#"+id+"r").css("display","none");
-		var index=indexof(tools,id);
-		tools.splice(index,1);
-	}
+        if($("#"+id).hasClass('btn-success2')){
+            $("#"+id).attr('class', 'btn express2');
+            $("#"+id+"r").css("display","block");
+            tools.push(id);
+        } else{
+            $("#"+id).attr('class', 'btn btn-success2 express');
+            $("#"+id+"r").css("display","none");
+            var index=indexof(tools,id);
+            tools.splice(index,1);
+        }
     }
     function indexof(array,value){
         var index;
@@ -162,44 +165,44 @@
         return index;
     }
     
-	function search(value){
-		var toolName;
-		if(value === "查询"){
-			toolName="search";
-		}else if(value === "量算"){
-			toolName="measure";
-		}else if(value === "定位"){
-			toolName="location";
-		}else if(value === "专题图"){
-			toolName="themeLabel";
-		}else if(value === "标注"){
+    function search(value){
+        var toolName;
+        if(value === "查询"){
+            toolName="search";
+        }else if(value === "量算"){
+            toolName="measure";
+        }else if(value === "定位"){
+            toolName="location";
+        }else if(value === "专题图"){
+            toolName="themeLabel";
+        }else if(value === "标注"){
             toolName = "markers";
         }
-		return toolName;
-	}
-	function searchTwo(value){
-	    var controlName;
-		if(value === "比例尺"){
-		    controlName="ScaleLine";
-		}else if(value === "缩放控件"){
-		    controlName="PanZoomBar";
-		}else if(value === "导航控件"){
-		    controlName="Navigation";
-		}else if(value === "图例管理控件"){
-		    controlName="LayerSwitcher";
-		}else if(value === "鹰眼"){
-		    controlName="OverviewMap";
-		}
-		return controlName;	
-	}
+        return toolName;
+    }
+    function searchTwo(value){
+        var controlName;
+        if(value === "比例尺"){
+            controlName="ScaleLine";
+        }else if(value === "缩放控件"){
+            controlName="PanZoomBar";
+        }else if(value === "导航控件"){
+            controlName="Navigation";
+        }else if(value === "图例管理控件"){
+            controlName="LayerSwitcher";
+        }else if(value === "鹰眼"){
+            controlName="OverviewMap";
+        }
+        return controlName;    
+    }
     
     function clears(){
         document.getElementById("layername").value="";
         document.getElementById("layerurl").value="";
-	url=[];
-	var a = $("#layerinfo");
-	a.empty();
-	a.css("display","none");
+        url=[];
+        var a = $("#layerinfo");
+        a.empty();
+        a.css("display","none");
     }
     function generate_custom() {
         $("#pic").css({"background":"url('./resource/images/selectedpic.png') repeat-x","padding-bottom":"15px"});
@@ -227,14 +230,19 @@
         }
         if(url.length==0){
             strlayertype = document.getElementById("layertype").value;
-            strLayer = strLayer + "<layer type=\"" + strlayertype + "\" />";
+            if(strlayertype == "tiled" || strlayertype == "wms" || strlayertype == "arcgis"){
+                alert("用户未添加地图服务，请点击上一步进行添加");
+                return;
+            }else{
+                strLayer = strLayer + "<layer type=\"" + strlayertype + "\" />";
+            }
         }
         
         strLayer = strLayer + "</BaseLayers>";
         var strControl = "<Controls>";
         for(var i = 0,len = controls.length;i<len;i++){
-		controlsValue = searchTwo(document.getElementById(controls[i]+"t").innerHTML);
-		strControl = strControl + "<" + controlsValue +"/>";
+        controlsValue = searchTwo(document.getElementById(controls[i]+"t").innerHTML);
+        strControl = strControl + "<" + controlsValue +"/>";
         }
         strControl = strControl + "</Controls>";
         strMap = strMap + strLayer + strControl + "</map>";
@@ -249,8 +257,8 @@
         }else if(base=="base3"){
             base="base2";
         }else if(base=="base4"){
-		    base="base3";
-		}
+            base="base3";
+        }
         strBase = "<template src=\"./base/" + base + ".html\" />";
 
         var strservertype = document.getElementById("servertype").value;
@@ -262,12 +270,12 @@
         }
 
         var strPageName = document.getElementById("pagename").value;
-		var panelManager="<panelmanager id=\"panelmanager\">"
-		for(var i = 0,len = tools.length;i<len;i++){
-			controlsValue = search(document.getElementById(tools[i]+"t").innerHTML);
+        var panelManager="<panelmanager id=\"panelmanager\">"
+        for(var i = 0,len = tools.length;i<len;i++){
+            controlsValue = search(document.getElementById(tools[i]+"t").innerHTML);
             panelManager = panelManager + "<panel id=\""+controlsValue+"\" path=\"./models/"+controlsValue+"/\" />";
         }
-		panelManager = panelManager+"</panelmanager>";
+        panelManager = panelManager+"</panelmanager>";
         var strLayout = "<layout><page_name>" + strPageName + "</page_name><title>" + strTitle + "</title>" + strBase + strServerXML + panelManager+"</layout>";
         var strXML = strXMLHeader + strMap + strLayout + "</config>";
         var xmlDoc = null;
@@ -297,7 +305,7 @@ function generate_xml(xml){
     var strMap;
     var strPosition;
     var strUrl;
-    var strInsertscript = "";
+    var strInsertscripts = "";
     var strXML = xml;
     $(xml).find("Controls").children().each(function (i) {
         if (this.nodeName == "Navigation") {
@@ -320,28 +328,28 @@ function generate_xml(xml){
     strMap = "map = new SuperMap.Map('map'," + strControlsMessage + ");\n";
                             
     var nCloudNumber = [];
-	var strIServerLayer = [];
+    var strIServerLayer = [];
+    var strInsertscript = [];
     $(xml).find("BaseLayers").children().each(function (i) {
         var strType, strName;
         strType = $(this).attr('type');
         if (strType == "cloud") {
             strBaseLayers[i] = " layer" + i + " = new SuperMap.Layer.CloudLayer();\n";
             nCloudNumber.push(i); 
-        }
-        else if (strType == "tiled") {
+        }else if (strType == "tiled") {
             strUrl = $(this).attr('url');
             strName = $(this).attr('name');
 
             strBaseLayers[i] = " layer" + i + " = new SuperMap.Layer.TiledDynamicRESTLayer(' " + strName + "','" + strUrl + "', { transparent: true, cacheEnabled: true }, { maxResolution: 'auto' });\n";
-			strIServerLayer.push(i);
+            strIServerLayer.push(i);
         } else if (strType == "tdtlayer") {
             strBaseLayers[i] = " layer" + i + " = new SuperMap.Layer.TDTLayer();\n";
             nCloudNumber.push(i); 
-            strInsertscript = "<script src=\"./js/TDTLayer.js\" >" + "</script" + ">\n";
+            strInsertscript.push("<script src=\"./js/TDTLayer.js\" >" + "</script" + ">\n");
         } else if (strType == "google") {
             strBaseLayers[i] = " layer" + i + " = new OpenLayers.Layer.Google();\n";
             nCloudNumber.push(i);  
-            strInsertscript = "<script src='http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAjpkAC9ePGem0lIq5XcMiuhR_wWLPFku8Ix9i2SXYRVK3e45q1BQUd_beF8dtzKET_EteAjPdGDwqpQ'>" + "</script" + ">\n";
+            strInsertscript.push("<script src='http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAjpkAC9ePGem0lIq5XcMiuhR_wWLPFku8Ix9i2SXYRVK3e45q1BQUd_beF8dtzKET_EteAjPdGDwqpQ'>" + "</script" + ">\n");
         } else if(strType == "osm") {
             strBaseLayers[i] = " layer" + i + " = new OpenLayers.Layer.OSM();\n";
             nCloudNumber.push(i); 
@@ -371,14 +379,12 @@ function generate_xml(xml){
             }
         });
 
-        if(strLL == undefined)
-        {
+        if(strLL == undefined){
             var strLon = document.getElementById("lon").value;
             var strLat = document.getElementById("lat").value;
             strLL = "new SuperMap.LonLat(" + strLon + "," + strLat + ")";
         }
-        if(strZoom == undefined)
-        {
+        if(strZoom == undefined){
             strZoom = document.getElementById("zoom").value;
         }
 
@@ -386,20 +392,21 @@ function generate_xml(xml){
     });
                             
     var strInitFun = "function init() {\n " + strMap;
-	
-	for (var i = 0; i < strIServerLayer.length; i++) {
+    
+    for (var i = 0; i < strIServerLayer.length; i++) {
         strInitFun = strInitFun + strBaseLayers[strIServerLayer[i]] + "\n";
-		strInitFun = strInitFun + "layer" + strIServerLayer[i] + ".events.on({ 'layerInitialized': addLayer });\n";
+        strInitFun = strInitFun + "layer" + strIServerLayer[i] + ".events.on({ 'layerInitialized': addLayer });\n";
     }
     for (var i = 0; i < nCloudNumber.length; i++) {
         strInitFun = strInitFun + strBaseLayers[nCloudNumber[i]] + "\n";
-        strInitFun = strInitFun + "map.addLayer(layer" + i + ");\n";
+        strInitFun = strInitFun + "map.addLayer(layer" + nCloudNumber[i] + ");\n";
     }
-	
-	if(strIServerLayer.length==0)
-	{
-		strInitFun = strInitFun + "map.setCenter(" + strPosition + "); \n";
-	}
+    for (var i = 0, length = strInsertscript.length;i < length; i++){
+        strInsertscripts += strInsertscript[i];
+    }
+    if(strIServerLayer.length==0){
+        strInitFun = strInitFun + "map.setCenter(" + strPosition + "); \n";
+    }
 
     /*
     if (nCloudNumber != -1) {
@@ -426,10 +433,9 @@ function generate_xml(xml){
     strInitFun = strVar + strInitFun;
 
     var strLayer = "";
-	if(strIServerLayer.length>0)
-	{
-		strLayer = "map.addLayer(layer" + strIServerLayer[0] + ");\n";
-	}
+    if(strIServerLayer.length>0){
+        strLayer = "map.addLayer(layer" + strIServerLayer[0] + ");\n";
+    }
     /*
     if (strBaseLayers.length == 1) {
         strLayer = "map.addLayer(layer0);\n"
@@ -460,13 +466,20 @@ function generate_xml(xml){
 
                     //获取html中的数据
                     var strUrl1 = strConfig + "panel.html";
-                    $.get(strUrl1, null, function (data) {
+                    $.ajax({
+                        async:false,
+                        url:strUrl1,
+                        success:function (data) {
                         strPanelsHTML[i] = data;
-                    });
+                    }});
                     //获取js文件中的数据
                     strUrl2 = strConfig + "panel.js";
-                    $.get(strUrl2, null, function (data) {
+                    $.ajax({
+                        async:false,
+                        url:strUrl2, 
+                        success:function (data) {
                         strPanelsJS[i] = data;
+                        }
                     });
                 }
             });
@@ -492,7 +505,7 @@ function generate_xml(xml){
                 /*将pannel中js字符串添加到页面js字符串中*/
                 strInitLayerFun = strInitLayerFun + strPanelIniJS + "}\n";
 
-                var strResult = strResult + strInsertscript + "<" + "script" + ">" + "\n" + strInitFun + strAddLayerFun + strInitLayerFun + "\n";
+                var strResult = strResult + strInsertscripts + "<" + "script" + ">" + "\n" + strInitFun + strAddLayerFun + strInitLayerFun + "\n";
                 for (var j = 0; j < strPanelsJS.length; j++) {
                     strResult = strResult + strPanelsJS[j] + "\n";
                 }

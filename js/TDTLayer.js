@@ -271,7 +271,7 @@ SuperMap.Layer.TDTLayer = SuperMap.Class(SuperMap.CanvasLayer, {
 (function() {
     var  map, layerBase, layerMark, lat,lot;
     function dowork() {
-		var location = '定位';
+        var location = '定位';
         addBtn(location,geoLocation);
         map = new SuperMap.Map("map", { controls: [
             new SuperMap.Control.ScaleLine(),
