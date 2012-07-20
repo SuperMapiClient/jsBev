@@ -229,13 +229,8 @@
             }
         }
         if(url.length==0){
-            strlayertype = document.getElementById("layertype").value;
-            if(strlayertype == "tiled" || strlayertype == "wms" || strlayertype == "arcgis"){
-                alert("用户未添加地图服务，请点击上一步进行添加");
-                return;
-            }else{
-                strLayer = strLayer + "<layer type=\"" + strlayertype + "\" />";
-            }
+            alert("用户未添加地图服务，请点击上一步进行添加");
+            return;
         }
         
         strLayer = strLayer + "</BaseLayers>";
