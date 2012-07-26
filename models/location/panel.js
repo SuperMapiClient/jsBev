@@ -12,6 +12,7 @@ function js_bev_geoLocation() {
     var text = "<div class='bev_geolocate_cont' >";
     text += "<span class='fontstyle'>经度：<input class='input' id='lon' type='text'/></span><br/>";
     text += "<span class='fontstyle'>纬度：<input class='input' id='lat' type='text'/></span>";
+	text += "<span class='fontstyle'>地址：<input class='input' id='address' type='text'/></span>";
     text += "</div><div>";
     text += "<p class='button3' id='myLocate' >当前位置</p>";
     text += "<p class='button3' id='gotoLocate' >转到</p>";
@@ -98,7 +99,23 @@ map.addControl(geolocate);
         $("#lat").val("" + e.point.y + "°");
         $("#lon").val("" + e.point.x + "°");
         
+		var lon = e.point.x;
+		var lat = e.point.y;
+		sosoExp(lon,lat);
+		
         geolocate.watch = false;
         geolocate.deactivate();
     });
 }
+function sosoExp(lon,lat) { 
+	   var geocoder = new soso.maps.Geocoder();
+       var latLng = new soso.maps.LatLng(lat, lon);
+	   geocoder.geocode({'location':latLng}, function(results, status) {
+        if (status == soso.maps.GeocoderStatus.OK) {
+		    $("#address").val(results.address);			
+		}else{
+		    $("#address").val(status);
+		    //alert("soso检索没有结果，原因: " + status);
+		}
+      });
+	}
