@@ -36,20 +36,25 @@ function screem(){
 		_word.title ="退出全屏"
 		_right_map.style.width="100%";
 		_right_map.style.height="100%";
-		_map.style.height=bodyHeight-30+"px";
 		var html="<img src='./images/frameimages/tuichuquanp.png'></img>退出全屏"
 		$("#a_fullscreen").html(html);
 	}
 	//退出全屏
-	else{	
-		_leftdiv.style.display="";
-		_arrow.style.display="";
+	else{
+
+		$(".slide_btn").css("left","20%")
+		$("#shad_v").css("left","20%");
+		$("#slide_but_con").removeClass("mapinfo_but_con_close").addClass("slide_but_con");
+		$(this).attr("title","收起面板");
+		
+		_leftdiv.style.display="block";
+		_arrow.style.display="block";
+		
 		_header.style.display="";
 		_word.alt = "entire";
 		_word.title = "全屏";
 		_right_map.style.width="79.9%";
 		_right_map.style.height="";
-		_map.style.height="705px";
 		var html="<img src='./images/frameimages/fullScreen.png'></img>全屏"
 		$("#a_fullscreen").html(html);
 	}

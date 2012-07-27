@@ -4,8 +4,8 @@ function js_bev_measure() {
     $("#panel_handle").css("background-image","url('./images/frameimages/measure.png')");
     $("#back").fadeIn(50);
     
-    $("#back").click(function(){measureBack()});
-    //$("#back").attr("onClick","measureBack()");
+    //$("#back").click(function(){measureBack()});
+    $("#back").attr("onClick","measureBack()");
     $("#jsBev_sample").hide();
     
     measureHtml = $("#jsBev_sample").html();

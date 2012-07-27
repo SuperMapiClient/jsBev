@@ -5,8 +5,8 @@ function js_bev_geoLocation() {
     $("#panel_handle > h4").fadeOut(50);
     $("#panel_handle").css("background-image","url('./images/frameimages/location.png')");
     $("#back").fadeIn(50);
-    $("#back").click(function(){js_bev_geoLocation_back()});
-    //$("#back").attr("onClick","js_bev_geoLocation_back()");
+    //$("#back").click(function(){js_bev_geoLocation_back()});
+    $("#back").attr("onClick","js_bev_geoLocation_back()");
     $("#jsBev_sample").hide();
     geolocateHtml = $("#jsBev_sample").html();
     var text = "<div class='bev_geolocate_cont' >";
@@ -15,7 +15,6 @@ function js_bev_geoLocation() {
 	text += "<span class='fontstyle'>地址：<input class='input' id='address' type='text'/></span>";
     text += "</div><div>";
     text += "<p class='button3' id='myLocate' >当前位置</p>";
-    text += "<p class='button3' id='gotoLocate' >转到</p>";
     text += "</div>";
 
     $("#jsBev_sample").animate({"opacity":"0"},50,function(){
@@ -75,21 +74,6 @@ map.addControl(geolocate);
         $("#lon").val(lon);
     });
 
-    $("#gotoLocate").click(function () {
-        if ($("#lat").val() != "" && $("#lon").val() != "") {
-            var size = new SuperMap.Size(44, 33);
-            var offset = new SuperMap.Pixel(-(size.w / 2), -size.h);
-            var icon = new SuperMap.Icon("./resource/controlImages/marker.png", size, offset);
-            if (markerLayer == null) {
-                markerLayer = new SuperMap.Layer.Markers("Markers");
-                map.addLayer(markerLayer);
-                markerLayer.addMarker(new SuperMap.Marker(new SuperMap.LonLat($("#lon").val(), $("#lat").val()), icon));
-            }
-            markerLayer.addMarker(new SuperMap.Marker(new SuperMap.LonLat($("#lon").val(), $("#lat").val()), icon));
-            map.setCenter(new SuperMap.LonLat($("#lon").val(), $("#lat").val()));
-        }
-    });
-
     $("#myLocate").click(function () {
         geolocate.watch = true;
         geolocate.activate();
@@ -102,6 +86,22 @@ map.addControl(geolocate);
 		var lon = e.point.x;
 		var lat = e.point.y;
 		sosoExp(lon,lat);
+		
+		if (markerLayer) {
+            markerLayer.clearMarkers();
+        }
+        if ($("#lat").val() != "" && $("#lon").val() != "") {
+            var size = new SuperMap.Size(44, 33);
+            var offset = new SuperMap.Pixel(-(size.w / 2), -size.h);
+            var icon = new SuperMap.Icon("./resource/controlImages/marker.png", size, offset);
+            if (markerLayer == null) {
+                markerLayer = new SuperMap.Layer.Markers("Markers");
+                map.addLayer(markerLayer);
+                markerLayer.addMarker(new SuperMap.Marker(new SuperMap.LonLat($("#lon").val(), $("#lat").val()), icon));
+            }
+            markerLayer.addMarker(new SuperMap.Marker(new SuperMap.LonLat($("#lon").val(), $("#lat").val()), icon));
+            map.setCenter(new SuperMap.LonLat($("#lon").val(), $("#lat").val()));
+        }
 		
         geolocate.watch = false;
         geolocate.deactivate();

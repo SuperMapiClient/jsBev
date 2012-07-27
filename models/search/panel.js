@@ -5,8 +5,8 @@ function js_bev_search_step(){
     $("#back").fadeIn(50);
     
     queryHtml = $("#jsBev_sample").html();
-    $("#back").click(function(){searchBack()});
-    //$("#back").attr("onClick","searchBack()");
+    //$("#back").click(function(){searchBack()});
+    $("#back").attr("onClick","searchBack()");
     var text="<p class='button3' id='searchByBounds' onclick='clickChaXun()'>范围查询</p>";
     text += "<p class='button3' id='searchBySQL' onClick='clickSql()'>SQL查询</div>";
     $("#jsBev_sample").animate({"opacity":"0"},50,function(){
@@ -153,6 +153,7 @@ function js_Search_processCompleted(queryEventArgs) {
             }
         }
     }
+	js_Search_vectorLayer.removeAllFeatures();
 }
 function js_Search_processFailed(e) {
     alert(e.error.errorMsg);

@@ -6,9 +6,9 @@ function js_bev_markers() {
     $("#panel_handle").css("background-image","url('./images/frameimages/mark.png')");
     $("#back").fadeIn(50);
     
-    $("#back").click(function(){markersBack();});
+    //$("#back").click(function(){markersBack();});
     //$("#back").onClick=function (){markersBack();};
-    //$("#back").attr("onClick","markersBack()");
+    $("#back").attr("onClick","markersBack()");
     $("#jsBev_sample").hide();
     
     markersHtml = $("#jsBev_sample").html();
@@ -131,7 +131,7 @@ function clickDefine(){
          var contentStr="<div class='contentId'><div class='contentPic' id = 'contentID" + newId(true,storage) + "' onclick = 'removeDiv(id)'></div><div style = 'font-weight: bold;height: 15px' id='secShowID"+newId(true,storage)+"' onclick = 'locatePoint(true,id)'>"+$("#titleId")[0].value+"</div><div id='showID"+newId(true,storage)+"' onclick = 'locatePoint(false,id)'>"+(point.x).toFixed("2")+","+(point.y).toFixed("2")+"</div></div>";
     }
     var contentObject=$(contentStr);
-    $(".bookMakers").append(contentObject);
+    $(".bookMakers").prepend(contentObject);
     
     map.removePopup(featureMarkers.popup);
     featureMarkers.popup.destroy();
