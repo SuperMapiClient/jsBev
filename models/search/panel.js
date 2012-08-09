@@ -16,9 +16,11 @@ function js_bev_search_step(){
 }
 //查询功能
 function clickChaXun(){
-    $("#back").attr("onClick","searchBack_to_step()");
+   $("#back").attr("onClick","searchBack_to_step()");
     quert_html_range_sql = $("#jsBev_sample").html();
-    var text="<p class='fontstyle' >图层名称</p><input class='input' type='text' id='nametext' value='Capitals@World' />"
+    var text="<div id='SubLayers'><p class='fontstyle' >图层名称</p>"
+	text += getSubLayers();
+	text += "</div>"
     text+="<p class='button4' onclick=js_Bev_Query() >查询</p><p class='button4' onclick='js_Search_clearFeatures()' >清除</p>"
     $("#jsBev_sample").animate({"opacity":"0"},50,function(){
         queryType_sql=1;
@@ -28,15 +30,16 @@ function clickChaXun(){
 function clickSql(){
     $("#back").attr("onClick","searchBack_to_step()");
     quert_html_range_sql = $("#jsBev_sample").html();
-    var text="<div><p class='fontstyle' >图层名称</p>";
-    text+="<input class='input' type='text' id='nametext' value='Countries@World'/></div>"
+    var text="<div id='SubLayers'><p class='fontstyle' >图层名称</p>";
+	text += getSubLayers();
+	text += "</div>"
     text+="<p class='fontstyle' >SQL语句</p>";
     text+="<input class='input' type='text' id='sqltext' value='Pop_1994>1000000000 and SmArea>900'/>";
-    text+="<p class='button4' onclick='js_Bev_Query()'>查询</p><p class='button4' onclick='js_Search_clearFeatures()'>清除</p>";
+    text+="<p class='button4' onclick='js_Bev_Query()'>查询</p><p class='button4' onclick='js_Search_clearFeatures()'>清除</p>";	
     $("#jsBev_sample").animate({"opacity":"0"},50,function(){
         $("#jsBev_sample").html(text).animate({"opacity":"1"},50);
     });
-    queryType_sql++;
+    queryType_sql++;	
 }
 
 function searchBack() {
@@ -66,6 +69,42 @@ var js_Search_style = {
     fillColor: "#304DBE",
     fillOpacity: 0.3
 };
+
+function getSubLayers(){
+    try{
+	    //判断url是否为iserver rest 地图服务
+	    if(url == undefined || url.search(/iserver\/services/) === -1 || url.search(/rest\/maps/) === -1){
+		    return("<input class='input' type='text' id='nametext' value=''/>");
+		}else{
+	        //根据url地址获取子图层信息
+	        var sp,layerName,uri;
+	        sp = url.split("/"); 
+	        layerName = sp[sp.length-1];
+	        uri = url + "/layers/" + layerName + ".json";
+            var commit = new XMLHttpRequest();
+            commit.open("GET",encodeURI(uri),false,"","");
+            commit.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+            commit.send(null);   
+            var response = JSON.parse(commit.responseText, null);	
+            //判断是否存在子图层
+	        if(toString(response.subLayers)==="{}"){
+		        return("<input class='input' type='text' id='nametext' value=''/>");
+            }else{
+	            var len=response.subLayers.layers.length;
+		        var text = "<select class='Layers' id='nametext' >";
+		        for(var j=0;j<len;j++){
+		    	    text += "<option value=\'"+response.subLayers.layers[j].name+"\'>"+response.subLayers.layers[j].caption+"</option>";
+                }	
+		        text += "</select>";
+		        return(text);	
+	        }          
+	    }	
+	}  
+    catch(e){
+	    return("<input class='input' type='text' id='nametext' value=''/>");
+	} 	
+}
+
 
 function js_Bev_Query() {
     if (js_Search_vectorLayer) {

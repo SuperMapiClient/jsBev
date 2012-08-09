@@ -280,6 +280,17 @@
 	height:17px;
 	margin-left:5px;
 } 
+#nametext{
+    transition: all 0.30s ease-in-out;
+	-webkit-transition: all 0.30s ease-in-out; 
+	-moz-transition: all 0.30s ease-in-out; 
+	border: #35a5e5 1px solid; 
+	border-radius: 4px; 
+	outline: none; 
+	width:96%;
+	height:21px;
+	margin-left:5px;
+} 
 .input:focus { 
 	border:#35a5e5 1px solid; 
 	box-shadow: 0 0 5px rgba(81, 203, 238, 1); 
